@@ -16,11 +16,11 @@ public class BulletManager {
     }
 
     // update the position of all bullets
-    public void update(float delta){
+    public void update(){
         Iterator<Bullet> iter = bulletSet.iterator();
         while(iter.hasNext()){
             Bullet b = iter.next();
-            b.updatePosition(delta);
+            b.updatePosition();
             if(b.getPosY() > 700 || b.getPosY() < 0)
                 iter.remove();
         }

@@ -38,8 +38,8 @@ public class Bullet implements Displayable {
         return source;
     }
 
-    public void updatePosition(float delta){
-        body.y += vel*delta;
+    public void updatePosition(){
+        body.y += vel;
     }
 
     public boolean isHitting(Rectangle body, TypeOfCharacter type){

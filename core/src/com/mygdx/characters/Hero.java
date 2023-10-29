@@ -56,7 +56,7 @@ public class Hero implements Character, Displayable {
     }
 
     public void shoot(){
-        bm.addBullet((int)body.x, (int)(body.y+body.height/2), 500, type);
+        bm.addBullet((int)body.x, (int)(body.y+body.height/2), 3, type);
     }
 
     @Override

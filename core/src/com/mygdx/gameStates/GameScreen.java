@@ -59,9 +59,8 @@ public class GameScreen implements Screen {
         game.batch.end();
 
         hero.handleInput();
-        bm.update(delta);
+        bm.update();
         em.update();
-        em.check();
     }
 
     @Override
