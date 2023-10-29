@@ -2,7 +2,6 @@ package com.mygdx;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.mygdx.AstralMayhem;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
@@ -12,7 +11,7 @@ public class DesktopLauncher {
 		config.setIdleFPS(30);
 		config.setTitle("AstralMayhem");
 		config.setWindowIcon("window-logo.jpg");
-		config.setWindowedMode(1920, 1020);
+		config.setWindowedMode(1000, 700);
 		new Lwjgl3Application(new AstralMayhem(), config);
 	}
 }

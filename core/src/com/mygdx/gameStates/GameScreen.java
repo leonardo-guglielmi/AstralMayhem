@@ -6,13 +6,17 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.AstralMayhem;
-import com.mygdx.Hero;
+import com.mygdx.bullets.BulletManager;
+import com.mygdx.characters.Hero;
+
+import java.util.ArrayList;
 
 public class GameScreen implements Screen {
 
     private final AstralMayhem game;
-    private final Hero hero = new Hero(new Texture(Gdx.files.internal("hero.png")), 0, 0);
-    private OrthographicCamera camera = new OrthographicCamera();
+    private final OrthographicCamera camera = new OrthographicCamera();
+    private final BulletManager bm = new BulletManager();
+    private final Hero hero = new Hero(new Texture(Gdx.files.internal("hero.png")), 0, 100, bm);
 
     public GameScreen(final AstralMayhem game){
         this.game = game;
@@ -31,11 +35,15 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
-        hero.input.handle();
+        hero.handleInput();
+        bm.update(delta);
 
         game.batch.begin();
         {
             game.batch.draw(hero.getTexture(), hero.getPosX(), hero.getPosY());
+            ArrayList<Texture> bulletsTexture = bm.getBulletsTexture();
+            //for(Texture tx : bulletsTexture)
+                // game.batch.draw(); todo: come faccio ad ottenere anche la posizione?
         }
         game.batch.end();
     }

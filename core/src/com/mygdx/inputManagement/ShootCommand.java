@@ -2,16 +2,14 @@ package com.mygdx.inputManagement;
 
 import com.mygdx.characters.Hero;
 
-public class MoveLeftCommand implements Command{
-
+public class ShootCommand implements Command{
     private final Hero player;
 
-    public MoveLeftCommand(Hero player){
+    public ShootCommand(Hero player){
         this.player = player;
     }
-
     @Override
-    public void execute( ) {
-        player.move(-5);
+    public void execute() {
+        player.shoot();
     }
 }
