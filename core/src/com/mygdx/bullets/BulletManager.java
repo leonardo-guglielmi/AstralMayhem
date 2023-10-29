@@ -1,27 +1,50 @@
 package com.mygdx.bullets;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.characters.TypeOfCharacter;
+import com.mygdx.displayable.DisplayObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 
-// todo: trovare il modo di eliminare un proiettile
 public class BulletManager {
-    private ArrayList<Bullet> bulletSet = new ArrayList<>();
+    private HashSet<Bullet> bulletSet = new HashSet<>();
 
     public void addBullet(int startX, int startY, int vel, TypeOfCharacter source) {
         bulletSet.add(new Bullet(startX, startY, vel, source));
     }
 
+    // update the position of all bullets
     public void update(float delta){
-        for(Bullet b : bulletSet){
+        Iterator<Bullet> iter = bulletSet.iterator();
+        while(iter.hasNext()){
+            Bullet b = iter.next();
             b.updatePosition(delta);
+            if(b.getPosY() > 700 || b.getPosY() < 0)
+                iter.remove();
         }
     }
 
-    public ArrayList<Texture> getBulletsTexture(){
-        ArrayList<Texture> arrTx = new ArrayList<>();
+    //todo: vedi se passare la texture per copia o lasciarla per reference
+    public ArrayList<DisplayObject> getDisplayable(){
+        ArrayList<DisplayObject> arrDisp = new ArrayList<>();
         for(Bullet b : bulletSet)
-            arrTx.add(b.getTexture());
-        return arrTx;
+            arrDisp.add(b.getDisplayObject());
+        return arrDisp;
     }
+
+    public int getBulletCollision(Rectangle body, TypeOfCharacter type){
+        int count = 0;
+        Iterator<Bullet> iter = bulletSet.iterator();
+        while(iter.hasNext()) {
+            Bullet b = iter.next();
+            if(b.isHitting(body, type)) {
+                iter.remove();
+                count++;
+            }
+        }
+        return count;
+    }
+
 }

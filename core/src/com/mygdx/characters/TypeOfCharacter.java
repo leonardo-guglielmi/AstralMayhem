@@ -1,4 +1,4 @@
-package com.mygdx.bullets;
+package com.mygdx.characters;
 
 public enum TypeOfCharacter {
     HERO,

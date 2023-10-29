@@ -2,11 +2,12 @@ package com.mygdx.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.displayable.DisplayObject;
+import com.mygdx.displayable.Displayable;
 import com.mygdx.bullets.BulletManager;
-import com.mygdx.bullets.TypeOfCharacter;
 import com.mygdx.inputManagement.PlayerInputHandler;
 
-public class Hero implements Character{
+public class Hero implements Character, Displayable {
     private int hp = 10;
     private Texture tx;
     private Rectangle body = new Rectangle();
@@ -31,16 +32,9 @@ public class Hero implements Character{
         return hp;
     }
 
-    public int getPosX() {
-        return (int)body.x;
-    }
-
-    public int getPosY() {
-        return (int)body.y;
-    }
-
-    public Texture getTexture() {
-        return tx;
+    @Override
+    public DisplayObject getDisplayObject(){
+        return new DisplayObject(tx, (int)body.x, (int)body.y);
     }
 
     public void handleInput(){
@@ -66,7 +60,10 @@ public class Hero implements Character{
     }
 
     @Override
-    public void checkCollision() {
-
+    public boolean checkCollision() {
+        int damage = bm.getBulletCollision(body, type);
+        boolean res = damage >= 1;
+        hp -= damage;
+        return res;
     }
 }

@@ -4,11 +4,14 @@ package com.mygdx.bullets;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.characters.TypeOfCharacter;
+import com.mygdx.displayable.DisplayObject;
+import com.mygdx.displayable.Displayable;
 
-public class Bullet {
+public class Bullet implements Displayable {
     private Rectangle body = new Rectangle();
-    private Texture tx;
     private int vel;
+    private Texture tx;
     private TypeOfCharacter source;
 
 
@@ -22,12 +25,9 @@ public class Bullet {
         this.source = source;
     }
 
-    public Texture getTexture(){
-        return tx;
-    }
-
-    public int getPosX(){
-        return (int)body.x;
+    @Override
+    public DisplayObject getDisplayObject(){
+        return new DisplayObject(tx, (int)body.x, (int)body.y);
     }
 
     public int getPosY(){
@@ -40,5 +40,9 @@ public class Bullet {
 
     public void updatePosition(float delta){
         body.y += vel*delta;
+    }
+
+    public boolean isHitting(Rectangle body, TypeOfCharacter type){
+        return this.body.overlaps(body) && this.source != type;
     }
 }

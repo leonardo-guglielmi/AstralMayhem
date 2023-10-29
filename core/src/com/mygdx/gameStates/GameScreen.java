@@ -7,7 +7,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.AstralMayhem;
 import com.mygdx.bullets.BulletManager;
+import com.mygdx.characters.Enemy;
+import com.mygdx.characters.EnemyManager;
 import com.mygdx.characters.Hero;
+import com.mygdx.displayable.DisplayObject;
 
 import java.util.ArrayList;
 
@@ -16,12 +19,16 @@ public class GameScreen implements Screen {
     private final AstralMayhem game;
     private final OrthographicCamera camera = new OrthographicCamera();
     private final BulletManager bm = new BulletManager();
+    private final EnemyManager em = new EnemyManager(bm);
     private final Hero hero = new Hero(new Texture(Gdx.files.internal("hero.png")), 0, 100, bm);
 
     public GameScreen(final AstralMayhem game){
         this.game = game;
         camera.setToOrtho(false);
         game.batch.setProjectionMatrix(camera.combined);
+
+        em.addEnemy(new Enemy(new Texture(Gdx.files.internal("enemy.png")), 0, 500, bm));
+        em.addEnemy(new Enemy(new Texture(Gdx.files.internal("enemy.png")), 300, 500, bm));
     }
 
     @Override
@@ -35,17 +42,26 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
-        hero.handleInput();
-        bm.update(delta);
-
         game.batch.begin();
         {
-            game.batch.draw(hero.getTexture(), hero.getPosX(), hero.getPosY());
-            ArrayList<Texture> bulletsTexture = bm.getBulletsTexture();
-            //for(Texture tx : bulletsTexture)
-                // game.batch.draw(); todo: come faccio ad ottenere anche la posizione?
+            DisplayObject dispHero = hero.getDisplayObject();
+            game.batch.draw(dispHero.tx, dispHero.posX, dispHero.posY);
+
+            ArrayList<DisplayObject> bulletsDisp = bm.getDisplayable();
+            for(DisplayObject b : bulletsDisp)
+                game.batch.draw(b.tx, b.posX, b.posY);
+
+            ArrayList<DisplayObject> enemyDisp = em.getDisplayable();
+            for(DisplayObject e : enemyDisp)
+                game.batch.draw(e.tx, e.posX, e.posY);
+
         }
         game.batch.end();
+
+        hero.handleInput();
+        bm.update(delta);
+        em.update();
+        em.check();
     }
 
     @Override
