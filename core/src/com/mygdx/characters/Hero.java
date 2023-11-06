@@ -2,7 +2,7 @@ package com.mygdx.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.displayable.DisplayObject;
+import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.manager.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
@@ -33,8 +33,8 @@ public class Hero implements Character, Displayable {
     }
 
     @Override
-    public DisplayObject getDisplayObject(){
-        return new DisplayObject(tx, (int)body.x, (int)body.y);
+    public DisplayableObject getDisplayableObject(){
+        return new DisplayableObject(tx, (int)body.x, (int)body.y);
     }
 
     public void handleInput(){

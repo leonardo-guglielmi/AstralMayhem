@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.manager.Managable;
-import com.mygdx.displayable.DisplayObject;
+import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.manager.BulletManager;
 import com.mygdx.enemyStuff.Strategy;
@@ -33,8 +33,8 @@ public class Enemy implements Character, Displayable, Managable, StrategyContext
     }
 
     @Override
-    public DisplayObject getDisplayObject(){
-        return new DisplayObject(tx, (int)body.x, (int)body.y);
+    public DisplayableObject getDisplayableObject(){
+        return new DisplayableObject(tx, (int)body.x, (int)body.y);
     }
 
     @Override

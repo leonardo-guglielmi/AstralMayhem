@@ -1,7 +1,7 @@
 package com.mygdx.manager;
 
 import com.mygdx.characters.Enemy;
-import com.mygdx.displayable.DisplayObject;
+import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.enemyStuff.EnemyFactory;
 
 import java.util.ArrayList;
@@ -24,10 +24,10 @@ public class EnemyManager implements Manager{
     }
 
     @Override
-    public ArrayList<DisplayObject> getDisplayable(){
-        ArrayList<DisplayObject> arrDisp = new ArrayList<>();
+    public ArrayList<DisplayableObject> getDisplayable(){
+        ArrayList<DisplayableObject> arrDisp = new ArrayList<>();
         for(Enemy e : enemySet)
-            arrDisp.add(e.getDisplayObject());
+            arrDisp.add(e.getDisplayableObject());
         return arrDisp;
     }
 

@@ -5,9 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.characters.TypeOfCharacter;
-import com.mygdx.displayable.DisplayObject;
+import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
-import org.jetbrains.annotations.NotNull;
 
 public class Bullet implements Displayable {
     public Rectangle body = new Rectangle();
@@ -17,7 +16,7 @@ public class Bullet implements Displayable {
 
 
     public Bullet(int startX, int startY, int vel, TypeOfCharacter source){
-        tx = new Texture(Gdx.files.internal("bullet.png"));
+        tx = new Texture(Gdx.files.internal("bullet2.png"));
         body.width = 8;
         body.height = 8;
         body.x = startX;
@@ -27,8 +26,8 @@ public class Bullet implements Displayable {
     }
 
     @Override
-    public DisplayObject getDisplayObject(){
-        return new DisplayObject(tx, (int)body.x, (int)body.y);
+    public DisplayableObject getDisplayableObject(){
+        return new DisplayableObject(tx, (int)body.x, (int)body.y);
     }
 
     public int getPosY(){

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.jogamp.opengl.util.stereo.generic.GenericStereoDeviceConfig;
 
 public class Timer {
-    private float timeLatency;
+    private final float timeLatency;
     private float lastTimestamp;
 
     public Timer(float timeLatency){

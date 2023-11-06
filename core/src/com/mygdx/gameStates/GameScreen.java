@@ -9,10 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.mygdx.AstralMayhem;
 import com.mygdx.manager.BulletManager;
-import com.mygdx.characters.Enemy;
 import com.mygdx.manager.EnemyManager;
 import com.mygdx.characters.Hero;
-import com.mygdx.displayable.DisplayObject;
+import com.mygdx.displayable.DisplayableObject;
 
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public class GameScreen implements Screen {
     private final OrthographicCamera camera = new OrthographicCamera();
     private final BulletManager bm = new BulletManager();
     private final EnemyManager em = new EnemyManager(bm);
-    private final Hero hero = new Hero(new Texture(Gdx.files.internal("hero.png")), 0, 100, bm);
+    private final Hero hero = new Hero(new Texture(Gdx.files.internal("heroo.png")), 0, 100, bm);
     private final BitmapFont textPrinter = new BitmapFont();
     float time = 0;
 
@@ -55,15 +54,15 @@ public class GameScreen implements Screen {
         textPrinter.setColor(Color.WHITE);
         game.batch.begin();
         {
-            DisplayObject dispHero = hero.getDisplayObject();
+            DisplayableObject dispHero = hero.getDisplayableObject();
             game.batch.draw(dispHero.tx, dispHero.posX, dispHero.posY);
 
-            ArrayList<DisplayObject> bulletsDisp = bm.getDisplayable();
-            for(DisplayObject b : bulletsDisp)
+            ArrayList<DisplayableObject> bulletsDisp = bm.getDisplayable();
+            for(DisplayableObject b : bulletsDisp)
                 game.batch.draw(b.tx, b.posX, b.posY);
 
-            ArrayList<DisplayObject> enemyDisp = em.getDisplayable();
-            for(DisplayObject e : enemyDisp)
+            ArrayList<DisplayableObject> enemyDisp = em.getDisplayable();
+            for(DisplayableObject e : enemyDisp)
                 game.batch.draw(e.tx, e.posX, e.posY);
 
             textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), 500, 350);
