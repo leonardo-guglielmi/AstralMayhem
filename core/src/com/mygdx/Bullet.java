@@ -1,4 +1,4 @@
-package com.mygdx.bullets;
+package com.mygdx;
 
 
 import com.badlogic.gdx.Gdx;
@@ -7,9 +7,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.characters.TypeOfCharacter;
 import com.mygdx.displayable.DisplayObject;
 import com.mygdx.displayable.Displayable;
+import org.jetbrains.annotations.NotNull;
 
 public class Bullet implements Displayable {
-    private Rectangle body = new Rectangle();
+    public Rectangle body = new Rectangle();
     private int vel;
     private Texture tx;
     private TypeOfCharacter source;

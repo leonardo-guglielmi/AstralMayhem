@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.displayable.DisplayObject;
 import com.mygdx.displayable.Displayable;
-import com.mygdx.bullets.BulletManager;
+import com.mygdx.manager.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
 
 public class Hero implements Character, Displayable {
@@ -56,7 +56,7 @@ public class Hero implements Character, Displayable {
     }
 
     public void shoot(){
-        bm.addBullet((int)body.x, (int)(body.y+body.height/2), 3, type);
+        bm.addBullet((int)(body.x+body.width/2), (int)(body.y+body.height/2), 10, type);
     }
 
     @Override

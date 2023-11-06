@@ -1,23 +1,29 @@
-package com.mygdx.characters;
+package com.mygdx.manager;
 
-import com.mygdx.bullets.BulletManager;
+import com.mygdx.characters.Enemy;
 import com.mygdx.displayable.DisplayObject;
+import com.mygdx.enemyStuff.EnemyFactory;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class EnemyManager {
-    HashSet<Enemy> enemySet = new HashSet<>();
-    BulletManager bm;
+public class EnemyManager implements Manager{
+    private HashSet<Enemy> enemySet = new HashSet<>();
+    private BulletManager bm;
+
+    private EnemyFactory ef;
 
     public EnemyManager(BulletManager bm){
         this.bm = bm;
+        ef = new EnemyFactory(bm);
     }
 
-    public void addEnemy(Enemy e){
-        enemySet.add(e);
+    public void addEnemy(){
+        enemySet.add(ef.createBaseEnemy());
     }
 
+    @Override
     public ArrayList<DisplayObject> getDisplayable(){
         ArrayList<DisplayObject> arrDisp = new ArrayList<>();
         for(Enemy e : enemySet)
@@ -25,15 +31,16 @@ public class EnemyManager {
         return arrDisp;
     }
 
+    @Override
     public void update(){
-        for(Enemy e : enemySet)
-            e.move();
         Iterator<Enemy> iter = enemySet.iterator();
         while(iter.hasNext()){
             Enemy e = iter.next();
-            e.move();
             if(e.checkCollision())
                 iter.remove();
+            else{
+                e.exec();
+            }
         }
     }
 }
