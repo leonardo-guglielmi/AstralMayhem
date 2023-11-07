@@ -17,8 +17,8 @@ public class Bullet implements Displayable {
 
     public Bullet(int startX, int startY, int vel, TypeOfCharacter source){
         tx = new Texture(Gdx.files.internal("bullet2.png"));
-        body.width = 8;
-        body.height = 8;
+        body.width = tx.getWidth();
+        body.height = tx.getHeight();
         body.x = startX;
         body.y = startY;
         this.vel = vel;
