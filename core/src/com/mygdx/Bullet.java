@@ -1,6 +1,5 @@
 package com.mygdx;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -8,11 +7,14 @@ import com.mygdx.characters.TypeOfCharacter;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 
+/**
+ * Questa classe contiene tutte le informazioni che riguardano un singolo proiettile del gioco
+ */
 public class Bullet implements Displayable {
-    public Rectangle body = new Rectangle();
-    private int vel;
+    private Rectangle body = new Rectangle(); //corpo fisico del proiettile
+    private int vel; // velocità del proiettile, indica sia il verso che il modulo
     private Texture tx;
-    private TypeOfCharacter source;
+    private TypeOfCharacter source; // tipo di Character che ha generato il proiettile
 
 
     public Bullet(int startX, int startY, int vel, TypeOfCharacter source){
@@ -38,10 +40,17 @@ public class Bullet implements Displayable {
         return source;
     }
 
+    // ritorna una copia del body per gestire le collisioni in sola lettura
+    public Rectangle getBody(){
+        return new Rectangle(body);
+    }
+
+    // aggiorna la posizione del proiettile
     public void updatePosition(){
         body.y += vel;
     }
 
+    // controlla se si sta scontrando con un altro corpo e, nel caso, se i due hanno source diverso
     public boolean isHitting(Rectangle body, TypeOfCharacter type){
         return this.body.overlaps(body) && this.source != type;
     }

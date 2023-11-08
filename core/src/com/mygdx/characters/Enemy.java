@@ -11,7 +11,6 @@ import com.mygdx.enemyStuff.Strategy;
 import com.mygdx.enemyStuff.StrategyContext;
 
 public class Enemy implements Character, Displayable, Managable, StrategyContext {
-
     private Texture tx;
     private Rectangle body = new Rectangle();
     private int speed = 2;
@@ -19,7 +18,6 @@ public class Enemy implements Character, Displayable, Managable, StrategyContext
     private TypeOfCharacter type = TypeOfCharacter.ENEMY;
     private static float shootTimeGap = 3;
     public float timeElapsedSinceLastShoot;
-
     private Strategy strat;
 
     public Enemy(Texture tx, int startingX, int startingY, BulletManager bm){

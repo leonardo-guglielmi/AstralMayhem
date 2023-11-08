@@ -6,10 +6,12 @@ import com.mygdx.characters.TypeOfCharacter;
 import com.mygdx.displayable.DisplayableObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 public class BulletManager implements Manager{
-    private ArrayList<Bullet> bulletSet = new ArrayList<>();
+    private Set<Bullet> bulletSet = new HashSet<>();
 
     public void addBullet(int startX, int startY, int vel, TypeOfCharacter source) {
         bulletSet.add(new Bullet(startX, startY, vel, source));
@@ -56,18 +58,15 @@ public class BulletManager implements Manager{
 
     // questa funzione deve controllare e rimuovere proiettili che collidono tra di loro
     private void checkMutualCollisions(){
-        ArrayList<Bullet> tmp = new ArrayList<>(bulletSet);
-        Iterator<Bullet> iter =bulletSet.iterator();
-        Iterator<Bullet> it;
-        while(iter.hasNext()){
-            Bullet b = iter.next();
-            it = tmp.iterator();
-            while(it.hasNext()){
-                Bullet bu = it.next();
-                if(b.isHitting(bu.body, b.getSource()))
-                    it.remove();
+        HashSet<Bullet> tmp = new HashSet<>();
+        for(Bullet b : bulletSet){
+            for(Bullet bu : bulletSet){
+                if(b.isHitting(bu.getBody(), bu.getSource())){
+                    tmp.add(b);
+                    tmp.add(bu);
+                }
             }
         }
-        bulletSet = tmp;
+        bulletSet.removeAll(tmp);
     }
 }
