@@ -9,10 +9,8 @@ public class PlayerInputHandler implements InputHandler{
     private final MoveLeftCommand mvLeft;
 
     private final ShootCommand shootCmd;
-    private final Hero h;
 
     public PlayerInputHandler(Hero h){
-        this.h = h;
         mvRight = new MoveRightCommand(h);
         mvLeft = new MoveLeftCommand(h);
         shootCmd = new ShootCommand(h);

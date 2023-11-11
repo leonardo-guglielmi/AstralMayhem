@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class BulletManager implements Manager{
-    private Set<Bullet> bulletSet = new HashSet<>();
+    private final Set<Bullet> bulletSet = new HashSet<>();
 
     public void addBullet(int startX, int startY, int vel, TypeOfCharacter source) {
         bulletSet.add(new Bullet(startX, startY, vel, source));
@@ -51,12 +51,13 @@ public class BulletManager implements Manager{
         Iterator<Bullet> iter = bulletSet.iterator();
         while (iter.hasNext()){
             Bullet b = iter.next();
-            if(b.getPosY() > 700 || b.getPosY() < 0)
+            if(b.getPosY() > 700 || b.getPosY() < 0) {
+                b.disposeTexture();
                 iter.remove();
+            }
         }
     }
 
-    // questa funzione deve controllare e rimuovere proiettili che collidono tra di loro
     private void checkMutualCollisions(){
         HashSet<Bullet> tmp = new HashSet<>();
         for(Bullet b : bulletSet){
@@ -64,6 +65,8 @@ public class BulletManager implements Manager{
                 if(b.isHitting(bu.getBody(), bu.getSource())){
                     tmp.add(b);
                     tmp.add(bu);
+                    b.disposeTexture();
+                    bu.disposeTexture();
                 }
             }
         }

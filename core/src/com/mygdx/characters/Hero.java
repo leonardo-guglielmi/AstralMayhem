@@ -2,24 +2,28 @@ package com.mygdx.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.manager.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
 
+/**
+ * This class contains all the information about the Hero character
+ */
+
 public class Hero implements Character, Displayable {
     private int hp = 10;
+    private int speed = 2;
+    private TypeOfCharacter type = TypeOfCharacter.HERO;
     private Texture tx;
     private Rectangle body = new Rectangle();
     private PlayerInputHandler input = new PlayerInputHandler(this);
-    private int speed = 2;
 
     private BulletManager bm;
 
-    private TypeOfCharacter type = TypeOfCharacter.HERO;
 
-
-    public Hero(Texture tx, int startingX, int startingY, BulletManager bm){
+    public Hero(Texture tx, int startingX, int startingY, BulletManager bm) {
         this.tx = tx;
         body.height = tx.getHeight();
         body.width = tx.getWidth();
@@ -33,17 +37,19 @@ public class Hero implements Character, Displayable {
     }
 
     @Override
-    public DisplayableObject getDisplayableObject(){
-        return new DisplayableObject(tx, (int)body.x, (int)body.y);
-    }
-
-    public void handleInput(){
-        input.handle();
+    public DisplayableObject getDisplayableObject() {
+        return new DisplayableObject(tx, (int) body.x, (int) body.y);
     }
 
     @Override
-    public void move(int dir) {
-        body.x += dir * speed;
+    public void disposeTexture() {
+        tx.dispose();
+    }
+
+
+    @Override
+    public void move(Vector2 dir) {
+        body.x += dir.x * speed;
         if (body.x < 0)
             body.x = 0;
         if (body.x > 860)
@@ -51,19 +57,21 @@ public class Hero implements Character, Displayable {
     }
 
     @Override
-    public void move() {
-        this.move(0);
-    }
-
-    public void shoot(){
-        bm.addBullet((int)(body.x+body.width/4), (int)(body.y+body.height/2), 10, type);
+    public void shoot() {
+        bm.addBullet((int) (body.x + body.width / 4), (int) (body.y + body.height / 2), 10, type);
     }
 
     @Override
-    public boolean checkCollision() {
+    public int getNumCollisions() {
         int damage = bm.getBulletCollision(body, type);
-        boolean res = damage >= 1;
         hp -= damage;
-        return res;
+        return damage;
+    }
+
+    /**
+     * Handles user input to instruct the hero object to do some action
+     */
+    public void handleInput() {
+        input.handle();
     }
 }

@@ -14,7 +14,7 @@ public class EnemyFactory implements AbstractEnemyFactory{
     @Override
     public Enemy createBaseEnemy() {
         Enemy e = new Enemy(new Texture(Gdx.files.internal("enemy.png")), 0, 500, bm);
-        e.setStrategy(new BaseEnemyStrategy(e));
+        e.setStrategy(new BaseEnemyStrategy(e, 3));
         return e;
     }
 }

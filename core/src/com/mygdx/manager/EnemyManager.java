@@ -9,10 +9,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class EnemyManager implements Manager{
-    private HashSet<Enemy> enemySet = new HashSet<>();
-    private BulletManager bm;
+    private final HashSet<Enemy> enemySet = new HashSet<>();
+    private final BulletManager bm;
 
-    private EnemyFactory ef;
+    private final EnemyFactory ef;
 
     public EnemyManager(BulletManager bm){
         this.bm = bm;
@@ -36,7 +36,7 @@ public class EnemyManager implements Manager{
         Iterator<Enemy> iter = enemySet.iterator();
         while(iter.hasNext()){
             Enemy e = iter.next();
-            if(e.checkCollision())
+            if(e.getNumCollisions() >= 1)
                 iter.remove();
             else{
                 e.exec();

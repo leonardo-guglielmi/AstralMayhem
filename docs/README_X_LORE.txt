@@ -1,1 +1,0 @@
-Una descrizione un pò a cazzotto dei metodi e delle classi è scritta nei javadoc dentro ai file.

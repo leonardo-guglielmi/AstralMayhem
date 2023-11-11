@@ -8,13 +8,13 @@ import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 
 /**
- * Questa classe contiene tutte le informazioni che riguardano un singolo proiettile del gioco
+ * This class contains all the information about on bullet
  */
 public class Bullet implements Displayable {
-    private Rectangle body = new Rectangle(); //corpo fisico del proiettile
-    private int vel; // velocità del proiettile, indica sia il verso che il modulo
+    private TypeOfCharacter source;
+    private int vel;
+    private Rectangle body = new Rectangle();
     private Texture tx;
-    private TypeOfCharacter source; // tipo di Character che ha generato il proiettile
 
 
     public Bullet(int startX, int startY, int vel, TypeOfCharacter source){
@@ -32,6 +32,11 @@ public class Bullet implements Displayable {
         return new DisplayableObject(tx, (int)body.x, (int)body.y);
     }
 
+    @Override
+    public void disposeTexture(){
+        tx.dispose();
+    }
+
     public int getPosY(){
         return (int)body.y;
     }
@@ -40,17 +45,25 @@ public class Bullet implements Displayable {
         return source;
     }
 
-    // ritorna una copia del body per gestire le collisioni in sola lettura
+    /**
+     * This method returns a copy of the body object, in this way the state of the bullet's body cannot be changed
+     * @return body object copy
+     */
     public Rectangle getBody(){
         return new Rectangle(body);
     }
 
-    // aggiorna la posizione del proiettile
     public void updatePosition(){
         body.y += vel;
     }
 
-    // controlla se si sta scontrando con un altro corpo e, nel caso, se i due hanno source diverso
+    /**
+     * Check if the body given as parameter collide with the bullet's body, and if there is a mismatch between the type
+     * of bodies returns true, which indicates that the event of collision is realized
+     * @param body the body of the object that is colliding with the bullet
+     * @param type the type of object that is colliding with the bullet
+     * @return the state of collision
+     */
     public boolean isHitting(Rectangle body, TypeOfCharacter type){
         return this.body.overlaps(body) && this.source != type;
     }

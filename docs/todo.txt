@@ -1,0 +1,5 @@
+- enemy aggiustala quando hai sistemato anche lo strategy
+- da gestire il texture aggregator per gestire meglio le le texture e farne il dispose
+- gestire il management per la classe condivisa (non so se è una strada percorribile)
+- gestire factory e strtegy in modo completo
+- da aggiustare in modo ingegneristico i bordi della finestra ed i limiti del mondo di gioco

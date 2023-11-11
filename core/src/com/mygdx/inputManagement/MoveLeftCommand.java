@@ -1,5 +1,6 @@
 package com.mygdx.inputManagement;
 
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.characters.Hero;
 
 public class MoveLeftCommand implements Command{
@@ -12,6 +13,6 @@ public class MoveLeftCommand implements Command{
 
     @Override
     public void execute( ) {
-        player.move(-5);
+        player.move(new Vector2(-3,0));
     }
 }

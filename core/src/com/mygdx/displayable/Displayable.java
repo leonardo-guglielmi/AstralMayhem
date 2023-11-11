@@ -1,12 +1,17 @@
 package com.mygdx.displayable;
 
 /**
- *  Questa interfaccia deve essere ereditata da quelle classi che devono essere stampate a schermo
+ *  This interface specifies the behavior of something tha can be rendered on screen
  */
 public interface Displayable {
     /**
-     * Questo metodo deve essere implementato in modo da fornire in sola lettura le informazioni sta stampare a schermo
-     * @return le informazioni da stampare a schermo
+     * This method must return all the information to render an object
+     * @return information to render
      */
     DisplayableObject getDisplayableObject();
+
+    /**
+     * This method must allow to dispose the Texture object
+     */
+    void disposeTexture();
 }

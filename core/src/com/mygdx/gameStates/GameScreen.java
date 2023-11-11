@@ -42,7 +42,7 @@ public class GameScreen implements Screen {
         camera.update();
 
         hero.handleInput();
-        hero.checkCollision();
+        hero.getNumCollisions();
         bm.update();
         em.update();
         time += delta;
