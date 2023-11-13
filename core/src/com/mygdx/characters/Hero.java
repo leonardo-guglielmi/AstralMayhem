@@ -36,6 +36,14 @@ public class Hero implements Character, Displayable {
         return hp;
     }
 
+    public int getX(){
+        return (int)body.x;
+    }
+
+    public int getY(){
+        return (int)body.y;
+    }
+
     @Override
     public DisplayableObject getDisplayableObject() {
         return new DisplayableObject(tx, (int) body.x, (int) body.y);

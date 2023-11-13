@@ -4,5 +4,7 @@ import com.mygdx.characters.Enemy;
 
 public interface AbstractEnemyFactory {
 
-    public Enemy createBaseEnemy();
+    Enemy createBaseEnemy();
+
+    Enemy createAdvanceEnemy();
 }

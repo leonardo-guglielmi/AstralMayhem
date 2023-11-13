@@ -1,6 +1,7 @@
 package com.mygdx.manager;
 
 import com.mygdx.characters.Enemy;
+import com.mygdx.characters.Hero;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.enemyStuff.EnemyFactory;
 
@@ -14,13 +15,17 @@ public class EnemyManager implements Manager{
 
     private final EnemyFactory ef;
 
-    public EnemyManager(BulletManager bm){
+    public EnemyManager(BulletManager bm, Hero h){
         this.bm = bm;
-        ef = new EnemyFactory(bm);
+        ef = new EnemyFactory(bm, h);
     }
 
-    public void addEnemy(){
+    public void addBaseEnemy(){
         enemySet.add(ef.createBaseEnemy());
+    }
+
+    public void addAdvancedEnemy(){
+        enemySet.add(ef.createAdvanceEnemy());
     }
 
     @Override

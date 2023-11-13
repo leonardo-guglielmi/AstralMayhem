@@ -7,12 +7,12 @@ import com.mygdx.characters.Enemy;
 public class BaseEnemyStrategy implements Strategy{
     private final Enemy e;
     private Vector2 versor = new Vector2(1,0);
-    private final Timer timer;
+    private final Timer shootTimer;
 
     private boolean isDescending = false;
     public BaseEnemyStrategy(Enemy e, int t){
         this.e = e;
-        this.timer = new Timer(t);
+        this.shootTimer = new Timer(t);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class BaseEnemyStrategy implements Strategy{
         }
         e.move(versor);
 
-        if(timer.check())
+        if(shootTimer.check())
             e.shoot();
     }
 }

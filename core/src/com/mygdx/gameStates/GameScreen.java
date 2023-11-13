@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.mygdx.AstralMayhem;
+import com.mygdx.Timer;
 import com.mygdx.manager.BulletManager;
 import com.mygdx.manager.EnemyManager;
 import com.mygdx.characters.Hero;
@@ -19,10 +20,11 @@ public class GameScreen implements Screen {
     private final AstralMayhem game;
     private final OrthographicCamera camera = new OrthographicCamera();
     private final BulletManager bm = new BulletManager();
-    private final EnemyManager em = new EnemyManager(bm);
     private final Hero hero = new Hero(new Texture(Gdx.files.internal("heroo.png")), 0, 100, bm);
+    private final EnemyManager em = new EnemyManager(bm, hero);
     private final BitmapFont textPrinter = new BitmapFont();
-    float time = 0;
+    private Timer baseEnemyTimer = new Timer(2);
+    private Timer advanceEnemyTimer = new Timer(3);
 
     public GameScreen(final AstralMayhem game){
         this.game = game;
@@ -45,11 +47,11 @@ public class GameScreen implements Screen {
         hero.getNumCollisions();
         bm.update();
         em.update();
-        time += delta;
-        if(time > 2){
-            em.addEnemy();
-            time = 0;
-        }
+
+        if(baseEnemyTimer.check())
+            em.addBaseEnemy();
+        if(advanceEnemyTimer.check())
+            em.addAdvancedEnemy();
 
         textPrinter.setColor(Color.WHITE);
         game.batch.begin();
