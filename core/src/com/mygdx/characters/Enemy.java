@@ -1,6 +1,5 @@
 package com.mygdx.characters;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -66,7 +65,7 @@ public class Enemy implements Character, Displayable, StrategyContext {
         this.strat = strat;
     }
 
-    public void exec(){
+    public void update(){
         strat.execute();
     }
 

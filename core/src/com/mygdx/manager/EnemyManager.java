@@ -44,7 +44,7 @@ public class EnemyManager implements Manager{
             if(e.getNumCollisions() >= 1)
                 iter.remove();
             else{
-                e.exec();
+                e.update();
             }
         }
     }

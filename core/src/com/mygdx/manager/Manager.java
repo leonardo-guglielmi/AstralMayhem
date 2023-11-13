@@ -5,7 +5,6 @@ import com.mygdx.displayable.DisplayableObject;
 import java.util.ArrayList;
 
 public interface Manager {
-    //public void add(Managable m);
-    public ArrayList<DisplayableObject> getDisplayable();
-    public void update();
+    ArrayList<DisplayableObject> getDisplayable();
+    void update();
 }

@@ -1,5 +1,4 @@
 - enemy aggiustala quando hai sistemato anche lo strategy
 - da gestire il texture aggregator per gestire meglio le le texture e farne il dispose
-- gestire il management per la classe condivisa (non so se è una strada percorribile)
 - da aggiustare in modo ingegneristico i bordi della finestra ed i limiti del mondo di gioco
-- per lo shift verticale implementato fino ad ora il versore è inutile
+- per lo shift verticale implementato fino ad ora il versore è orrendo
