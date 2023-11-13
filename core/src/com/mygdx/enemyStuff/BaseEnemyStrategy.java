@@ -1,6 +1,5 @@
 package com.mygdx.enemyStuff;
 
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.Timer;
 import com.mygdx.characters.Enemy;
@@ -10,6 +9,7 @@ public class BaseEnemyStrategy implements Strategy{
     private Vector2 versor = new Vector2(1,0);
     private final Timer timer;
 
+    private boolean isDescending = false;
     public BaseEnemyStrategy(Enemy e, int t){
         this.e = e;
         this.timer = new Timer(t);
@@ -17,12 +17,10 @@ public class BaseEnemyStrategy implements Strategy{
 
     @Override
     public void execute() {
-        if(e.getX() > 860)
-            versor.x = -1;
-        if(e.getX() < 0)
-            versor.x = 1;
-        if((e.getX() > 860 || e.getX() <0) && e.getY()%50 == 0)
-            versor.y -= 1;
+        if(e.getX() > 1000-64 || e.getX() < 0){
+            versor.x *= -1;
+            e.teleport();
+        }
         e.move(versor);
 
         if(timer.check())

@@ -69,4 +69,8 @@ public class Enemy implements Character, Displayable, StrategyContext {
     public void exec(){
         strat.execute();
     }
+
+    public void teleport(){
+        body.y -= 100;
+    }
 }
