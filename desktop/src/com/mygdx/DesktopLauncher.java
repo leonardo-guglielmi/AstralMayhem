@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		config.setIdleFPS(30);
 		config.setTitle("AstralMayhem");
 		config.setWindowIcon("window-logo.jpg");
-		config.setWindowedMode(1000, 700);
+		config.setWindowedMode(1440, 810);
 		new Lwjgl3Application(new AstralMayhem(), config);
 	}
 }

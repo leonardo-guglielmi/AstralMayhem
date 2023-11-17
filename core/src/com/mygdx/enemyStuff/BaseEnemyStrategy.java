@@ -3,6 +3,7 @@ package com.mygdx.enemyStuff;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.Timer;
 import com.mygdx.characters.Enemy;
+import com.mygdx.gameStates.TestScreen;
 
 public class BaseEnemyStrategy implements Strategy{
     private final Enemy e;
@@ -17,7 +18,7 @@ public class BaseEnemyStrategy implements Strategy{
 
     @Override
     public void execute() {
-        if(e.getX() > 1000-64 || e.getX() < 0){
+        if(e.getX() > TestScreen.V_WIDTH -64 || e.getX() < 0){
             versor.x *= -1;
             e.teleport();
         }

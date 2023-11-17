@@ -17,6 +17,9 @@ import com.mygdx.displayable.DisplayableObject;
 import java.util.ArrayList;
 
 public class TestScreen implements Screen {
+
+    public static final int V_WIDTH = 1440;
+    public static final int V_HEIGHT = 810;
     private final AstralMayhem game;
     private final OrthographicCamera camera = new OrthographicCamera();
     private final BulletManager bm = new BulletManager();
@@ -67,7 +70,7 @@ public class TestScreen implements Screen {
             for(DisplayableObject e : enemyDisp)
                 game.batch.draw(e.tx, e.posX, e.posY);
 
-            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), 500, 350);
+            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), (float) V_WIDTH /2, (float) V_HEIGHT /2);
         }
         game.batch.end();
     }

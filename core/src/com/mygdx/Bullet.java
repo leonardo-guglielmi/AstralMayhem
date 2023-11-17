@@ -14,7 +14,7 @@ public class Bullet implements Displayable {
     private TypeOfCharacter source;
     private int vel;
     private Rectangle body = new Rectangle();
-    private Texture tx;
+    private final Texture tx;
 
 
     public Bullet(int startX, int startY, int vel, TypeOfCharacter source){

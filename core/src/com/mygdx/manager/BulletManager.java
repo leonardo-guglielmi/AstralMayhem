@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.Bullet;
 import com.mygdx.characters.TypeOfCharacter;
 import com.mygdx.displayable.DisplayableObject;
+import com.mygdx.gameStates.TestScreen;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,7 +27,6 @@ public class BulletManager implements Manager{
     }
 
     @Override
-    //todo: vedi se passare la texture per copia o lasciarla per reference
     public ArrayList<DisplayableObject> getDisplayable(){
         ArrayList<DisplayableObject> arrDisp = new ArrayList<>();
         for(Bullet b : bulletSet)
@@ -51,7 +51,7 @@ public class BulletManager implements Manager{
         Iterator<Bullet> iter = bulletSet.iterator();
         while (iter.hasNext()){
             Bullet b = iter.next();
-            if(b.getPosY() > 700 || b.getPosY() < 0) {
+            if(b.getPosY() > TestScreen.V_HEIGHT || b.getPosY() < 0) {
                 b.disposeTexture();
                 iter.remove();
             }

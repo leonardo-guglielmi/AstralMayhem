@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
+import com.mygdx.gameStates.TestScreen;
 import com.mygdx.manager.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
 
@@ -60,8 +61,8 @@ public class Hero implements Character, Displayable {
         body.x += dir.x * speed;
         if (body.x < 0)
             body.x = 0;
-        if (body.x > 860)
-            body.x = 860;
+        if (body.x > TestScreen.V_WIDTH -body.width)
+            body.x = TestScreen.V_WIDTH-body.width;
     }
 
     @Override
