@@ -2,6 +2,7 @@ package com.mygdx.manager;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.Bullet;
+import com.mygdx.Commons;
 import com.mygdx.characters.TypeOfCharacter;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.gameStates.TestScreen;
@@ -51,7 +52,7 @@ public class BulletManager implements Manager{
         Iterator<Bullet> iter = bulletSet.iterator();
         while (iter.hasNext()){
             Bullet b = iter.next();
-            if(b.getPosY() > TestScreen.V_HEIGHT || b.getPosY() < 0) {
+            if(b.getPosY() > Commons.V_HEIGHT || b.getPosY() < 0) {
                 b.disposeTexture();
                 iter.remove();
             }

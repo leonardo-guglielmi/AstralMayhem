@@ -13,6 +13,6 @@ public class MoveLeftCommand implements Command{
 
     @Override
     public void execute( ) {
-        player.move(new Vector2(-3,0));
+        player.move(-3,0);
     }
 }

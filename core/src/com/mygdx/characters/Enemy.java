@@ -3,8 +3,10 @@ package com.mygdx.characters;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.Commons;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
+import com.mygdx.gameStates.TestScreen;
 import com.mygdx.manager.BulletManager;
 import com.mygdx.enemyStuff.Strategy;
 import com.mygdx.enemyStuff.StrategyContext;
@@ -34,6 +36,14 @@ public class Enemy implements Character, Displayable, StrategyContext {
         return (int)body.y;
     }
 
+    public int getWidth(){
+        return (int)body.width;
+    }
+
+    public int getHeight(){
+        return (int)body.height;
+    }
+
     @Override
     public DisplayableObject getDisplayableObject(){
         return new DisplayableObject(tx, (int)body.x, (int)body.y);
@@ -45,9 +55,13 @@ public class Enemy implements Character, Displayable, StrategyContext {
     }
 
     @Override
-    public void move(Vector2 dir) {
-        body.x += dir.x;
-        body.y += dir.y;
+    public void move(int x, int y) {
+        body.x += x;
+        body.y += y;
+        if (body.x < 0)
+            body.x = 0;
+        if (body.x > Commons.V_WIDTH -body.width)
+            body.x = Commons.V_WIDTH-body.width;
     }
 
     @Override

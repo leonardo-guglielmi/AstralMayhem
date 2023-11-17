@@ -9,9 +9,10 @@ public interface Character {
 
     /**
      *  This method must update character position given certain direction
-     * @param dir the direction of the movement
+     * @param x horizontal movement
+     * @param y vertical movement
      */
-    void move(Vector2 dir);
+    void move(int x, int y);
 
     /**
      * This method must enable the character to shoot something

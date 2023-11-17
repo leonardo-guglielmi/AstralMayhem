@@ -2,14 +2,14 @@ package com.mygdx;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.gameStates.TestScreen;
+import com.mygdx.gameStates.GameScreen;
 
 public class AstralMayhem extends Game {
 	public SpriteBatch batch;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		this.setScreen(new TestScreen(this));
+		this.setScreen(new GameScreen(this));
 
 	}
 

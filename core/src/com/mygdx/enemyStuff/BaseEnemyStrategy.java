@@ -1,13 +1,15 @@
 package com.mygdx.enemyStuff;
 
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.Commons;
 import com.mygdx.Timer;
 import com.mygdx.characters.Enemy;
 import com.mygdx.gameStates.TestScreen;
 
 public class BaseEnemyStrategy implements Strategy{
     private final Enemy e;
-    private Vector2 versor = new Vector2(1,0);
+    private int dirX = 1;
+    private int dirY = 0;
     private final Timer shootTimer;
 
     private boolean isDescending = false;
@@ -18,11 +20,14 @@ public class BaseEnemyStrategy implements Strategy{
 
     @Override
     public void execute() {
-        if(e.getX() > TestScreen.V_WIDTH -64 || e.getX() < 0){
-            versor.x *= -1;
-            e.teleport();
+        if(e.getX() >= Commons.V_WIDTH -e.getWidth() || e.getX() < 0){
+            dirX *= -1;
+            dirY = -100;
         }
-        e.move(versor);
+        else{
+            dirY = 0;
+        }
+        e.move(dirX, dirY);
 
         if(shootTimer.check())
             e.shoot();

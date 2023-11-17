@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.mygdx.AstralMayhem;
+import com.mygdx.Commons;
 import com.mygdx.Timer;
 import com.mygdx.manager.BulletManager;
 import com.mygdx.manager.EnemyManager;
@@ -67,7 +68,7 @@ public class GameScreen implements Screen {
             for(DisplayableObject e : enemyDisp)
                 game.batch.draw(e.tx, e.posX, e.posY);
 
-            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), 500, 350);
+            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2);
         }
         game.batch.end();
     }
