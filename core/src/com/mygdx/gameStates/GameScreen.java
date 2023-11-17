@@ -42,42 +42,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
-
-        hero.handleInput();
-        hero.getNumCollisions();
-        bm.update();
-        em.update();
-        earth.update();
-
-        if(baseEnemyTimer.check())
-            em.addBaseEnemy();
-        if(advanceEnemyTimer.check())
-            em.addAdvancedEnemy();
-
-        textPrinter.setColor(Color.WHITE);
-        game.batch.begin();
-        {
-            DisplayableObject dispEarth = earth.getDisplayableObject();
-            game.batch.draw(dispEarth.tx, dispEarth.posX, dispEarth.posY);
-
-            DisplayableObject dispHero = hero.getDisplayableObject();
-            game.batch.draw(dispHero.tx, dispHero.posX, dispHero.posY);
-
-            ArrayList<DisplayableObject> bulletsDisp = bm.getDisplayable();
-            for(DisplayableObject b : bulletsDisp)
-                game.batch.draw(b.tx, b.posX, b.posY);
-
-            ArrayList<DisplayableObject> enemyDisp = em.getDisplayable();
-            for(DisplayableObject e : enemyDisp)
-                game.batch.draw(e.tx, e.posX, e.posY);
-
-            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2);
-            textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2-32);
-        }
-        game.batch.end();
+        updateLogic();
+        printGame();
     }
 
     @Override
@@ -104,4 +70,54 @@ public class GameScreen implements Screen {
     public void dispose() {
         hero.disposeTexture();
     }
+
+    private void updateLogic(){
+        // updating hero logic
+        hero.handleInput();
+        hero.getNumCollisions();
+
+        //updating managers
+        bm.update();
+        em.update();
+
+        //updating earth
+        updateLogic();
+        earth.update();
+
+        //spawning enemies
+        if(baseEnemyTimer.check())
+            em.addBaseEnemy();
+        if(advanceEnemyTimer.check())
+            em.addAdvancedEnemy();
+    }
+
+    private void printGame(){
+        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        camera.update();
+        textPrinter.setColor(Color.WHITE);
+        game.batch.begin();
+        {
+            DisplayableObject dispEarth = earth.getDisplayableObject();
+            game.batch.draw(dispEarth.tx, dispEarth.posX, dispEarth.posY);
+
+            DisplayableObject dispHero = hero.getDisplayableObject();
+            game.batch.draw(dispHero.tx, dispHero.posX, dispHero.posY);
+
+            ArrayList<DisplayableObject> bulletsDisp = bm.getDisplayable();
+            for(DisplayableObject b : bulletsDisp)
+                game.batch.draw(b.tx, b.posX, b.posY);
+
+            ArrayList<DisplayableObject> enemyDisp = em.getDisplayable();
+            for(DisplayableObject e : enemyDisp)
+                game.batch.draw(e.tx, e.posX, e.posY);
+
+            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2);
+            textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2-32);
+        }
+        game.batch.end();
+    }
+
+
 }
+
