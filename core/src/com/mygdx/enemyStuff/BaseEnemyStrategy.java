@@ -20,7 +20,7 @@ public class BaseEnemyStrategy implements Strategy{
 
     @Override
     public void execute() {
-        if(e.getX() >= Commons.V_WIDTH -e.getWidth() || e.getX() < 0){
+        if(e.getX() >= Commons.HORIZONTAL_END -e.getWidth() || e.getX() < Commons.HORIZONTAL_START){
             dirX *= -1;
             dirY = -100;
         }

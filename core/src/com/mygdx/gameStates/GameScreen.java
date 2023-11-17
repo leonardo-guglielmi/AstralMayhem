@@ -21,7 +21,7 @@ public class GameScreen implements Screen {
     private final AstralMayhem game;
     private final OrthographicCamera camera = new OrthographicCamera();
     private final BulletManager bm = new BulletManager();
-    private final Hero hero = new Hero(new Texture(Gdx.files.internal("heroo.png")), 0, 100, bm);
+    private final Hero hero = new Hero(new Texture(Gdx.files.internal("heroo.png")), 50, 100, bm);
     private final EnemyManager em = new EnemyManager(bm, hero);
     private final BitmapFont textPrinter = new BitmapFont();
     private Timer baseEnemyTimer = new Timer(2);

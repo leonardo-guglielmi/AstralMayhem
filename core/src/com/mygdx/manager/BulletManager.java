@@ -52,7 +52,7 @@ public class BulletManager implements Manager{
         Iterator<Bullet> iter = bulletSet.iterator();
         while (iter.hasNext()){
             Bullet b = iter.next();
-            if(b.getPosY() > Commons.V_HEIGHT || b.getPosY() < 0) {
+            if(b.getPosY() > Commons.VERTICAL_END || b.getPosY() < Commons.VERTICAL_START) {
                 b.disposeTexture();
                 iter.remove();
             }

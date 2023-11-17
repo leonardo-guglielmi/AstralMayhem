@@ -60,10 +60,10 @@ public class Hero implements Character, Displayable {
     @Override
     public void move(int x, int y) {
         body.x += x * speed;
-        if (body.x < 0)
-            body.x = 0;
-        if (body.x > Commons.V_WIDTH -body.width)
-            body.x = Commons.V_WIDTH-body.width;
+        if (body.x < Commons.HORIZONTAL_START)
+            body.x = Commons.HORIZONTAL_START;
+        if (body.x > Commons.HORIZONTAL_END -body.width)
+            body.x = Commons.HORIZONTAL_END-body.width;
     }
 
     @Override
