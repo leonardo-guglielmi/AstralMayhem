@@ -1,9 +1,10 @@
-package com.mygdx.characters;
+package com.mygdx;
 
 /**
  * This enumeration contains all the possible type of characters
  */
-public enum TypeOfCharacter {
+public enum TypeOfEntity {
     HERO,
-    ENEMY
+    ENEMY,
+    EARTH
 }

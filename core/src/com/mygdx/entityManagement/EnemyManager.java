@@ -1,4 +1,4 @@
-package com.mygdx.manager;
+package com.mygdx.entityManagement;
 
 import com.mygdx.characters.Enemy;
 import com.mygdx.characters.Hero;

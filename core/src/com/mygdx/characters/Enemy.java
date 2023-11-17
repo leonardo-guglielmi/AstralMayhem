@@ -2,12 +2,11 @@ package com.mygdx.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.Commons;
+import com.mygdx.TypeOfEntity;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
-import com.mygdx.gameStates.TestScreen;
-import com.mygdx.manager.BulletManager;
+import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.enemyStuff.Strategy;
 import com.mygdx.enemyStuff.StrategyContext;
 
@@ -15,7 +14,7 @@ public class Enemy implements Character, Displayable, StrategyContext {
     private Texture tx;
     private Rectangle body = new Rectangle();
     private BulletManager bm;
-    private TypeOfCharacter type = TypeOfCharacter.ENEMY;
+    private TypeOfEntity type = TypeOfEntity.ENEMY;
 
     private Strategy strat;
 
@@ -58,7 +57,7 @@ public class Enemy implements Character, Displayable, StrategyContext {
     public void move(int x, int y) {
         body.x += x;
         body.y += y;
-        if (body.x < Commons.HORIZONTAL_START)
+        if (body.x < Commons.HORIZONTAL_START-1)
             body.x = Commons.HORIZONTAL_START;
         if (body.x > Commons.HORIZONTAL_END -body.width)
             body.x = Commons.HORIZONTAL_END-body.width;

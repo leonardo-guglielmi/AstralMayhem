@@ -2,12 +2,11 @@ package com.mygdx.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.Commons;
+import com.mygdx.TypeOfEntity;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
-import com.mygdx.gameStates.TestScreen;
-import com.mygdx.manager.BulletManager;
+import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
 
 /**
@@ -17,7 +16,7 @@ import com.mygdx.inputManagement.PlayerInputHandler;
 public class Hero implements Character, Displayable {
     private int hp = 10;
     private int speed = 2;
-    private TypeOfCharacter type = TypeOfCharacter.HERO;
+    private TypeOfEntity type = TypeOfEntity.HERO;
     private Texture tx;
     private Rectangle body = new Rectangle();
     private PlayerInputHandler input = new PlayerInputHandler(this);

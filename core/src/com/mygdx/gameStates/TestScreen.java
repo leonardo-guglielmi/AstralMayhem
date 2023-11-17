@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.mygdx.AstralMayhem;
 import com.mygdx.Timer;
-import com.mygdx.manager.BulletManager;
-import com.mygdx.manager.EnemyManager;
+import com.mygdx.entityManagement.BulletManager;
+import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.characters.Hero;
 import com.mygdx.displayable.DisplayableObject;
 

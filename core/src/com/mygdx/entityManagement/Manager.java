@@ -1,4 +1,4 @@
-package com.mygdx.manager;
+package com.mygdx.entityManagement;
 
 import com.mygdx.displayable.DisplayableObject;
 

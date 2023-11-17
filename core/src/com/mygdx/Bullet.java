@@ -3,7 +3,6 @@ package com.mygdx;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.characters.TypeOfCharacter;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 
@@ -11,13 +10,13 @@ import com.mygdx.displayable.Displayable;
  * This class contains all the information about on bullet
  */
 public class Bullet implements Displayable {
-    private TypeOfCharacter source;
+    private TypeOfEntity source;
     private int vel;
     private Rectangle body = new Rectangle();
     private final Texture tx;
 
 
-    public Bullet(int startX, int startY, int vel, TypeOfCharacter source){
+    public Bullet(int startX, int startY, int vel, TypeOfEntity source){
         tx = new Texture(Gdx.files.internal("bullet2.png"));
         body.width = tx.getWidth();
         body.height = tx.getHeight();
@@ -41,7 +40,7 @@ public class Bullet implements Displayable {
         return (int)body.y;
     }
 
-    public TypeOfCharacter getSource(){
+    public TypeOfEntity getSource(){
         return source;
     }
 
@@ -64,7 +63,7 @@ public class Bullet implements Displayable {
      * @param type the type of object that is colliding with the bullet
      * @return the state of collision
      */
-    public boolean isHitting(Rectangle body, TypeOfCharacter type){
+    public boolean isHitting(Rectangle body, TypeOfEntity type){
         return this.body.overlaps(body) && this.source != type;
     }
 }

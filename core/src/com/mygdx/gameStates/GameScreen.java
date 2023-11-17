@@ -9,9 +9,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.mygdx.AstralMayhem;
 import com.mygdx.Commons;
+import com.mygdx.Earth;
 import com.mygdx.Timer;
-import com.mygdx.manager.BulletManager;
-import com.mygdx.manager.EnemyManager;
+import com.mygdx.entityManagement.BulletManager;
+import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.characters.Hero;
 import com.mygdx.displayable.DisplayableObject;
 
@@ -22,6 +23,7 @@ public class GameScreen implements Screen {
     private final OrthographicCamera camera = new OrthographicCamera();
     private final BulletManager bm = new BulletManager();
     private final Hero hero = new Hero(new Texture(Gdx.files.internal("heroo.png")), 50, 100, bm);
+    private final Earth earth = new Earth(new Texture(Gdx.files.internal("earth.png")), bm, Commons.HORIZONTAL_START, Commons.VERTICAL_START);
     private final EnemyManager em = new EnemyManager(bm, hero);
     private final BitmapFont textPrinter = new BitmapFont();
     private Timer baseEnemyTimer = new Timer(2);
@@ -48,6 +50,7 @@ public class GameScreen implements Screen {
         hero.getNumCollisions();
         bm.update();
         em.update();
+        earth.update();
 
         if(baseEnemyTimer.check())
             em.addBaseEnemy();
@@ -57,6 +60,9 @@ public class GameScreen implements Screen {
         textPrinter.setColor(Color.WHITE);
         game.batch.begin();
         {
+            DisplayableObject dispEarth = earth.getDisplayableObject();
+            game.batch.draw(dispEarth.tx, dispEarth.posX, dispEarth.posY);
+
             DisplayableObject dispHero = hero.getDisplayableObject();
             game.batch.draw(dispHero.tx, dispHero.posX, dispHero.posY);
 
@@ -69,6 +75,7 @@ public class GameScreen implements Screen {
                 game.batch.draw(e.tx, e.posX, e.posY);
 
             textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2);
+            textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2-32);
         }
         game.batch.end();
     }

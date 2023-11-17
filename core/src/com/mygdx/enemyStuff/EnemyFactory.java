@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.Commons;
 import com.mygdx.characters.Enemy;
 import com.mygdx.characters.Hero;
-import com.mygdx.manager.BulletManager;
+import com.mygdx.entityManagement.BulletManager;
 
 public class EnemyFactory implements AbstractEnemyFactory{
     private BulletManager bm;

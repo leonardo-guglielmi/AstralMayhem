@@ -1,11 +1,10 @@
-package com.mygdx.manager;
+package com.mygdx.entityManagement;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.Bullet;
 import com.mygdx.Commons;
-import com.mygdx.characters.TypeOfCharacter;
+import com.mygdx.TypeOfEntity;
 import com.mygdx.displayable.DisplayableObject;
-import com.mygdx.gameStates.TestScreen;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,7 +14,7 @@ import java.util.Set;
 public class BulletManager implements Manager{
     private final Set<Bullet> bulletSet = new HashSet<>();
 
-    public void addBullet(int startX, int startY, int vel, TypeOfCharacter source) {
+    public void addBullet(int startX, int startY, int vel, TypeOfEntity source) {
         bulletSet.add(new Bullet(startX, startY, vel, source));
     }
 
@@ -35,7 +34,7 @@ public class BulletManager implements Manager{
         return arrDisp;
     }
 
-    public int getBulletCollision(Rectangle body, TypeOfCharacter type){
+    public int getBulletCollision(Rectangle body, TypeOfEntity type){
         int count = 0;
         Iterator<Bullet> iter = bulletSet.iterator();
         while(iter.hasNext()) {
