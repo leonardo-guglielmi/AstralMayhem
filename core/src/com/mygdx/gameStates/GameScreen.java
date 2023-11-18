@@ -15,6 +15,7 @@ import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.characters.Hero;
 import com.mygdx.displayable.DisplayableObject;
+import com.mygdx.observer.GameoverObserver;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,10 @@ public class GameScreen implements Screen {
         this.game = game;
         camera.setToOrtho(false);
         game.batch.setProjectionMatrix(camera.combined);
+        GameoverObserver go = new GameoverObserver(game, camera, hero, earth, em);
+        hero.addObserver(go);
+        earth.addObserver(go);
+        em.addObserver(go);
     }
 
     @Override
@@ -73,15 +78,13 @@ public class GameScreen implements Screen {
 
     private void updateLogic(){
         // updating hero logic
-        hero.handleInput();
-        hero.getNumCollisions();
+        hero.update();
 
         //updating managers
         bm.update();
         em.update();
 
         //updating earth
-        updateLogic();
         earth.update();
 
         //spawning enemies

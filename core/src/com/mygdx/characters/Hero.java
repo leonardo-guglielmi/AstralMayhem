@@ -8,20 +8,23 @@ import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
+import com.mygdx.observer.GameoverObserver;
+import com.mygdx.observer.Observed;
+import com.mygdx.observer.Observer;
 
 /**
  * This class contains all the information about the Hero character
  */
 
 public class Hero implements Character, Displayable {
-    private int hp = 10;
+    private int hp = 1000;
     private int speed = 2;
     private TypeOfEntity type = TypeOfEntity.HERO;
     private Texture tx;
     private Rectangle body = new Rectangle();
     private PlayerInputHandler input = new PlayerInputHandler(this);
-
     private BulletManager bm;
+    private Observed obs = new Observed();
 
 
     public Hero(Texture tx, int startingX, int startingY, BulletManager bm) {
@@ -39,10 +42,6 @@ public class Hero implements Character, Displayable {
 
     public int getX(){
         return (int)body.x;
-    }
-
-    public int getY(){
-        return (int)body.y;
     }
 
     @Override
@@ -72,15 +71,19 @@ public class Hero implements Character, Displayable {
 
     @Override
     public int getNumCollisions() {
-        int damage = bm.getBulletCollision(body, type);
-        hp -= damage;
-        return damage;
+        return bm.getBulletCollision(body, type);
     }
 
-    /**
-     * Handles user input to instruct the hero object to do some action
-     */
-    public void handleInput() {
+    public void update(){
         input.handle();
+        int damage = getNumCollisions();
+        if(damage > 0){
+            hp -= damage;
+            obs.notifyObservers();
+        }
+    }
+
+    public void addObserver(Observer o){
+        obs.addObserver(o);
     }
 }

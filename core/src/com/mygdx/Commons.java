@@ -7,4 +7,6 @@ public interface Commons {
     static final int VERTICAL_END = 810;
     static final int V_WIDTH = HORIZONTAL_END - HORIZONTAL_START;
     static final int V_HEIGHT = VERTICAL_END - VERTICAL_START;
+
+    static final int GAMEOVER_LIMIT = 200;
 }

@@ -43,8 +43,7 @@ public class TestScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
-        hero.handleInput();
-        hero.getNumCollisions();
+        hero.update();
         bm.update();
         em.update();
 
