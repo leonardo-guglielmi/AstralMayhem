@@ -35,7 +35,7 @@ public class GameoverScreen implements Screen {
         textPrinter.setColor(Color.BLACK);
         game.batch.begin();
         {
-            textPrinter.draw(game.batch, gameoverText, (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2);
+            textPrinter.draw(game.batch, gameoverText, 500, 500);
         }
         game.batch.end();
 

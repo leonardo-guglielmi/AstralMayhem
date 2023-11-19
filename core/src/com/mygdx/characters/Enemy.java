@@ -57,10 +57,10 @@ public class Enemy implements Character, Displayable, StrategyContext {
     public void move(int x, int y) {
         body.x += x;
         body.y += y;
-        if (body.x < Commons.HORIZONTAL_START-1)
-            body.x = Commons.HORIZONTAL_START;
-        if (body.x > Commons.HORIZONTAL_END -body.width)
-            body.x = Commons.HORIZONTAL_END-body.width;
+        if (body.x < Commons.WORLD_X_START -1)
+            body.x = Commons.WORLD_X_START;
+        if (body.x > Commons.WORLD_X_END -body.width)
+            body.x = Commons.WORLD_X_END -body.width;
     }
 
     @Override

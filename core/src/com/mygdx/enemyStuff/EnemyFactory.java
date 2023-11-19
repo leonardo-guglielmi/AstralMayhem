@@ -17,14 +17,14 @@ public class EnemyFactory implements AbstractEnemyFactory{
     }
     @Override
     public Enemy createBaseEnemy() {
-        Enemy e = new Enemy(new Texture(Gdx.files.internal("enemy.png")), Commons.HORIZONTAL_START, 500, bm);
+        Enemy e = new Enemy(new Texture(Gdx.files.internal("enemy.png")), Commons.WORLD_X_START, 500, bm);
         e.setStrategy(new BaseEnemyStrategy(e, 3));
         return e;
     }
 
     @Override
     public Enemy createAdvanceEnemy(){
-        Enemy e = new Enemy(new Texture(Gdx.files.internal("advanced_enemy.png")), Commons.HORIZONTAL_START, 500, bm);
+        Enemy e = new Enemy(new Texture(Gdx.files.internal("advanced_enemy.png")), Commons.WORLD_X_START, 500, bm);
         e.setStrategy(new AdvancedEnemyStrategy(e, h, 3));
         return e;
     }

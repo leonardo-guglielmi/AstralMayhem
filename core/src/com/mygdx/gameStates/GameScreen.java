@@ -24,7 +24,7 @@ public class GameScreen implements Screen {
     private final OrthographicCamera camera = new OrthographicCamera();
     private final BulletManager bm = new BulletManager();
     private final Hero hero = new Hero(new Texture(Gdx.files.internal("heroo.png")), 50, 100, bm);
-    private final Earth earth = new Earth(new Texture(Gdx.files.internal("earth.png")), bm, Commons.HORIZONTAL_START, Commons.VERTICAL_START);
+    private final Earth earth = new Earth(new Texture(Gdx.files.internal("earth.png")), bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
     private final EnemyManager em = new EnemyManager(bm, hero);
     private final BitmapFont textPrinter = new BitmapFont();
     private Timer baseEnemyTimer = new Timer(2);
@@ -115,8 +115,8 @@ public class GameScreen implements Screen {
             for(DisplayableObject e : enemyDisp)
                 game.batch.draw(e.tx, e.posX, e.posY);
 
-            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2);
-            textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), (float) Commons.V_WIDTH /2, (float) Commons.V_HEIGHT /2-32);
+            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), 500, 500);
+            textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), 500, 500-32);
         }
         game.batch.end();
     }

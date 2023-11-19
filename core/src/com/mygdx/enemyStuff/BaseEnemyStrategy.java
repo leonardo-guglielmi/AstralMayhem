@@ -1,10 +1,8 @@
 package com.mygdx.enemyStuff;
 
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.Commons;
 import com.mygdx.Timer;
 import com.mygdx.characters.Enemy;
-import com.mygdx.gameStates.TestScreen;
 
 public class BaseEnemyStrategy implements Strategy{
     private final Enemy e;
@@ -20,7 +18,7 @@ public class BaseEnemyStrategy implements Strategy{
 
     @Override
     public void execute() {
-        if(e.getX() >= Commons.HORIZONTAL_END -e.getWidth() || e.getX() < Commons.HORIZONTAL_START){
+        if(e.getX() >= Commons.WORLD_X_END -e.getWidth() || e.getX() < Commons.WORLD_X_START){
             dirX *= -1;
             dirY = -100;
         }

@@ -8,7 +8,6 @@ import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
-import com.mygdx.observer.GameoverObserver;
 import com.mygdx.observer.Observed;
 import com.mygdx.observer.Observer;
 
@@ -58,10 +57,10 @@ public class Hero implements Character, Displayable {
     @Override
     public void move(int x, int y) {
         body.x += x * speed;
-        if (body.x < Commons.HORIZONTAL_START)
-            body.x = Commons.HORIZONTAL_START;
-        if (body.x > Commons.HORIZONTAL_END -body.width)
-            body.x = Commons.HORIZONTAL_END-body.width;
+        if (body.x < Commons.WORLD_X_START)
+            body.x = Commons.WORLD_X_START;
+        if (body.x > Commons.WORLD_X_END -body.width)
+            body.x = Commons.WORLD_X_END -body.width;
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.mygdx;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
+import javax.sql.CommonDataSource;
+
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -11,7 +13,8 @@ public class DesktopLauncher {
 		config.setIdleFPS(30);
 		config.setTitle("AstralMayhem");
 		config.setWindowIcon("window-logo.jpg");
-		config.setWindowedMode(1440, 810);
+		config.setWindowedMode(Commons.WINDOW_WIDTH, Commons.WINDOW_HEIGHT);
+		config.setResizable(false);
 		new Lwjgl3Application(new AstralMayhem(), config);
 	}
 }

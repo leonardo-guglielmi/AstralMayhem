@@ -51,7 +51,7 @@ public class BulletManager implements Manager{
         Iterator<Bullet> iter = bulletSet.iterator();
         while (iter.hasNext()){
             Bullet b = iter.next();
-            if(b.getPosY() > Commons.VERTICAL_END || b.getPosY() < Commons.VERTICAL_START) {
+            if(b.getPosY() > Commons.WORLD_Y_END || b.getPosY() < Commons.WORLD_Y_START) {
                 b.disposeTexture();
                 iter.remove();
             }
