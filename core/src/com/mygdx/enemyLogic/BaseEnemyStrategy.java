@@ -1,4 +1,4 @@
-package com.mygdx.enemyStuff;
+package com.mygdx.enemyLogic;
 
 import com.mygdx.Commons;
 import com.mygdx.Timer;
@@ -10,7 +10,6 @@ public class BaseEnemyStrategy implements Strategy{
     private int dirY = 0;
     private final Timer shootTimer;
 
-    private boolean isDescending = false;
     public BaseEnemyStrategy(Enemy e, int t){
         this.e = e;
         this.shootTimer = new Timer(t);
@@ -22,7 +21,7 @@ public class BaseEnemyStrategy implements Strategy{
             dirX *= -1;
             dirY = -100;
         }
-        else{
+        else if(dirY != 0){
             dirY = 0;
         }
         e.move(dirX, dirY);

@@ -4,10 +4,8 @@ import com.mygdx.Commons;
 import com.mygdx.characters.Enemy;
 import com.mygdx.characters.Hero;
 import com.mygdx.displayable.DisplayableObject;
-import com.mygdx.enemyStuff.EnemyFactory;
-import com.mygdx.observer.GameoverObserver;
-import com.mygdx.observer.Observed;
-import com.mygdx.observer.Observer;
+import com.mygdx.observers.Observed;
+import com.mygdx.observers.Observer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,7 +14,6 @@ import java.util.Iterator;
 public class EnemyManager implements Manager{
     private final HashSet<Enemy> enemySet = new HashSet<>();
     private final BulletManager bm;
-
     private final EnemyFactory ef;
     private Observed obs = new Observed();
     private boolean GAMEOVER_LIMIT_REACHED = false;
@@ -43,7 +40,7 @@ public class EnemyManager implements Manager{
     }
 
     @Override
-    public void update(){
+    public void updateEntities(){
         Iterator<Enemy> iter = enemySet.iterator();
         while(iter.hasNext()){
             Enemy e = iter.next();

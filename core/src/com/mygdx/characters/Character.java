@@ -1,7 +1,5 @@
 package com.mygdx.characters;
 
-import com.badlogic.gdx.math.Vector2;
-
 /**
  * This interface specifies the base behavior of any character in the game
  */
@@ -9,10 +7,10 @@ public interface Character {
 
     /**
      *  This method must update character position given certain direction
-     * @param x horizontal movement
-     * @param y vertical movement
+     * @param dx horizontal movement
+     * @param dy vertical movement
      */
-    void move(int x, int y);
+    void move(int dx, int dy);
 
     /**
      * This method must enable the character to shoot something

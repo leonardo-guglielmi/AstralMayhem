@@ -1,4 +1,4 @@
-package com.mygdx.observer;
+package com.mygdx.observers;
 
 import java.util.ArrayList;
 import java.util.List;

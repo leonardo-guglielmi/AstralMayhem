@@ -8,20 +8,20 @@ import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
-import com.mygdx.observer.Observed;
-import com.mygdx.observer.Observer;
+import com.mygdx.observers.Observed;
+import com.mygdx.observers.Observer;
 
 /**
  * This class contains all the information about the Hero character
  */
 
 public class Hero implements Character, Displayable {
-    private int hp = 1000;
+    private int hp = 1;
     private int speed = 2;
     private TypeOfEntity type = TypeOfEntity.HERO;
     private Texture tx;
     private Rectangle body = new Rectangle();
-    private PlayerInputHandler input = new PlayerInputHandler(this);
+    private final PlayerInputHandler input = new PlayerInputHandler(this);
     private BulletManager bm;
     private Observed obs = new Observed();
 
@@ -30,6 +30,7 @@ public class Hero implements Character, Displayable {
         this.tx = tx;
         body.height = tx.getHeight();
         body.width = tx.getWidth();
+        // il rectangle di libgdx prende come riferimento x,y l'angolo in basso a sinistra
         body.x = startingX;
         body.y = startingY;
         this.bm = bm;
@@ -49,14 +50,8 @@ public class Hero implements Character, Displayable {
     }
 
     @Override
-    public void disposeTexture() {
-        tx.dispose();
-    }
-
-
-    @Override
-    public void move(int x, int y) {
-        body.x += x * speed;
+    public void move(int dx, int dy) {
+        body.x += dx * speed;
         if (body.x < Commons.WORLD_X_START)
             body.x = Commons.WORLD_X_START;
         if (body.x > Commons.WORLD_X_END -body.width)

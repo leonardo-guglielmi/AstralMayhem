@@ -1,6 +1,5 @@
 package com.mygdx.inputManagement;
 
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.characters.Hero;
 
 public class MoveLeftCommand implements Command{

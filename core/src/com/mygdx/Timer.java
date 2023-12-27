@@ -20,6 +20,7 @@ public class Timer {
      * @return if the timer is ended
      */
     public boolean check(){
+        //todo: fix me
         timeElapsed += Gdx.graphics.getDeltaTime();
         if(timeElapsed > timeLatency){
             timeElapsed = 0;

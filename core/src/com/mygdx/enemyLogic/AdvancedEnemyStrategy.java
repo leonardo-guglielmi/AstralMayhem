@@ -1,6 +1,5 @@
-package com.mygdx.enemyStuff;
+package com.mygdx.enemyLogic;
 
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.Timer;
 import com.mygdx.characters.Enemy;
 import com.mygdx.characters.Hero;
@@ -28,7 +27,7 @@ public class AdvancedEnemyStrategy implements Strategy{
 
         if(teleportTimer.check())
             dirY = -100;
-        else
+        else if(dirY != 0)
             dirY = 0;
 
         e.move(dirX, dirY);

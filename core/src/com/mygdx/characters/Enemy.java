@@ -7,15 +7,14 @@ import com.mygdx.TypeOfEntity;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.entityManagement.BulletManager;
-import com.mygdx.enemyStuff.Strategy;
-import com.mygdx.enemyStuff.StrategyContext;
+import com.mygdx.enemyLogic.Strategy;
+import com.mygdx.enemyLogic.StrategyContext;
 
 public class Enemy implements Character, Displayable, StrategyContext {
     private Texture tx;
     private Rectangle body = new Rectangle();
     private BulletManager bm;
     private TypeOfEntity type = TypeOfEntity.ENEMY;
-
     private Strategy strat;
 
     public Enemy(Texture tx, int startingX, int startingY, BulletManager bm){
@@ -49,14 +48,9 @@ public class Enemy implements Character, Displayable, StrategyContext {
     }
 
     @Override
-    public void disposeTexture(){
-        tx.dispose();
-    }
-
-    @Override
-    public void move(int x, int y) {
-        body.x += x;
-        body.y += y;
+    public void move(int dx, int dy) {
+        body.x += dx;
+        body.y += dy;
         if (body.x < Commons.WORLD_X_START -1)
             body.x = Commons.WORLD_X_START;
         if (body.x > Commons.WORLD_X_END -body.width)
@@ -80,9 +74,5 @@ public class Enemy implements Character, Displayable, StrategyContext {
 
     public void update(){
         strat.execute();
-    }
-
-    public void teleport(){
-        body.y -= 100;
     }
 }

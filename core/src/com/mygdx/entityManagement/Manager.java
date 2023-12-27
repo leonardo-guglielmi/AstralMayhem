@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 public interface Manager {
     ArrayList<DisplayableObject> getDisplayable();
-    void update();
+    void updateEntities();
 }

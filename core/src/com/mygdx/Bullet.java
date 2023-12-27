@@ -10,7 +10,7 @@ import com.mygdx.displayable.Displayable;
  * This class contains all the information about on bullet
  */
 public class Bullet implements Displayable {
-    private TypeOfEntity source;
+    private final TypeOfEntity source;
     private int vel;
     private Rectangle body = new Rectangle();
     private final Texture tx;
@@ -29,11 +29,6 @@ public class Bullet implements Displayable {
     @Override
     public DisplayableObject getDisplayableObject(){
         return new DisplayableObject(tx, (int)body.x, (int)body.y);
-    }
-
-    @Override
-    public void disposeTexture(){
-        tx.dispose();
     }
 
     public int getPosY(){
@@ -57,13 +52,13 @@ public class Bullet implements Displayable {
     }
 
     /**
-     * Check if the body given as parameter collide with the bullet's body, and if there is a mismatch between the type
+     * Check if the entityBody given as parameter collide with the bullet's entityBody, and if there is a mismatch between the type
      * of bodies returns true, which indicates that the event of collision is realized
-     * @param body the body of the object that is colliding with the bullet
+     * @param entityBody the entityBody of the object that is colliding with the bullet
      * @param type the type of object that is colliding with the bullet
      * @return the state of collision
      */
-    public boolean isHitting(Rectangle body, TypeOfEntity type){
-        return this.body.overlaps(body) && this.source != type;
+    public boolean isHitting(Rectangle entityBody, TypeOfEntity type){
+        return body.overlaps(entityBody) && source != type;
     }
 }

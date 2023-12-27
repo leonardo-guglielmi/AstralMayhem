@@ -9,9 +9,4 @@ public interface Displayable {
      * @return information to render
      */
     DisplayableObject getDisplayableObject();
-
-    /**
-     * This method must allow to dispose the Texture object
-     */
-    void disposeTexture();
 }

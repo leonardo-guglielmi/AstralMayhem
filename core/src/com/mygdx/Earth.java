@@ -1,21 +1,21 @@
 package com.mygdx;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.entityManagement.BulletManager;
-import com.mygdx.observer.Observed;
-import com.mygdx.observer.Observer;
+import com.mygdx.observers.Observable;
+import com.mygdx.observers.Observed;
+import com.mygdx.observers.Observer;
 
-public class Earth implements Displayable {
-    private Texture tx;
-    private Rectangle body = new Rectangle();
+public class Earth implements Displayable, Observable {
     private int hp  = 1000;
+    private final TypeOfEntity type = TypeOfEntity.EARTH;
+    private Texture tx;
+    private final Rectangle body = new Rectangle();
     private final BulletManager bm;
-    private TypeOfEntity type = TypeOfEntity.EARTH;
-    private Observed obs = new Observed();
+    private final Observed obs = new Observed();
 
     public Earth(Texture tx, BulletManager bm, int startX, int startY){
         this.tx = tx;
@@ -30,24 +30,18 @@ public class Earth implements Displayable {
         return hp;
     }
 
+    @Override
+    public DisplayableObject getDisplayableObject() {
+        return new DisplayableObject(tx, (int)body.x, (int)body.y);
+    }
     public void update(){
-        int damage = bm.getBulletCollision(body, type);
-        if(damage > 0){
-            hp -= damage;
+        hp -= bm.getBulletCollision(body, type);
+        if(hp <= 0){
             obs.notifyObservers();
         }
     }
 
     @Override
-    public DisplayableObject getDisplayableObject() {
-        return new DisplayableObject(tx, (int)body.x, (int)body.y);
-    }
-
-    @Override
-    public void disposeTexture() {
-
-    }
-
     public void addObserver(Observer o){
         obs.addObserver(o);
     }

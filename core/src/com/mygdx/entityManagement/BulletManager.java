@@ -19,7 +19,7 @@ public class BulletManager implements Manager{
     }
 
     @Override
-    public void update(){
+    public void updateEntities(){
         for(Bullet b : bulletSet)
             b.updatePosition();
         this.checkBorders();
@@ -52,7 +52,6 @@ public class BulletManager implements Manager{
         while (iter.hasNext()){
             Bullet b = iter.next();
             if(b.getPosY() > Commons.WORLD_Y_END || b.getPosY() < Commons.WORLD_Y_START) {
-                b.disposeTexture();
                 iter.remove();
             }
         }
@@ -65,8 +64,6 @@ public class BulletManager implements Manager{
                 if(b.isHitting(bu.getBody(), bu.getSource())){
                     tmp.add(b);
                     tmp.add(bu);
-                    b.disposeTexture();
-                    bu.disposeTexture();
                 }
             }
         }

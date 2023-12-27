@@ -1,4 +1,4 @@
-package com.mygdx.observer;
+package com.mygdx.observers;
 
 public interface Observer {
     void observe();
