@@ -1,4 +1,4 @@
-package com.mygdx;
+package com.mygdx.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -6,7 +6,7 @@ import com.mygdx.displayable.Displayable;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.observers.Observable;
-import com.mygdx.observers.Observed;
+import com.mygdx.observers.ObservePoint;
 import com.mygdx.observers.Observer;
 
 public class Earth implements Displayable, Observable {
@@ -15,7 +15,7 @@ public class Earth implements Displayable, Observable {
     private Texture tx;
     private final Rectangle body = new Rectangle();
     private final BulletManager bm;
-    private final Observed obs = new Observed();
+    private final ObservePoint obs = new ObservePoint();
 
     public Earth(Texture tx, BulletManager bm, int startX, int startY){
         this.tx = tx;

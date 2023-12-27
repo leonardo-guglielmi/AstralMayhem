@@ -1,8 +1,8 @@
 package com.mygdx.enemyLogic;
 
 import com.mygdx.Timer;
-import com.mygdx.characters.Enemy;
-import com.mygdx.characters.Hero;
+import com.mygdx.entities.Enemy;
+import com.mygdx.entities.Hero;
 
 public class AdvancedEnemyStrategy implements Strategy{
 

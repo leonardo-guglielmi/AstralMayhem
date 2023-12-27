@@ -9,11 +9,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.mygdx.AstralMayhem;
 import com.mygdx.Commons;
-import com.mygdx.Earth;
+import com.mygdx.entities.Earth;
 import com.mygdx.Timer;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.entityManagement.EnemyManager;
-import com.mygdx.characters.Hero;
+import com.mygdx.entities.Hero;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.observers.GameoverObserver;
 

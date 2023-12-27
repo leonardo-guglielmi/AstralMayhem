@@ -1,7 +1,6 @@
 package com.mygdx.inputManagement;
 
-import com.badlogic.gdx.math.Vector2;
-import com.mygdx.characters.Hero;
+import com.mygdx.entities.Hero;
 
 public class MoveRightCommand implements Command{
     private final Hero player;

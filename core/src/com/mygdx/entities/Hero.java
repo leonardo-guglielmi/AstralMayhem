@@ -1,21 +1,21 @@
-package com.mygdx.characters;
+package com.mygdx.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.Commons;
-import com.mygdx.TypeOfEntity;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
-import com.mygdx.observers.Observed;
+import com.mygdx.observers.Observable;
+import com.mygdx.observers.ObservePoint;
 import com.mygdx.observers.Observer;
 
 /**
  * This class contains all the information about the Hero character
  */
 
-public class Hero implements Character, Displayable {
+public class Hero implements Character, Displayable, Observable{
     private int hp = 1;
     private int speed = 2;
     private TypeOfEntity type = TypeOfEntity.HERO;
@@ -23,7 +23,7 @@ public class Hero implements Character, Displayable {
     private Rectangle body = new Rectangle();
     private final PlayerInputHandler input = new PlayerInputHandler(this);
     private BulletManager bm;
-    private Observed obs = new Observed();
+    private ObservePoint obs = new ObservePoint();
 
 
     public Hero(Texture tx, int startingX, int startingY, BulletManager bm) {
@@ -77,6 +77,7 @@ public class Hero implements Character, Displayable {
         }
     }
 
+    @Override
     public void addObserver(Observer o){
         obs.addObserver(o);
     }

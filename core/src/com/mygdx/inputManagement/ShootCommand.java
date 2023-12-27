@@ -1,6 +1,6 @@
 package com.mygdx.inputManagement;
 
-import com.mygdx.characters.Hero;
+import com.mygdx.entities.Hero;
 
 public class ShootCommand implements Command{
     private final Hero player;

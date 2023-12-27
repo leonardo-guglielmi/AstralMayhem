@@ -1,4 +1,4 @@
-package com.mygdx.characters;
+package com.mygdx.entities;
 
 /**
  * This interface specifies the base behavior of any character in the game

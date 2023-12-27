@@ -2,7 +2,7 @@ package com.mygdx.inputManagement;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.mygdx.characters.Hero;
+import com.mygdx.entities.Hero;
 
 public class PlayerInputHandler implements InputHandler{
     private final MoveRightCommand mvRight;

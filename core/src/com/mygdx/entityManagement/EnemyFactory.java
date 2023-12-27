@@ -3,8 +3,8 @@ package com.mygdx.entityManagement;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.Commons;
-import com.mygdx.characters.Enemy;
-import com.mygdx.characters.Hero;
+import com.mygdx.entities.Enemy;
+import com.mygdx.entities.Hero;
 import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
 import com.mygdx.enemyLogic.BaseEnemyStrategy;
 

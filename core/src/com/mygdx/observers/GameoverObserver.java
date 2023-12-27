@@ -1,8 +1,8 @@
 package com.mygdx.observers;
 
 import com.mygdx.AstralMayhem;
-import com.mygdx.Earth;
-import com.mygdx.characters.Hero;
+import com.mygdx.entities.Earth;
+import com.mygdx.entities.Hero;
 import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.gameStates.GameoverScreen;
 

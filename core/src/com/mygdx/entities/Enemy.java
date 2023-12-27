@@ -1,9 +1,8 @@
-package com.mygdx.characters;
+package com.mygdx.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.Commons;
-import com.mygdx.TypeOfEntity;
 import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.displayable.Displayable;
 import com.mygdx.entityManagement.BulletManager;

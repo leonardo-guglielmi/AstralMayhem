@@ -1,0 +1,4 @@
+> come aggiungo nell' uml il collegamento con le enumerazioni=
+> conviene aggiungere una interfaccia Updatable?
+> come specifico gli attributi final nell' uml?
+> come rappresento i package innestati in uml?

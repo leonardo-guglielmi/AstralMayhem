@@ -1,21 +1,22 @@
 package com.mygdx.entityManagement;
 
 import com.mygdx.Commons;
-import com.mygdx.characters.Enemy;
-import com.mygdx.characters.Hero;
+import com.mygdx.entities.Enemy;
+import com.mygdx.entities.Hero;
 import com.mygdx.displayable.DisplayableObject;
-import com.mygdx.observers.Observed;
+import com.mygdx.observers.Observable;
+import com.mygdx.observers.ObservePoint;
 import com.mygdx.observers.Observer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class EnemyManager implements Manager{
+public class EnemyManager implements Manager, Observable {
     private final HashSet<Enemy> enemySet = new HashSet<>();
     private final BulletManager bm;
     private final EnemyFactory ef;
-    private Observed obs = new Observed();
+    private ObservePoint obs = new ObservePoint();
     private boolean GAMEOVER_LIMIT_REACHED = false;
 
     public EnemyManager(BulletManager bm, Hero h){
@@ -57,6 +58,7 @@ public class EnemyManager implements Manager{
         }
     }
 
+    @Override
     public void addObserver(Observer o){
         obs.addObserver(o);
     }

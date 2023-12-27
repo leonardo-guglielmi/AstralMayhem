@@ -1,9 +1,9 @@
 package com.mygdx.entityManagement;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.Bullet;
+import com.mygdx.entities.Bullet;
 import com.mygdx.Commons;
-import com.mygdx.TypeOfEntity;
+import com.mygdx.entities.TypeOfEntity;
 import com.mygdx.displayable.DisplayableObject;
 
 import java.util.ArrayList;
