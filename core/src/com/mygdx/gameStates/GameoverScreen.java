@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.jogamp.opengl.util.texture.spi.LEDataInputStream;
 import com.mygdx.AstralMayhem;
 import com.mygdx.Commons;
@@ -34,8 +35,7 @@ public class GameoverScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(204/255f,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        ScreenUtils.clear(204/255f,0,0,1);
 
         game.textPrinter.setColor(Color.WHITE);
 

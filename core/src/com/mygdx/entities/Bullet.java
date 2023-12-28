@@ -15,7 +15,7 @@ public class Bullet {
 
 
     public Bullet(int startX, int startY, int vel, TypeOfEntity source){
-        tx = new Texture(Gdx.files.internal("bullet2.png"));
+        tx = new Texture(Gdx.files.internal("entities/bullet.png"));
         body.width = tx.getWidth();
         body.height = tx.getHeight();
         body.x = startX;

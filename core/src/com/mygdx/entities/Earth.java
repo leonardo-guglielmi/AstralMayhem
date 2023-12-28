@@ -18,8 +18,8 @@ public class Earth implements Observable {
     public Earth(AssetManager am, BulletManager bm, int startX, int startY){
         body.x = startX;
         body.y = startY;
-        body.width = am.<Texture>get("earth.png").getWidth();
-        body.height = am.<Texture>get("earth.png").getHeight();
+        body.width = am.<Texture>get("entities/earth.png").getWidth();
+        body.height = am.<Texture>get("entities/earth.png").getHeight();
         this.bm = bm;
     }
 

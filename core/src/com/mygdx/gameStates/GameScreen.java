@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.AstralMayhem;
 import com.mygdx.Commons;
 import com.mygdx.entities.Earth;
@@ -32,22 +33,13 @@ public class GameScreen implements Screen {
     private GameoverObserver go;
 
     public GameScreen(final AstralMayhem game){
+        // setting-up game environment
         this.game = game;
         camera.setToOrtho(false);
         game.batch.setProjectionMatrix(camera.combined);
+        loadTextures();
 
-        if(!game.am.contains("entities/hero.png"))
-            game.am.load("entities/hero.png", Texture.class);
-        if(!game.am.contains("entities/earth.png"))
-            game.am.load("entities/earth.png", Texture.class);
-        if(!game.am.contains("entities/enemy.png"))
-            game.am.load("entities/enemy.png", Texture.class);
-        if(!game.am.contains("entities/advanced_enemy.png"))
-            game.am.load("entities/advanced_enemy.png", Texture.class);
-        if(!game.am.contains("entities/bullet.png"))
-            game.am.load("entities/bullet.png", Texture.class);
-        game.am.finishLoading();
-
+        // setting-up game logic elements
         hero = new Hero(game.am,50, 100, bm);
         earth = new Earth(game.am, bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
         em = new EnemyManager(bm, hero);
@@ -64,7 +56,8 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
         updateLogic();
-        printGame();
+        printBackGrounds();
+        printEntities();
     }
 
     @Override
@@ -81,6 +74,30 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() { }
+
+    private void loadTextures(){
+        // loading background texture
+        if(!game.am.contains(Commons.GAME_BACKGROUND_IMG_PATH))
+            game.am.load(Commons.GAME_BACKGROUND_IMG_PATH, Texture.class);
+        if(!game.am.contains(Commons.UI_BACKGROUND_IMG_PATH))
+            game.am.load(Commons.UI_BACKGROUND_IMG_PATH, Texture.class);
+        if(!game.am.contains(Commons.HEART_IMG_PATH))
+            game.am.load(Commons.HEART_IMG_PATH, Texture.class);
+
+        // loading entities texture
+        if(!game.am.contains(Commons.HERO_IMG_PATH))
+            game.am.load(Commons.HERO_IMG_PATH, Texture.class);
+        if(!game.am.contains(Commons.EARTH_IMG_PATH))
+            game.am.load(Commons.EARTH_IMG_PATH, Texture.class);
+        if(!game.am.contains(Commons.ENEMY_IMG_PATH))
+            game.am.load(Commons.ENEMY_IMG_PATH, Texture.class);
+        if(!game.am.contains(Commons.ADVANCED_ENEMY_IMG_PATH))
+            game.am.load(Commons.ADVANCED_ENEMY_IMG_PATH, Texture.class);
+        if(!game.am.contains(Commons.BULLET_IMG_PATH))
+            game.am.load(Commons.BULLET_IMG_PATH, Texture.class);
+
+        game.am.finishLoading();
+    }
 
     private void updateLogic(){
         // updating hero logic
@@ -100,25 +117,40 @@ public class GameScreen implements Screen {
             em.addAdvancedEnemy();
     }
 
-    private void printGame(){
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    private void printBackGrounds(){
+        ScreenUtils.clear(1,1,1,0);
         camera.update();
         textPrinter.setColor(Color.WHITE);
+
         game.batch.begin();
         {
-            game.batch.draw(game.am.<Texture>get("entities/earth.png"), earth.getX(), earth.getY());
-            game.batch.draw(game.am.<Texture>get("entities/hero.png"), hero.getX(), hero.getY());
+            game.batch.draw(game.am.<Texture>get(Commons.GAME_BACKGROUND_IMG_PATH), Commons.WORLD_X_START, Commons.WORLD_Y_START);
+            game.batch.draw(game.am.<Texture>get(Commons.UI_BACKGROUND_IMG_PATH),
+                    Commons.WORLD_X_START +game.am.<Texture>get(Commons.GAME_BACKGROUND_IMG_PATH).getWidth(),
+                    Commons.WORLD_Y_START);
+
+            textPrinter.draw(game.batch, "HP", Commons.WORLD_X_END+67, Commons.WORLD_Y_END-190);
+            for(int i=0; i < hero.getHp(); i++)
+                game.batch.draw(game.am.<Texture>get(Commons.HEART_IMG_PATH), Commons.WORLD_X_END+60, Commons.WORLD_Y_END-250-i*32);
+
+        }
+        game.batch.end();
+    }
+
+    private void printEntities(){
+        game.batch.begin();
+        {
+            game.batch.draw(game.am.<Texture>get(Commons.EARTH_IMG_PATH), earth.getX(), earth.getY());
+            game.batch.draw(game.am.<Texture>get(Commons.HERO_IMG_PATH), hero.getX(), hero.getY());
 
             ArrayList<AbstractMap.SimpleEntry<Float, Float>> bulletsDisp = bm.getPosition();
             for(AbstractMap.SimpleEntry<Float, Float> b : bulletsDisp)
-                game.batch.draw(game.am.<Texture>get("entities/bullet.png"), b.getKey(), b.getValue());
+                game.batch.draw(game.am.<Texture>get(Commons.BULLET_IMG_PATH), b.getKey(), b.getValue());
 
             ArrayList<AbstractMap.SimpleEntry<Float, Float>> enemyDisp = em.getPosition();
             for(AbstractMap.SimpleEntry<Float, Float> e : enemyDisp)
-                game.batch.draw(game.am.<Texture>get("entities/enemy.png"), e.getKey(), e.getValue());
+                game.batch.draw(game.am.<Texture>get(Commons.ENEMY_IMG_PATH), e.getKey(), e.getValue());
 
-            textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), 500, 500);
             textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), 500, 500-32);
         }
         game.batch.end();
