@@ -25,8 +25,8 @@ public class Hero implements Character, Observable{
 
 
     public Hero(AssetManager am, int startingX, int startingY, BulletManager bm) {
-        body.height = am.<Texture>get("hero.png").getHeight();
-        body.width = am.<Texture>get("hero.png").getWidth();
+        body.height = am.<Texture>get("entities/hero.png").getHeight();
+        body.width = am.<Texture>get("entities/hero.png").getWidth();
         // il rectangle di libgdx prende come riferimento x,y l'angolo in basso a sinistra
         body.x = startingX;
         body.y = startingY;

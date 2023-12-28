@@ -5,6 +5,7 @@ implementare la connessione con il database e crea quest'ultimo, infine fai la s
 --- cosa da modificare nel gioco
 > da gestire la visualizzazione di nemici diversi con l'asset manager
 > tutte le posizioni dovrebbero essere riconvertite in float
+> da sistemare la factory, ora come ora assegna agli enemy una nuova texture
 
 
 --- dubbi & co.

@@ -8,14 +8,12 @@ import com.mygdx.enemyLogic.Strategy;
 import com.mygdx.enemyLogic.StrategyContext;
 
 public class Enemy implements Character, StrategyContext {
-    private Texture tx;
     private Rectangle body = new Rectangle();
     private BulletManager bm;
     private TypeOfEntity type = TypeOfEntity.ENEMY;
     private Strategy strat;
 
     public Enemy(Texture tx, int startingX, int startingY, BulletManager bm){
-        this.tx = tx;
         body.height = tx.getHeight();
         body.width = tx.getWidth();
         body.x = startingX;

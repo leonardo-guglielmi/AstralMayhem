@@ -36,18 +36,16 @@ public class GameScreen implements Screen {
         camera.setToOrtho(false);
         game.batch.setProjectionMatrix(camera.combined);
 
-        if(!game.am.contains("hero.png"))
-            game.am.load("hero.png", Texture.class);
-        if(!game.am.contains("earth.png"))
-            game.am.load("earth.png", Texture.class);
-        if(!game.am.contains("enemy.png"))
-            game.am.load("enemy.png", Texture.class);
-        if(!game.am.contains("advanced_enemy.png"))
-            game.am.load("advanced_enemy.png", Texture.class);
-        if(!game.am.contains("bullet.png"))
-            game.am.load("bullet.png", Texture.class);
-        if(!game.am.contains("bullet2.png"))
-            game.am.load("bullet2.png", Texture.class);
+        if(!game.am.contains("entities/hero.png"))
+            game.am.load("entities/hero.png", Texture.class);
+        if(!game.am.contains("entities/earth.png"))
+            game.am.load("entities/earth.png", Texture.class);
+        if(!game.am.contains("entities/enemy.png"))
+            game.am.load("entities/enemy.png", Texture.class);
+        if(!game.am.contains("entities/advanced_enemy.png"))
+            game.am.load("entities/advanced_enemy.png", Texture.class);
+        if(!game.am.contains("entities/bullet.png"))
+            game.am.load("entities/bullet.png", Texture.class);
         game.am.finishLoading();
 
         hero = new Hero(game.am,50, 100, bm);
@@ -109,16 +107,16 @@ public class GameScreen implements Screen {
         textPrinter.setColor(Color.WHITE);
         game.batch.begin();
         {
-            game.batch.draw(game.am.<Texture>get("earth.png"), earth.getX(), earth.getY());
-            game.batch.draw(game.am.<Texture>get("hero.png"), hero.getX(), hero.getY());
+            game.batch.draw(game.am.<Texture>get("entities/earth.png"), earth.getX(), earth.getY());
+            game.batch.draw(game.am.<Texture>get("entities/hero.png"), hero.getX(), hero.getY());
 
             ArrayList<AbstractMap.SimpleEntry<Float, Float>> bulletsDisp = bm.getPosition();
             for(AbstractMap.SimpleEntry<Float, Float> b : bulletsDisp)
-                game.batch.draw(game.am.<Texture>get("bullet.png"), b.getKey(), b.getValue());
+                game.batch.draw(game.am.<Texture>get("entities/bullet.png"), b.getKey(), b.getValue());
 
             ArrayList<AbstractMap.SimpleEntry<Float, Float>> enemyDisp = em.getPosition();
             for(AbstractMap.SimpleEntry<Float, Float> e : enemyDisp)
-                game.batch.draw(game.am.<Texture>get("enemy.png"), e.getKey(), e.getValue());
+                game.batch.draw(game.am.<Texture>get("entities/enemy.png"), e.getKey(), e.getValue());
 
             textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), 500, 500);
             textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), 500, 500-32);
