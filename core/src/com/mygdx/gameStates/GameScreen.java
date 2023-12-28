@@ -29,12 +29,13 @@ public class GameScreen implements Screen {
     private final BitmapFont textPrinter = new BitmapFont();
     private Timer baseEnemyTimer = new Timer(2);
     private Timer advanceEnemyTimer = new Timer(3);
+    private GameoverObserver go;
 
     public GameScreen(final AstralMayhem game){
         this.game = game;
         camera.setToOrtho(false);
         game.batch.setProjectionMatrix(camera.combined);
-        GameoverObserver go = new GameoverObserver(game, hero, earth, em);
+        go = new GameoverObserver(game, hero, earth, em);
         hero.addObserver(go);
         earth.addObserver(go);
         em.addObserver(go);

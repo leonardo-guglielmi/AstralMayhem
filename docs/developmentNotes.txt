@@ -1,4 +1,14 @@
+--- roadmap sviluppo
+prima fai tutta la parte di gioco e completala in modo definitivo così non ci pensi più, dopodiché pensa a come
+implementare la connessione con il database e crea quest'ultimo, infine fai la schermata di menù.
+
+--- cosa da modificare nel gioco
+>
+
+
+--- dubbi & co.
 > come aggiungo nell' uml il collegamento con le enumerazioni=
 > conviene aggiungere una interfaccia Updatable?
 > come specifico gli attributi final nell' uml?
 > come rappresento i package innestati in uml?
+> nell'oggetto AstralMayhem ho una reference ad un oggetto Screen, ma non è ben specificato come, cosa faccio?
