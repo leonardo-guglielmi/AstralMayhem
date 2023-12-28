@@ -4,12 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entities.Bullet;
 import com.mygdx.Commons;
 import com.mygdx.entities.TypeOfEntity;
-import com.mygdx.displayable.DisplayableObject;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class BulletManager implements Manager{
     private final Set<Bullet> bulletSet = new HashSet<>();
@@ -27,10 +22,10 @@ public class BulletManager implements Manager{
     }
 
     @Override
-    public ArrayList<DisplayableObject> getDisplayable(){
-        ArrayList<DisplayableObject> arrDisp = new ArrayList<>();
+    public ArrayList<AbstractMap.SimpleEntry<Float, Float>> getPosition(){
+        ArrayList<AbstractMap.SimpleEntry<Float, Float>> arrDisp = new ArrayList<>();
         for(Bullet b : bulletSet)
-            arrDisp.add(b.getDisplayableObject());
+            arrDisp.add(new AbstractMap.SimpleEntry<>(b.getX(), b.getY()));
         return arrDisp;
     }
 
@@ -51,7 +46,7 @@ public class BulletManager implements Manager{
         Iterator<Bullet> iter = bulletSet.iterator();
         while (iter.hasNext()){
             Bullet b = iter.next();
-            if(b.getPosY() > Commons.WORLD_Y_END || b.getPosY() < Commons.WORLD_Y_START) {
+            if(b.getY() > Commons.WORLD_Y_END || b.getY() < Commons.WORLD_Y_START) {
                 iter.remove();
             }
         }

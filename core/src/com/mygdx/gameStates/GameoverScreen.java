@@ -18,32 +18,39 @@ public class GameoverScreen implements Screen {
 
     private AstralMayhem game;
     private String gameoverText;
-    private final Texture titleTx = new Texture(Gdx.files.internal("gameover/gameOverTitle.png"));
-    private final Texture skullTx = new Texture(Gdx.files.internal("gameover/skull.png"));
 
     public GameoverScreen(AstralMayhem game, String gameoverText){
         this.game = game;
         this.gameoverText = gameoverText;
+        if(!game.am.contains("gameover/gameOverTitle.png"))
+            game.am.load("gameover/gameOverTitle.png", Texture.class);
+        if(!game.am.contains("gameover/skull.png"))
+            game.am.load("gameover/skull.png", Texture.class);
+        game.am.finishLoading();
     }
 
     @Override
-    public void show() {
-
-    }
+    public void show() { }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1,0,0,1);
+        Gdx.gl.glClearColor(204/255f,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        game.textPrinter.setColor(Color.BLACK);
+        game.textPrinter.setColor(Color.WHITE);
 
         game.batch.begin();
         {
-            game.batch.draw(titleTx, (float)Commons.WINDOW_WIDTH /2 -(float)titleTx.getWidth()/2, Commons.WINDOW_HEIGHT -50 -(float)titleTx.getHeight()/2);
-            game.batch.draw(skullTx, (float)Commons.WINDOW_WIDTH /2 -(float)skullTx.getWidth()/2, Commons.WINDOW_HEIGHT -350 -(float)skullTx.getHeight()/2);
-            game.textPrinter.draw(game.batch, gameoverText, (float)Commons.WINDOW_WIDTH/2 -500, Commons.WINDOW_HEIGHT -700);
-            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", 960 - 110, 1080 - 800);
+            game.batch.draw(game.am.<Texture>get("gameover/gameOverTitle.png"),
+                    (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get("gameover/gameOverTitle.png").getWidth()/2,
+                    Commons.WINDOW_HEIGHT -50 -(float)game.am.<Texture>get("gameover/gameOverTitle.png").getHeight()/2);
+
+            game.batch.draw(game.am.<Texture>get("gameover/skull.png"),
+                    (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get("gameover/skull.png").getWidth()/2,
+                    Commons.WINDOW_HEIGHT -350 -(float)game.am.<Texture>get("gameover/skull.png").getHeight()/2);
+
+            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT - 600);
+            game.textPrinter.draw(game.batch, "Cause: "+gameoverText, (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
         }
         game.batch.end();
 
@@ -54,27 +61,17 @@ public class GameoverScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
+    public void resize(int width, int height) { }
 
     @Override
-    public void pause() {
-
-    }
+    public void pause() { }
 
     @Override
-    public void resume() {
-    }
+    public void resume() { }
 
     @Override
-    public void hide() {
-
-    }
+    public void hide() { }
 
     @Override
-    public void dispose() {
-        titleTx.dispose();
-        skullTx.dispose();
-    }
+    public void dispose() { }
 }

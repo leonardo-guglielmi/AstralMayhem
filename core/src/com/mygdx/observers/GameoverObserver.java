@@ -31,7 +31,9 @@ public class GameoverObserver implements Observer{
         if(em.checkGameoverLimit()){
                 str += "Aliens reach earth\n";
         }
-        if(!str.isEmpty())
+        if(!str.isEmpty()) {
+            game.getScreen().dispose();
             game.setScreen(new GameoverScreen(game, str));
+        }
     }
 }

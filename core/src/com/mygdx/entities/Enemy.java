@@ -3,13 +3,11 @@ package com.mygdx.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.Commons;
-import com.mygdx.displayable.DisplayableObject;
-import com.mygdx.displayable.Displayable;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.enemyLogic.Strategy;
 import com.mygdx.enemyLogic.StrategyContext;
 
-public class Enemy implements Character, Displayable, StrategyContext {
+public class Enemy implements Character, StrategyContext {
     private Texture tx;
     private Rectangle body = new Rectangle();
     private BulletManager bm;
@@ -25,12 +23,12 @@ public class Enemy implements Character, Displayable, StrategyContext {
         this.bm = bm;
     }
 
-    public int getX(){
-        return (int)body.x;
+    public float getX(){
+        return body.x;
     }
 
-    public int getY(){
-        return (int)body.y;
+    public float getY(){
+        return body.y;
     }
 
     public int getWidth(){
@@ -39,11 +37,6 @@ public class Enemy implements Character, Displayable, StrategyContext {
 
     public int getHeight(){
         return (int)body.height;
-    }
-
-    @Override
-    public DisplayableObject getDisplayableObject(){
-        return new DisplayableObject(tx, (int)body.x, (int)body.y);
     }
 
     @Override

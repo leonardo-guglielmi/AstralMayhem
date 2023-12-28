@@ -14,18 +14,18 @@ import com.mygdx.Timer;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.entities.Hero;
-import com.mygdx.displayable.DisplayableObject;
 import com.mygdx.observers.GameoverObserver;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class GameScreen implements Screen {
     private final AstralMayhem game;
     private final OrthographicCamera camera = new OrthographicCamera();
     private final BulletManager bm = new BulletManager();
-    private final Hero hero = new Hero(new Texture(Gdx.files.internal("heroo.png")), 50, 100, bm);
-    private final Earth earth = new Earth(new Texture(Gdx.files.internal("earth.png")), bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
-    private final EnemyManager em = new EnemyManager(bm, hero);
+    private final Hero hero;
+    private final Earth earth;
+    private EnemyManager em;
     private final BitmapFont textPrinter = new BitmapFont();
     private Timer baseEnemyTimer = new Timer(2);
     private Timer advanceEnemyTimer = new Timer(3);
@@ -35,6 +35,25 @@ public class GameScreen implements Screen {
         this.game = game;
         camera.setToOrtho(false);
         game.batch.setProjectionMatrix(camera.combined);
+
+        if(!game.am.contains("hero.png"))
+            game.am.load("hero.png", Texture.class);
+        if(!game.am.contains("earth.png"))
+            game.am.load("earth.png", Texture.class);
+        if(!game.am.contains("enemy.png"))
+            game.am.load("enemy.png", Texture.class);
+        if(!game.am.contains("advanced_enemy.png"))
+            game.am.load("advanced_enemy.png", Texture.class);
+        if(!game.am.contains("bullet.png"))
+            game.am.load("bullet.png", Texture.class);
+        if(!game.am.contains("bullet2.png"))
+            game.am.load("bullet2.png", Texture.class);
+        game.am.finishLoading();
+
+        hero = new Hero(game.am,50, 100, bm);
+        earth = new Earth(game.am, bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
+        em = new EnemyManager(bm, hero);
+
         go = new GameoverObserver(game, hero, earth, em);
         hero.addObserver(go);
         earth.addObserver(go);
@@ -42,9 +61,7 @@ public class GameScreen implements Screen {
     }
 
     @Override
-    public void show() {
-
-    }
+    public void show() { }
 
     @Override
     public void render(float delta) {
@@ -53,29 +70,19 @@ public class GameScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
+    public void resize(int width, int height) { }
 
     @Override
-    public void pause() {
-
-    }
+    public void pause() { }
 
     @Override
-    public void resume() {
-
-    }
+    public void resume() { }
 
     @Override
-    public void hide() {
-
-    }
+    public void hide() { }
 
     @Override
-    public void dispose() {
-
-    }
+    public void dispose() { }
 
     private void updateLogic(){
         // updating hero logic
@@ -102,19 +109,16 @@ public class GameScreen implements Screen {
         textPrinter.setColor(Color.WHITE);
         game.batch.begin();
         {
-            DisplayableObject dispEarth = earth.getDisplayableObject();
-            game.batch.draw(dispEarth.tx, dispEarth.posX, dispEarth.posY);
+            game.batch.draw(game.am.<Texture>get("earth.png"), earth.getX(), earth.getY());
+            game.batch.draw(game.am.<Texture>get("hero.png"), hero.getX(), hero.getY());
 
-            DisplayableObject dispHero = hero.getDisplayableObject();
-            game.batch.draw(dispHero.tx, dispHero.posX, dispHero.posY);
+            ArrayList<AbstractMap.SimpleEntry<Float, Float>> bulletsDisp = bm.getPosition();
+            for(AbstractMap.SimpleEntry<Float, Float> b : bulletsDisp)
+                game.batch.draw(game.am.<Texture>get("bullet.png"), b.getKey(), b.getValue());
 
-            ArrayList<DisplayableObject> bulletsDisp = bm.getDisplayable();
-            for(DisplayableObject b : bulletsDisp)
-                game.batch.draw(b.tx, b.posX, b.posY);
-
-            ArrayList<DisplayableObject> enemyDisp = em.getDisplayable();
-            for(DisplayableObject e : enemyDisp)
-                game.batch.draw(e.tx, e.posX, e.posY);
+            ArrayList<AbstractMap.SimpleEntry<Float, Float>> enemyDisp = em.getPosition();
+            for(AbstractMap.SimpleEntry<Float, Float> e : enemyDisp)
+                game.batch.draw(game.am.<Texture>get("enemy.png"), e.getKey(), e.getValue());
 
             textPrinter.draw(game.batch, "player_hp: " + hero.getHp(), 500, 500);
             textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), 500, 500-32);

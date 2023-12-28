@@ -3,12 +3,13 @@ prima fai tutta la parte di gioco e completala in modo definitivo così non ci p
 implementare la connessione con il database e crea quest'ultimo, infine fai la schermata di menù.
 
 --- cosa da modificare nel gioco
->
+> da gestire la visualizzazione di nemici diversi con l'asset manager
+> tutte le posizioni dovrebbero essere riconvertite in float
 
 
 --- dubbi & co.
-> come aggiungo nell' uml il collegamento con le enumerazioni=
+> come aggiungo nell' uml il collegamento con le enumerazioni?
 > conviene aggiungere una interfaccia Updatable?
 > come specifico gli attributi final nell' uml?
 > come rappresento i package innestati in uml?
-> nell'oggetto AstralMayhem ho una reference ad un oggetto Screen, ma non è ben specificato come, cosa faccio?
+> nell'oggetto AstralMayhem ho una reference ad un oggetto Screen, ma non è ben specificato attraverso quale reference, cosa faccio?

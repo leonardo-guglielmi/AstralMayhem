@@ -1,10 +1,9 @@
 package com.mygdx.entityManagement;
 
-import com.mygdx.displayable.DisplayableObject;
-
+import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public interface Manager {
-    ArrayList<DisplayableObject> getDisplayable();
+    ArrayList<AbstractMap.SimpleEntry<Float, Float>> getPosition();
     void updateEntities();
 }

@@ -3,13 +3,11 @@ package com.mygdx.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.displayable.DisplayableObject;
-import com.mygdx.displayable.Displayable;
 
 /**
  * This class contains all the information about on bullet
  */
-public class Bullet implements Displayable {
+public class Bullet {
     private final TypeOfEntity source;
     private int vel;
     private Rectangle body = new Rectangle();
@@ -26,13 +24,12 @@ public class Bullet implements Displayable {
         this.source = source;
     }
 
-    @Override
-    public DisplayableObject getDisplayableObject(){
-        return new DisplayableObject(tx, (int)body.x, (int)body.y);
+    public float getY(){
+        return body.y;
     }
 
-    public int getPosY(){
-        return (int)body.y;
+    public float getX(){
+        return body.x;
     }
 
     public TypeOfEntity getSource(){

@@ -1,35 +1,32 @@
 package com.mygdx.entities;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.Commons;
-import com.mygdx.displayable.DisplayableObject;
-import com.mygdx.displayable.Displayable;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
 import com.mygdx.observers.Observable;
-import com.mygdx.observers.ObservePoint;
+import com.mygdx.observers.Observed;
 import com.mygdx.observers.Observer;
 
 /**
  * This class contains all the information about the Hero character
  */
 
-public class Hero implements Character, Displayable, Observable{
+public class Hero implements Character, Observable{
     private int hp = 1;
     private int speed = 2;
     private TypeOfEntity type = TypeOfEntity.HERO;
-    private Texture tx;
     private Rectangle body = new Rectangle();
     private final PlayerInputHandler input = new PlayerInputHandler(this);
     private BulletManager bm;
-    private ObservePoint obs = new ObservePoint();
+    private Observed obs = new Observed();
 
 
-    public Hero(Texture tx, int startingX, int startingY, BulletManager bm) {
-        this.tx = tx;
-        body.height = tx.getHeight();
-        body.width = tx.getWidth();
+    public Hero(AssetManager am, int startingX, int startingY, BulletManager bm) {
+        body.height = am.<Texture>get("hero.png").getHeight();
+        body.width = am.<Texture>get("hero.png").getWidth();
         // il rectangle di libgdx prende come riferimento x,y l'angolo in basso a sinistra
         body.x = startingX;
         body.y = startingY;
@@ -40,13 +37,12 @@ public class Hero implements Character, Displayable, Observable{
         return hp;
     }
 
-    public int getX(){
-        return (int)body.x;
+    public float getX(){
+        return body.x;
     }
 
-    @Override
-    public DisplayableObject getDisplayableObject() {
-        return new DisplayableObject(tx, (int) body.x, (int) body.y);
+    public float getY(){
+        return body.y;
     }
 
     @Override
