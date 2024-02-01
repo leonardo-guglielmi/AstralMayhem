@@ -46,7 +46,7 @@ public class GameoverScreen implements Screen {
 
             game.textPrinter.draw(game.batch, "click everywhere to go back to menu", (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
             game.textPrinter.draw(game.batch, "Cause: "+gameoverText, (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
-            game.textPrinter.draw(game.batch, "Score obtained: "+score, (float)Commons.WORLD_X_START+200, Commons.WINDOW_HEIGHT -600);
+            game.textPrinter.draw(game.batch, "Score obtained: "+score, (float)Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -600);
         }
         game.batch.end();
 
