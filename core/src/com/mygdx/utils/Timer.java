@@ -1,4 +1,4 @@
-package com.mygdx;
+package com.mygdx.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.jogamp.opengl.util.stereo.generic.GenericStereoDeviceConfig;

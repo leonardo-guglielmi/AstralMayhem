@@ -2,7 +2,7 @@ package com.mygdx.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.Commons;
+import com.mygdx.utils.Commons;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.enemyLogic.Strategy;
 import com.mygdx.enemyLogic.StrategyContext;
@@ -64,5 +64,9 @@ public class Enemy implements Character, StrategyContext {
 
     public void update(){
         strat.execute();
+    }
+
+    public Class getTypeOfEnemy(){
+        return strat.getClass();
     }
 }

@@ -1,6 +1,7 @@
 package com.mygdx.entityManagement;
 
-import com.mygdx.Commons;
+import com.mygdx.gameStates.GameScreen;
+import com.mygdx.utils.Commons;
 import com.mygdx.entities.Enemy;
 import com.mygdx.entities.Hero;
 import com.mygdx.observers.Observable;
@@ -46,8 +47,10 @@ public class EnemyManager implements Manager, Observable {
         while(iter.hasNext()){
             Enemy e = iter.next();
 
-            if(e.getNumCollisions() >= 1)
+            if(e.getNumCollisions() >= 1) {
+                GameScreen.score += 100;
                 iter.remove();
+            }
             else{
                 e.update();
                 if(e.getY() <= Commons.GAMEOVER_LIMIT) {

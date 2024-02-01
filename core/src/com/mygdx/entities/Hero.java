@@ -3,7 +3,7 @@ package com.mygdx.entities;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.Commons;
+import com.mygdx.utils.Commons;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.inputManagement.PlayerInputHandler;
 import com.mygdx.observers.Observable;
@@ -15,7 +15,7 @@ import com.mygdx.observers.Observer;
  */
 
 public class Hero implements Character, Observable{
-    private int hp = 3;
+    private int hp = 10;
     private int speed = 2;
     private TypeOfEntity type = TypeOfEntity.HERO;
     private Rectangle body = new Rectangle();

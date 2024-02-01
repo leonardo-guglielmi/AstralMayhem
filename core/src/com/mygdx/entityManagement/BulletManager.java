@@ -2,7 +2,7 @@ package com.mygdx.entityManagement;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entities.Bullet;
-import com.mygdx.Commons;
+import com.mygdx.utils.Commons;
 import com.mygdx.entities.TypeOfEntity;
 import java.util.*;
 

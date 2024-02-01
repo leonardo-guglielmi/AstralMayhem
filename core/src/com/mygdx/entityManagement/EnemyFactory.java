@@ -2,7 +2,7 @@ package com.mygdx.entityManagement;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.Commons;
+import com.mygdx.utils.Commons;
 import com.mygdx.entities.Enemy;
 import com.mygdx.entities.Hero;
 import com.mygdx.enemyLogic.AdvancedEnemyStrategy;

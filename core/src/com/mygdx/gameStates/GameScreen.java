@@ -1,17 +1,14 @@
 package com.mygdx.gameStates;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.AstralMayhem;
-import com.mygdx.Commons;
+import com.mygdx.utils.Commons;
 import com.mygdx.entities.Earth;
-import com.mygdx.Timer;
+import com.mygdx.utils.Timer;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.entities.Hero;
@@ -27,13 +24,15 @@ public class GameScreen implements Screen {
     private final Hero hero;
     private final Earth earth;
     private EnemyManager em;
-    private final BitmapFont textPrinter = new BitmapFont();
     private Timer baseEnemyTimer = new Timer(2);
     private Timer advanceEnemyTimer = new Timer(3);
     private GameoverObserver go;
 
+    public static long score;
+
     public GameScreen(final AstralMayhem game){
         // setting-up game environment
+        score = 0;
         this.game = game;
         camera.setToOrtho(false);
         game.batch.setProjectionMatrix(camera.combined);
@@ -48,6 +47,7 @@ public class GameScreen implements Screen {
         hero.addObserver(go);
         earth.addObserver(go);
         em.addObserver(go);
+
     }
 
     @Override
@@ -83,6 +83,8 @@ public class GameScreen implements Screen {
             game.am.load(Commons.UI_BACKGROUND_IMG_PATH, Texture.class);
         if(!game.am.contains(Commons.HEART_IMG_PATH))
             game.am.load(Commons.HEART_IMG_PATH, Texture.class);
+        if(!game.am.contains(Commons.EARTH_HP_BAR))
+            game.am.load(Commons.EARTH_HP_BAR, Texture.class);
 
         // loading entities texture
         if(!game.am.contains(Commons.HERO_IMG_PATH))
@@ -118,23 +120,31 @@ public class GameScreen implements Screen {
     }
 
     private void printBackGrounds(){
+        // setup per stampare l'ambiente di gioco
         ScreenUtils.clear(1,1,1,0);
         camera.update();
-        textPrinter.setColor(Color.WHITE);
+        game.textPrinter.setColor(Color.WHITE);
 
         game.batch.begin();
         {
+            // disegno tutti i background
             game.batch.draw(game.am.<Texture>get(Commons.GAME_BACKGROUND_IMG_PATH), Commons.WORLD_X_START, Commons.WORLD_Y_START);
             game.batch.draw(game.am.<Texture>get(Commons.UI_BACKGROUND_IMG_PATH),
                     Commons.WORLD_X_START +game.am.<Texture>get(Commons.GAME_BACKGROUND_IMG_PATH).getWidth(),
                     Commons.WORLD_Y_START);
 
-            textPrinter.draw(game.batch, "HP", Commons.WORLD_X_END+67, Commons.WORLD_Y_END-190);
+            // disegno le varie informazioni da stampare a schermo
+            game.textPrinter.draw(game.batch, "SCORE: "+score, Commons.WORLD_X_END+67, Commons.WORLD_Y_END-150);
+
+            game.textPrinter.draw(game.batch, "HP", Commons.WORLD_X_END+67, Commons.WORLD_Y_END-190);
             for(int i=0; i < hero.getHp(); i++)
                 game.batch.draw(game.am.<Texture>get(Commons.HEART_IMG_PATH), Commons.WORLD_X_END+60, Commons.WORLD_Y_END-250-i*32);
 
+            game.textPrinter.draw(game.batch, "EARTH HP", Commons.WORLD_X_END+158, Commons.WORLD_Y_END-190);
+            game.batch.draw(game.am.<Texture>get(Commons.EARTH_HP_BAR), Commons.WORLD_X_END+170, Commons.WORLD_Y_END-620, 40, 4*earth.getHp());
         }
         game.batch.end();
+
     }
 
     private void printEntities(){
@@ -148,10 +158,10 @@ public class GameScreen implements Screen {
                 game.batch.draw(game.am.<Texture>get(Commons.BULLET_IMG_PATH), b.getKey(), b.getValue());
 
             ArrayList<AbstractMap.SimpleEntry<Float, Float>> enemyDisp = em.getPosition();
-            for(AbstractMap.SimpleEntry<Float, Float> e : enemyDisp)
+            for(AbstractMap.SimpleEntry<Float, Float> e : enemyDisp) {
+                //todo: da sistemare la possibilità di disegnare due nemici diversi
                 game.batch.draw(game.am.<Texture>get(Commons.ENEMY_IMG_PATH), e.getKey(), e.getValue());
-
-            textPrinter.draw(game.batch, "earth_hp: " + earth.getHp(), 500, 500-32);
+            }
         }
         game.batch.end();
     }

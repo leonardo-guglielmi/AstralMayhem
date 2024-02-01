@@ -3,26 +3,21 @@ package com.mygdx.gameStates;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.jogamp.opengl.util.texture.spi.LEDataInputStream;
 import com.mygdx.AstralMayhem;
-import com.mygdx.Commons;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.mygdx.utils.Commons;
 
 public class GameoverScreen implements Screen {
 
     private AstralMayhem game;
     private String gameoverText;
+    private long score;
 
-    public GameoverScreen(AstralMayhem game, String gameoverText){
+    public GameoverScreen(AstralMayhem game, String gameoverText, long score){
         this.game = game;
         this.gameoverText = gameoverText;
+        this.score = score;
         if(!game.am.contains("gameover/gameOverTitle.png"))
             game.am.load("gameover/gameOverTitle.png", Texture.class);
         if(!game.am.contains("gameover/skull.png"))
@@ -49,8 +44,9 @@ public class GameoverScreen implements Screen {
                     (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get("gameover/skull.png").getWidth()/2,
                     Commons.WINDOW_HEIGHT -350 -(float)game.am.<Texture>get("gameover/skull.png").getHeight()/2);
 
-            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT - 600);
+            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
             game.textPrinter.draw(game.batch, "Cause: "+gameoverText, (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
+            game.textPrinter.draw(game.batch, "Score obtained: "+score, (float)Commons.WORLD_X_START+200, Commons.WINDOW_HEIGHT -600);
         }
         game.batch.end();
 

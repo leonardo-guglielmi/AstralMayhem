@@ -1,7 +1,7 @@
 package com.mygdx.enemyLogic;
 
-import com.mygdx.Commons;
-import com.mygdx.Timer;
+import com.mygdx.utils.Commons;
+import com.mygdx.utils.Timer;
 import com.mygdx.entities.Enemy;
 
 public class BaseEnemyStrategy implements Strategy{

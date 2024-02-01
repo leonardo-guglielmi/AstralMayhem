@@ -4,12 +4,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entityManagement.BulletManager;
+import com.mygdx.gameStates.GameScreen;
 import com.mygdx.observers.Observable;
 import com.mygdx.observers.Observed;
 import com.mygdx.observers.Observer;
 
 public class Earth implements Observable {
-    private int hp  = 1000;
+    private int hp  = 100;
     private final TypeOfEntity type = TypeOfEntity.EARTH;
     private final Rectangle body = new Rectangle();
     private final BulletManager bm;
@@ -36,7 +37,10 @@ public class Earth implements Observable {
     }
 
     public void update(){
-        hp -= bm.getBulletCollision(body, type);
+        int damage = bm.getBulletCollision(body, type);
+        hp -= damage;
+        if(damage > 0)
+            GameScreen.score -= 10;
         if(hp <= 0){
             obs.notifyObservers();
         }

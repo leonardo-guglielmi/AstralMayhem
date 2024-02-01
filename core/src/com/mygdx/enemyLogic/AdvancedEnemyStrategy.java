@@ -1,6 +1,6 @@
 package com.mygdx.enemyLogic;
 
-import com.mygdx.Timer;
+import com.mygdx.utils.Timer;
 import com.mygdx.entities.Enemy;
 import com.mygdx.entities.Hero;
 

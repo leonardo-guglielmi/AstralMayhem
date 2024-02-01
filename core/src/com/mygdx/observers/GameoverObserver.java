@@ -4,6 +4,7 @@ import com.mygdx.AstralMayhem;
 import com.mygdx.entities.Earth;
 import com.mygdx.entities.Hero;
 import com.mygdx.entityManagement.EnemyManager;
+import com.mygdx.gameStates.GameScreen;
 import com.mygdx.gameStates.GameoverScreen;
 
 public class GameoverObserver implements Observer{
@@ -33,7 +34,7 @@ public class GameoverObserver implements Observer{
         }
         if(!str.isEmpty()) {
             game.getScreen().dispose();
-            game.setScreen(new GameoverScreen(game, str));
+            game.setScreen(new GameoverScreen(game, str, GameScreen.score));
         }
     }
 }

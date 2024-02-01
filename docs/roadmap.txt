@@ -1,0 +1,7 @@
+- cambiare il sistema di coordinate da int a float
+- trovare il modo di far stampare la skin giusta per il tipo di nemico
+- implementare le animazioni
+- fare un check totale della struttura del gioco
+- creare l'ambiente db-server
+- creare il modulo di applicazione di rete client-server
+- sviluppare il menu
