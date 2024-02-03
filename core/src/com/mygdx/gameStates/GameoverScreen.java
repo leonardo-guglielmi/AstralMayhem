@@ -19,12 +19,18 @@ public class GameoverScreen implements Screen {
         this.game = game;
         this.gameoverText = gameoverText;
         this.score = score;
+
         // loading graphic elements
         if(!game.am.contains("gameover/gameOverTitle.png"))
             game.am.load("gameover/gameOverTitle.png", Texture.class);
         if(!game.am.contains("gameover/skull.png"))
             game.am.load("gameover/skull.png", Texture.class);
         game.am.finishLoading();
+
+        // sending score results to the server (if logged in)
+        /*
+        game.client.sendScore(Score)
+         */
     }
 
     @Override
