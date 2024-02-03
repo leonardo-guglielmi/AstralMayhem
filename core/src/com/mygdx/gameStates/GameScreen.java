@@ -17,8 +17,6 @@ import com.mygdx.entities.Hero;
 import com.mygdx.observers.GameoverObserver;
 import com.mygdx.utils.Pair;
 import com.mygdx.utils.Triplet;
-
-import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class GameScreen implements Screen {
@@ -27,11 +25,13 @@ public class GameScreen implements Screen {
     private final BulletManager bm = new BulletManager();
     private final Hero hero;
     private final Earth earth;
-    private EnemyManager em;
-    private Timer baseEnemyTimer = new Timer(2);
-    private Timer advanceEnemyTimer = new Timer(3);
-    private GameoverObserver go;
+    private final EnemyManager em;
+
+    // todo: spostare questi due nella parte di enemy manager
+    private final Timer baseEnemyTimer = new Timer(2);
+    private final Timer advanceEnemyTimer = new Timer(3);
     public static long score;
+    public float time = 0;
 
     public GameScreen(final AstralMayhem game){
         // setting-up game environment and graphics
@@ -46,7 +46,7 @@ public class GameScreen implements Screen {
         earth = new Earth(game.am, bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
         em = new EnemyManager(bm, hero);
 
-        go = new GameoverObserver(game, hero, earth, em);
+        GameoverObserver go = new GameoverObserver(game, hero, earth, em);
         hero.addObserver(go);
         earth.addObserver(go);
         em.addObserver(go);
@@ -58,6 +58,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        time += delta;
         updateLogic();
         printBackGrounds();
         printEntities();
@@ -137,6 +138,7 @@ public class GameScreen implements Screen {
                     Commons.WORLD_Y_START);
 
             // print all game info
+            game.textPrinter.draw(game.batch, "TIME: "+(int)time, Commons.WORLD_X_END+67, Commons.WORLD_Y_END-130);
             game.textPrinter.draw(game.batch, "SCORE: "+score, Commons.WORLD_X_END+67, Commons.WORLD_Y_END-150);
 
             game.textPrinter.draw(game.batch, "HP", Commons.WORLD_X_END+67, Commons.WORLD_Y_END-190);
@@ -165,7 +167,7 @@ public class GameScreen implements Screen {
             // print enemies
             ArrayList< Pair<Float, Float> > enemyDisp = em.getPrintInfo();
             for(Pair<Float, Float> e : enemyDisp) {
-                Triplet<Float, Float, Class> t = (Triplet<Float, Float, Class>)e;
+                Triplet<Float, Float, Class<?>> t = (Triplet<Float, Float, Class<?>>)e;
                 if(t.z == BaseEnemyStrategy.class)
                     game.batch.draw(game.am.<Texture>get(Commons.ENEMY_IMG_PATH), t.x, t.y);
                 else if(t.z == AdvancedEnemyStrategy.class)

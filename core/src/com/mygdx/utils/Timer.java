@@ -1,7 +1,6 @@
 package com.mygdx.utils;
 
 import com.badlogic.gdx.Gdx;
-import com.jogamp.opengl.util.stereo.generic.GenericStereoDeviceConfig;
 
 public class Timer {
 
@@ -20,7 +19,6 @@ public class Timer {
      * @return if the timer is ended
      */
     public boolean check(){
-        //todo: fix me
         timeElapsed += Gdx.graphics.getDeltaTime();
         if(timeElapsed > timeLatency){
             timeElapsed = 0;

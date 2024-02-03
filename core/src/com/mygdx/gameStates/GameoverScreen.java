@@ -10,9 +10,9 @@ import com.mygdx.utils.Commons;
 
 public class GameoverScreen implements Screen {
 
-    private AstralMayhem game;
-    private String gameoverText;
-    private long score;
+    private final AstralMayhem game;
+    private final String gameoverText;
+    private final long score;
 
     public GameoverScreen(AstralMayhem game, String gameoverText, long score){
         // loading gameover info
@@ -47,9 +47,9 @@ public class GameoverScreen implements Screen {
                     (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get("gameover/skull.png").getWidth()/2,
                     Commons.WINDOW_HEIGHT -350 - (float) game.am.<Texture>get("gameover/skull.png").getHeight() /2);
 
-            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
+            game.textPrinter.draw(game.batch, "Score obtained: "+score, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
             game.textPrinter.draw(game.batch, "Cause: "+gameoverText, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
-            game.textPrinter.draw(game.batch, "Score obtained: "+score, Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -600);
+            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -600);
         }
         game.batch.end();
 
