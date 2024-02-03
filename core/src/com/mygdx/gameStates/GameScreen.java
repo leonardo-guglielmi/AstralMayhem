@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.AstralMayhem;
+import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
+import com.mygdx.enemyLogic.BaseEnemyStrategy;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.Earth;
 import com.mygdx.utils.Timer;
@@ -13,6 +15,8 @@ import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.entities.Hero;
 import com.mygdx.observers.GameoverObserver;
+import com.mygdx.utils.Pair;
+import com.mygdx.utils.Triplet;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -27,11 +31,10 @@ public class GameScreen implements Screen {
     private Timer baseEnemyTimer = new Timer(2);
     private Timer advanceEnemyTimer = new Timer(3);
     private GameoverObserver go;
-
     public static long score;
 
     public GameScreen(final AstralMayhem game){
-        // setting-up game environment
+        // setting-up game environment and graphics
         score = 0;
         this.game = game;
         camera.setToOrtho(false);
@@ -39,7 +42,7 @@ public class GameScreen implements Screen {
         loadTextures();
 
         // setting-up game logic elements
-        hero = new Hero(game.am,50, 100, bm);
+        hero = new Hero(game.am,50, 100, bm); //todo: aggiusta le coordinate di spawn
         earth = new Earth(game.am, bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
         em = new EnemyManager(bm, hero);
 
@@ -120,20 +123,20 @@ public class GameScreen implements Screen {
     }
 
     private void printBackGrounds(){
-        // setup per stampare l'ambiente di gioco
+        // setting-up teh environment to print
         ScreenUtils.clear(1,1,1,0);
         camera.update();
         game.textPrinter.setColor(Color.WHITE);
 
         game.batch.begin();
         {
-            // disegno tutti i background
+            // print all backgrounds
             game.batch.draw(game.am.<Texture>get(Commons.GAME_BACKGROUND_IMG_PATH), Commons.WORLD_X_START, Commons.WORLD_Y_START);
             game.batch.draw(game.am.<Texture>get(Commons.UI_BACKGROUND_IMG_PATH),
                     Commons.WORLD_X_START +game.am.<Texture>get(Commons.GAME_BACKGROUND_IMG_PATH).getWidth(),
                     Commons.WORLD_Y_START);
 
-            // disegno le varie informazioni da stampare a schermo
+            // print all game info
             game.textPrinter.draw(game.batch, "SCORE: "+score, Commons.WORLD_X_END+67, Commons.WORLD_Y_END-150);
 
             game.textPrinter.draw(game.batch, "HP", Commons.WORLD_X_END+67, Commons.WORLD_Y_END-190);
@@ -150,17 +153,23 @@ public class GameScreen implements Screen {
     private void printEntities(){
         game.batch.begin();
         {
+            // print hero and earth texture
             game.batch.draw(game.am.<Texture>get(Commons.EARTH_IMG_PATH), earth.getX(), earth.getY());
             game.batch.draw(game.am.<Texture>get(Commons.HERO_IMG_PATH), hero.getX(), hero.getY());
 
-            ArrayList<AbstractMap.SimpleEntry<Float, Float>> bulletsDisp = bm.getPosition();
-            for(AbstractMap.SimpleEntry<Float, Float> b : bulletsDisp)
-                game.batch.draw(game.am.<Texture>get(Commons.BULLET_IMG_PATH), b.getKey(), b.getValue());
+            // print bullets
+            ArrayList< Pair<Float, Float> > bulletDisp = bm.getPrintInfo();
+            for(Pair<Float, Float> p : bulletDisp)
+                game.batch.draw(game.am.<Texture>get(Commons.BULLET_IMG_PATH), p.x, p.y);
 
-            ArrayList<AbstractMap.SimpleEntry<Float, Float>> enemyDisp = em.getPosition();
-            for(AbstractMap.SimpleEntry<Float, Float> e : enemyDisp) {
-                //todo: da sistemare la possibilità di disegnare due nemici diversi
-                game.batch.draw(game.am.<Texture>get(Commons.ENEMY_IMG_PATH), e.getKey(), e.getValue());
+            // print enemies
+            ArrayList< Pair<Float, Float> > enemyDisp = em.getPrintInfo();
+            for(Pair<Float, Float> e : enemyDisp) {
+                Triplet<Float, Float, Class> t = (Triplet<Float, Float, Class>)e;
+                if(t.z == BaseEnemyStrategy.class)
+                    game.batch.draw(game.am.<Texture>get(Commons.ENEMY_IMG_PATH), t.x, t.y);
+                else if(t.z == AdvancedEnemyStrategy.class)
+                    game.batch.draw(game.am.<Texture>get(Commons.ADVANCED_ENEMY_IMG_PATH), t.x, t.y);
             }
         }
         game.batch.end();

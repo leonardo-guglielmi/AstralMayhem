@@ -7,6 +7,8 @@ import com.mygdx.entities.Hero;
 import com.mygdx.observers.Observable;
 import com.mygdx.observers.Observed;
 import com.mygdx.observers.Observer;
+import com.mygdx.utils.Pair;
+import com.mygdx.utils.Triplet;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -34,10 +36,10 @@ public class EnemyManager implements Manager, Observable {
     }
 
     @Override
-    public ArrayList<AbstractMap.SimpleEntry<Float, Float>> getPosition(){
-        ArrayList<AbstractMap.SimpleEntry<Float, Float>> arrDisp = new ArrayList<>();
+    public ArrayList<Pair<Float, Float>> getPrintInfo(){
+        ArrayList< Pair<Float, Float> > arrDisp = new ArrayList<>();
         for(Enemy e : enemySet)
-            arrDisp.add(new AbstractMap.SimpleEntry<>(e.getX(), e.getY()));
+            arrDisp.add(new Triplet<>( e.getX(), e.getY(), e.getTypeOfEnemy() ));
         return arrDisp;
     }
 

@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entities.Bullet;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.TypeOfEntity;
+import com.mygdx.utils.Pair;
+
 import java.util.*;
 
 public class BulletManager implements Manager{
@@ -22,10 +24,10 @@ public class BulletManager implements Manager{
     }
 
     @Override
-    public ArrayList<AbstractMap.SimpleEntry<Float, Float>> getPosition(){
-        ArrayList<AbstractMap.SimpleEntry<Float, Float>> arrDisp = new ArrayList<>();
+    public ArrayList<Pair<Float, Float>> getPrintInfo(){
+        ArrayList< Pair<Float, Float> > arrDisp = new ArrayList<>();
         for(Bullet b : bulletSet)
-            arrDisp.add(new AbstractMap.SimpleEntry<>(b.getX(), b.getY()));
+            arrDisp.add(new Pair<>(b.getX(), b.getY()));
         return arrDisp;
     }
 

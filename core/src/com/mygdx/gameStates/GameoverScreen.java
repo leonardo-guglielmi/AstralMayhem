@@ -15,9 +15,11 @@ public class GameoverScreen implements Screen {
     private long score;
 
     public GameoverScreen(AstralMayhem game, String gameoverText, long score){
+        // loading gameover info
         this.game = game;
         this.gameoverText = gameoverText;
         this.score = score;
+        // loading graphic elements
         if(!game.am.contains("gameover/gameOverTitle.png"))
             game.am.load("gameover/gameOverTitle.png", Texture.class);
         if(!game.am.contains("gameover/skull.png"))
@@ -30,10 +32,11 @@ public class GameoverScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        // setup to display all graphic elements
         ScreenUtils.clear(204/255f,0,0,1);
-
         game.textPrinter.setColor(Color.WHITE);
 
+        // draw everything
         game.batch.begin();
         {
             game.batch.draw(game.am.<Texture>get("gameover/gameOverTitle.png"),
@@ -42,14 +45,15 @@ public class GameoverScreen implements Screen {
 
             game.batch.draw(game.am.<Texture>get("gameover/skull.png"),
                     (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get("gameover/skull.png").getWidth()/2,
-                    Commons.WINDOW_HEIGHT -350 -(float)game.am.<Texture>get("gameover/skull.png").getHeight()/2);
+                    Commons.WINDOW_HEIGHT -350 - (float) game.am.<Texture>get("gameover/skull.png").getHeight() /2);
 
-            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
-            game.textPrinter.draw(game.batch, "Cause: "+gameoverText, (float)Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
-            game.textPrinter.draw(game.batch, "Score obtained: "+score, (float)Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -600);
+            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
+            game.textPrinter.draw(game.batch, "Cause: "+gameoverText, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
+            game.textPrinter.draw(game.batch, "Score obtained: "+score, Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -600);
         }
         game.batch.end();
 
+        // when screen is touched change the game state
         if(Gdx.input.isTouched()) {
             game.setScreen(new GameScreen(game));
             this.dispose();
