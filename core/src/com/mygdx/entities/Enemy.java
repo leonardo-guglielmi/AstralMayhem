@@ -14,6 +14,7 @@ public class Enemy implements Character, StrategyContext {
     private Strategy strat;
 
     public Enemy(Texture tx, int startingX, int startingY, BulletManager bm){
+        //todo: fix calcolo dimensione
         body.height = tx.getHeight();
         body.width = tx.getWidth();
         body.x = startingX;
@@ -66,7 +67,7 @@ public class Enemy implements Character, StrategyContext {
         strat.execute();
     }
 
-    public Class getTypeOfEnemy(){
+    public Class<?> getTypeOfEnemy(){
         return strat.getClass();
     }
 }

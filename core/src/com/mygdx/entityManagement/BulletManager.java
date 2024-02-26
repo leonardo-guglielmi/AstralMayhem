@@ -1,5 +1,6 @@
 package com.mygdx.entityManagement;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entities.Bullet;
 import com.mygdx.utils.Commons;
@@ -10,9 +11,14 @@ import java.util.*;
 
 public class BulletManager implements Manager{
     private final Set<Bullet> bulletSet = new HashSet<>();
+    private final AssetManager am;
 
-    public void addBullet(int startX, int startY, int vel, TypeOfEntity source) {
-        bulletSet.add(new Bullet(startX, startY, vel, source));
+    public BulletManager(AssetManager am){
+        this.am = am;
+    }
+
+    public void addBullet(float startX, float startY, int vel, TypeOfEntity source) {
+        bulletSet.add(new Bullet(am, startX, startY, vel, source));
     }
 
     @Override

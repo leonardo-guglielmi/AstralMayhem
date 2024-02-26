@@ -38,4 +38,8 @@ public class Server {
     public void listen(){
 
     }
+
+    public static void main(String[] args){
+
+    }
 }

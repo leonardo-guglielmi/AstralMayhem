@@ -10,8 +10,7 @@ public class AdvancedEnemyStrategy implements Strategy{
     private final Hero h;
     private final Timer shootTimer;
     private final Timer teleportTimer = new Timer(10);
-    private int dirX = 1;
-    private int dirY = 0;
+    public int dirY = 0;
     public AdvancedEnemyStrategy(Enemy e, Hero h, int t){
         this.e = e;
         this.h = h;
@@ -19,7 +18,8 @@ public class AdvancedEnemyStrategy implements Strategy{
     }
     @Override
     public void execute() {
-        dirX = 0;
+        int dirX = 0;
+
         if(h.getX() -e.getX() > 0)
             dirX = 2;
         else if(h.getX() -e.getX() < 0)

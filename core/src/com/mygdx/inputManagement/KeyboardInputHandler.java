@@ -4,13 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.entities.Hero;
 
-public class PlayerInputHandler implements InputHandler{
+public class KeyboardInputHandler implements InputHandler{
     private final MoveRightCommand mvRight;
     private final MoveLeftCommand mvLeft;
 
     private final ShootCommand shootCmd;
 
-    public PlayerInputHandler(Hero h){
+    public KeyboardInputHandler(Hero h){
         mvRight = new MoveRightCommand(h);
         mvLeft = new MoveLeftCommand(h);
         shootCmd = new ShootCommand(h);

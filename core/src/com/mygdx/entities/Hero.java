@@ -3,9 +3,10 @@ package com.mygdx.entities;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.inputManagement.InputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.entityManagement.BulletManager;
-import com.mygdx.inputManagement.PlayerInputHandler;
+import com.mygdx.inputManagement.KeyboardInputHandler;
 import com.mygdx.observers.Observable;
 import com.mygdx.observers.Observed;
 import com.mygdx.observers.Observer;
@@ -16,15 +17,16 @@ import com.mygdx.observers.Observer;
 
 public class Hero implements Character, Observable{
     private int hp = 10;
-    private int speed = 2;
+    private final int speed = 2;
     private TypeOfEntity type = TypeOfEntity.HERO;
     private Rectangle body = new Rectangle();
-    private final PlayerInputHandler input = new PlayerInputHandler(this);
+    private final InputHandler input = new KeyboardInputHandler(this);
     private BulletManager bm;
     private Observed obs = new Observed();
 
 
     public Hero(AssetManager am, int startingX, int startingY, BulletManager bm) {
+        // todo: usa le var in commons
         body.height = am.<Texture>get("entities/hero.png").getHeight();
         body.width = am.<Texture>get("entities/hero.png").getWidth();
         // il rectangle di libgdx prende come riferimento x,y l'angolo in basso a sinistra
@@ -56,10 +58,11 @@ public class Hero implements Character, Observable{
 
     @Override
     public void shoot() {
-        bm.addBullet((int) (body.x + body.width / 4), (int) (body.y + body.height / 2), 10, type);
+        bm.addBullet(body.x +body.width /4, body.y +body.height /2, 10, type);
     }
 
     @Override
+    //todo: da capire se la responsabilità di questo calcolo è dovere dell'eroe o meno
     public int getNumCollisions() {
         return bm.getBulletCollision(body, type);
     }
@@ -67,10 +70,10 @@ public class Hero implements Character, Observable{
     public void update(){
         input.handle();
         int damage = getNumCollisions();
-        if(damage > 0){
+        if(damage > 0)
             hp -= damage;
+        if(hp <= 0)
             obs.notifyObservers();
-        }
     }
 
     @Override

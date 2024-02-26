@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class GameScreen implements Screen {
     private final AstralMayhem game;
     private final OrthographicCamera camera = new OrthographicCamera();
-    private final BulletManager bm = new BulletManager();
+    private final BulletManager bm;
     private final Hero hero;
     private final Earth earth;
     private final EnemyManager em;
@@ -42,6 +42,7 @@ public class GameScreen implements Screen {
         loadTextures();
 
         // setting-up game logic elements
+        bm = new BulletManager(game.am);
         hero = new Hero(game.am,50, 100, bm); //todo: aggiusta le coordinate di spawn
         earth = new Earth(game.am, bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
         em = new EnemyManager(bm, hero);
