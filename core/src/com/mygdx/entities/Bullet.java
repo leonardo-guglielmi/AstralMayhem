@@ -1,6 +1,5 @@
 package com.mygdx.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -11,13 +10,13 @@ import com.mygdx.utils.Commons;
  */
 public class Bullet {
     private final TypeOfEntity source;
-    private int vel;
-    private Rectangle body = new Rectangle();
+    private final int vel;
+    private final Rectangle body = new Rectangle();
 
 
     public Bullet(AssetManager am, float startX, float startY, int vel, TypeOfEntity source){
         body.height = am.<Texture>get(Commons.BULLET_IMG_PATH).getHeight();
-        body.width = am.<Texture>get("entities/bullet.png").getWidth();
+        body.width = am.<Texture>get(Commons.BULLET_IMG_PATH).getWidth();
         body.x = startX;
         body.y = startY;
         this.vel = vel;

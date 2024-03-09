@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.gameStates.GameScreen;
 import com.mygdx.observers.Observable;
-import com.mygdx.observers.Observed;
+import com.mygdx.observers.Subject;
 import com.mygdx.observers.Observer;
 
 public class Earth implements Observable {
@@ -14,7 +14,7 @@ public class Earth implements Observable {
     private final TypeOfEntity type = TypeOfEntity.EARTH;
     private final Rectangle body = new Rectangle();
     private final BulletManager bm;
-    private final Observed obs = new Observed();
+    private final Subject obs = new Subject();
 
     public Earth(AssetManager am, BulletManager bm, int startX, int startY){
         body.x = startX;

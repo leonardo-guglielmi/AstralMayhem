@@ -10,7 +10,6 @@ import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
 import com.mygdx.enemyLogic.BaseEnemyStrategy;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.Earth;
-import com.mygdx.utils.Timer;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.entities.Hero;
@@ -26,10 +25,6 @@ public class GameScreen implements Screen {
     private final Hero hero;
     private final Earth earth;
     private final EnemyManager em;
-
-    // todo: spostare questi due nella parte di enemy manager
-    private final Timer baseEnemyTimer = new Timer(2);
-    private final Timer advanceEnemyTimer = new Timer(3);
     public static long score;
     public float time = 0;
 
@@ -45,7 +40,7 @@ public class GameScreen implements Screen {
         bm = new BulletManager(game.am);
         hero = new Hero(game.am,50, 100, bm); //todo: aggiusta le coordinate di spawn
         earth = new Earth(game.am, bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
-        em = new EnemyManager(bm, hero);
+        em = new EnemyManager(bm, hero, game.am);
 
         GameoverObserver go = new GameoverObserver(game, hero, earth, em);
         hero.addObserver(go);
@@ -116,12 +111,6 @@ public class GameScreen implements Screen {
 
         //updating earth
         earth.update();
-
-        //spawning enemies
-        if(baseEnemyTimer.check())
-            em.addBaseEnemy();
-        if(advanceEnemyTimer.check())
-            em.addAdvancedEnemy();
     }
 
     private void printBackGrounds(){
@@ -178,6 +167,9 @@ public class GameScreen implements Screen {
         game.batch.end();
     }
 
+    public static void updateScore(int s){
+        score += s;
+    }
 
 }
 

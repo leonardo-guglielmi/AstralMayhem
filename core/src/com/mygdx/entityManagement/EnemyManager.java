@@ -1,38 +1,38 @@
 package com.mygdx.entityManagement;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
+import com.mygdx.enemyLogic.BaseEnemyStrategy;
 import com.mygdx.gameStates.GameScreen;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.Enemy;
 import com.mygdx.entities.Hero;
 import com.mygdx.observers.Observable;
-import com.mygdx.observers.Observed;
+import com.mygdx.observers.Subject;
 import com.mygdx.observers.Observer;
 import com.mygdx.utils.Pair;
+import com.mygdx.utils.Timer;
 import com.mygdx.utils.Triplet;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
 public class EnemyManager implements Manager, Observable {
     private final HashSet<Enemy> enemySet = new HashSet<>();
+    private final Timer baseEnemySpawnTimer = new Timer(2);
+    private final Timer advanceEnemySpawnTimer = new Timer(3);
     private final BulletManager bm;
-    private final EnemyFactory ef;
-    private Observed obs = new Observed();
+    private final Hero h;
+    private final AssetManager am;
+    private final Subject obs = new Subject();
     private boolean GAMEOVER_LIMIT_REACHED = false;
 
-    public EnemyManager(BulletManager bm, Hero h){
+    public EnemyManager(BulletManager bm, Hero h, AssetManager am){
         this.bm = bm;
-        ef = new EnemyFactory(bm, h);
-    }
-
-    public void addBaseEnemy(){
-        enemySet.add(ef.createBaseEnemy());
-    }
-
-    public void addAdvancedEnemy(){
-        enemySet.add(ef.createAdvanceEnemy());
+        this.h = h;
+        this.am = am;
     }
 
     @Override
@@ -45,12 +45,23 @@ public class EnemyManager implements Manager, Observable {
 
     @Override
     public void updateEntities(){
+        if(baseEnemySpawnTimer.check()) {
+            Enemy e = new Enemy(am.<Texture>get(Commons.ENEMY_IMG_PATH), Commons.WORLD_X_START, 500, bm);
+            e.setStrategy(new BaseEnemyStrategy(e, 3));
+            enemySet.add(e);
+        }
+        if(advanceEnemySpawnTimer.check()){
+            Enemy e = new Enemy(am.<Texture>get(Commons.ADVANCED_ENEMY_IMG_PATH), Commons.WORLD_X_START, 500, bm);
+            e.setStrategy(new AdvancedEnemyStrategy(e, h, 3));
+            enemySet.add(e);
+        }
+
         Iterator<Enemy> iter = enemySet.iterator();
         while(iter.hasNext()){
             Enemy e = iter.next();
 
             if(e.getNumCollisions() >= 1) {
-                GameScreen.score += 100;
+                GameScreen.updateScore(100);
                 iter.remove();
             }
             else{

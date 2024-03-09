@@ -8,13 +8,12 @@ import com.mygdx.enemyLogic.Strategy;
 import com.mygdx.enemyLogic.StrategyContext;
 
 public class Enemy implements Character, StrategyContext {
-    private Rectangle body = new Rectangle();
-    private BulletManager bm;
-    private TypeOfEntity type = TypeOfEntity.ENEMY;
+    private final Rectangle body = new Rectangle();
+    private final BulletManager bm;
+    private final TypeOfEntity type = TypeOfEntity.ENEMY;
     private Strategy strat;
 
     public Enemy(Texture tx, int startingX, int startingY, BulletManager bm){
-        //todo: fix calcolo dimensione
         body.height = tx.getHeight();
         body.width = tx.getWidth();
         body.x = startingX;
@@ -34,10 +33,6 @@ public class Enemy implements Character, StrategyContext {
         return (int)body.width;
     }
 
-    public int getHeight(){
-        return (int)body.height;
-    }
-
     @Override
     public void move(int dx, int dy) {
         body.x += dx;
@@ -50,7 +45,7 @@ public class Enemy implements Character, StrategyContext {
 
     @Override
     public void shoot() {
-        bm.addBullet((int) (body.x + body.width / 2), (int) (body.y + body.height / 2), -3, type);
+        bm.addBullet(body.x + body.width /2,body.y + body.height /2, -3, type);
     }
 
     @Override

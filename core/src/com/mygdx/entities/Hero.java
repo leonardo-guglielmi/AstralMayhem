@@ -8,7 +8,7 @@ import com.mygdx.utils.Commons;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.inputManagement.KeyboardInputHandler;
 import com.mygdx.observers.Observable;
-import com.mygdx.observers.Observed;
+import com.mygdx.observers.Subject;
 import com.mygdx.observers.Observer;
 
 /**
@@ -17,18 +17,18 @@ import com.mygdx.observers.Observer;
 
 public class Hero implements Character, Observable{
     private int hp = 10;
-    private final int speed = 2;
-    private TypeOfEntity type = TypeOfEntity.HERO;
-    private Rectangle body = new Rectangle();
+    private final static int SPEED = 2;
+    private final TypeOfEntity type = TypeOfEntity.HERO;
+    private final Rectangle body = new Rectangle();
     private final InputHandler input = new KeyboardInputHandler(this);
-    private BulletManager bm;
-    private Observed obs = new Observed();
+    private final BulletManager bm;
+    private final Subject obs = new Subject();
 
 
     public Hero(AssetManager am, int startingX, int startingY, BulletManager bm) {
         // todo: usa le var in commons
-        body.height = am.<Texture>get("entities/hero.png").getHeight();
-        body.width = am.<Texture>get("entities/hero.png").getWidth();
+        body.height = am.<Texture>get(Commons.HERO_IMG_PATH).getHeight();
+        body.width = am.<Texture>get(Commons.HERO_IMG_PATH).getWidth();
         // il rectangle di libgdx prende come riferimento x,y l'angolo in basso a sinistra
         body.x = startingX;
         body.y = startingY;
@@ -49,7 +49,7 @@ public class Hero implements Character, Observable{
 
     @Override
     public void move(int dx, int dy) {
-        body.x += dx * speed;
+        body.x += dx * SPEED;
         if (body.x < Commons.WORLD_X_START)
             body.x = Commons.WORLD_X_START;
         if (body.x > Commons.WORLD_X_END -body.width)
@@ -62,7 +62,6 @@ public class Hero implements Character, Observable{
     }
 
     @Override
-    //todo: da capire se la responsabilità di questo calcolo è dovere dell'eroe o meno
     public int getNumCollisions() {
         return bm.getBulletCollision(body, type);
     }
