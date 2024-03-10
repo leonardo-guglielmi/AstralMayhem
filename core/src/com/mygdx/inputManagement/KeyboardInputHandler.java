@@ -5,10 +5,10 @@ import com.badlogic.gdx.Input;
 import com.mygdx.entities.Hero;
 
 public class KeyboardInputHandler implements InputHandler{
-    private final MoveRightCommand mvRight;
-    private final MoveLeftCommand mvLeft;
+    private final Command mvRight;
+    private final Command mvLeft;
 
-    private final ShootCommand shootCmd;
+    private final Command shootCmd;
 
     public KeyboardInputHandler(Hero h){
         mvRight = new MoveRightCommand(h);
