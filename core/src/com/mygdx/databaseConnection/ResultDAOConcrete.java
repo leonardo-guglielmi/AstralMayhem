@@ -24,12 +24,13 @@ public class ResultDAOConcrete implements ResultDAO{
         return result;
     }
 
+    //QUESTO METODO NON DOVREBBE SERVIRE, LO LASCIO NEL CASO FOSSE UTILE, POI NEL CASO LO TOGLIAMO
     public List<Result> getAll() throws SQLException {
 
         Connection con = Database.getConnection();
         String sql = "SELECT * FROM result";
 
-        List<Result> employees = new ArrayList<>();
+        List<Result> results = new ArrayList<>();
 
         Statement stmt = con.createStatement();
 
@@ -42,10 +43,10 @@ public class ResultDAOConcrete implements ResultDAO{
 
             Result result = new Result(playerName, points, time);
 
-            employees.add(result);
+            results.add(result);
         }
 
-        return employees;
+        return results;
     }
 
     public int insert(Result result) throws SQLException {
