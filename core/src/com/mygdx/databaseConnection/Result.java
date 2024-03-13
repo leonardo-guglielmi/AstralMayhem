@@ -2,23 +2,14 @@ package com.mygdx.databaseConnection;
 
 public class Result {
 
-    private String playerName;
     private int points;
     private int time;
 
-    public Result(String playerName, int points, int time) {
-        this.playerName = playerName;
+    public Result(int points, int time) {
         this.points = points;
         this.time = time;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
 
     public int getPoints() {
         return points;
@@ -39,8 +30,7 @@ public class Result {
     @Override
     public String toString() {
         return "Result{" +
-                "playerName='" + playerName + '\'' +
-                ", points=" + points +
+                "points=" + points +
                 ", time=" + time +
                 '}';
     }
