@@ -66,6 +66,7 @@ public class ResultDAOConcrete implements ResultDAO{
         Database.closePreparedStatement(ps);
         Database.closeConnection(con);
 
+        System.out.println("Operazioni fatte.");
         return res;
     }
 }

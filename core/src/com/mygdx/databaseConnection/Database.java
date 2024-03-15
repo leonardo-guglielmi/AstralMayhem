@@ -22,6 +22,7 @@ public class Database {
     public static Connection getConnection() throws SQLException{
         Connection connection = null;
         connection = DriverManager.getConnection(url, user, password);
+        System.out.println("connessione al DB stabilita");
         return connection;
     }
 
