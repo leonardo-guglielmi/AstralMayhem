@@ -46,7 +46,6 @@ public class GameScreen implements Screen {
         hero.addObserver(go);
         earth.addObserver(go);
         em.addObserver(go);
-
     }
 
     @Override

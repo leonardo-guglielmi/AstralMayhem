@@ -2,10 +2,11 @@ package com.mygdx.databaseConnection;
 
 public class Result {
 
+    private String player;
     private int points;
     private int time;
 
-    public Result(int points, int time) {
+    public Result(String player, int points, int time) {
         this.points = points;
         this.time = time;
     }

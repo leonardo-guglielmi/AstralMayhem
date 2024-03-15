@@ -20,9 +20,7 @@ public class Database {
     }
 
     public static Connection getConnection() throws SQLException{
-        Connection connection = null;
-        connection = DriverManager.getConnection(url, user, password);
-        return connection;
+        return  DriverManager.getConnection(url, user, password);
     }
 
     public static void closeConnection(Connection connection) throws SQLException {
