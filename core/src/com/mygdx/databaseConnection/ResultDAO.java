@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ResultDAO {
 
-    Result get() throws SQLException;
+    List<Result> get() throws SQLException;
 
     List<Result> getAll() throws SQLException;
 
