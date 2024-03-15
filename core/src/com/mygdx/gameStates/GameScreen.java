@@ -171,5 +171,8 @@ public class GameScreen implements Screen {
         score += s;
     }
 
+    public int getTime(){
+        return (int)time;
+    }
 }
 
