@@ -1,7 +1,0 @@
-- implementare le animazioni
-- rifletti su come è sistemato lo score per il momento
-- fare un check totale della struttura del gioco
-- sistemare UMLs
-- creare l'ambiente db-server
-- creare il modulo di applicazione di rete client-server
-- sviluppare il menu
