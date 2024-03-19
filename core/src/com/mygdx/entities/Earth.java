@@ -1,7 +1,5 @@
 package com.mygdx.entities;
 
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.gameStates.GameScreen;
@@ -41,7 +39,7 @@ public class Earth implements Observable {
         int damage = bm.getBulletCollision(body, type);
         hp -= damage;
         if(damage > 0)
-            GameScreen.score -= 10L *damage;
+            GameScreen.updateScore(10 *damage);
         if(hp <= 0){
             obs.notifyObservers();
         }

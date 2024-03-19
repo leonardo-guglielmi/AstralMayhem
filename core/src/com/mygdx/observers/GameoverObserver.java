@@ -41,7 +41,7 @@ public class GameoverObserver implements Observer{
 
             try {
                 ResultDAO resultDAO = new ConcreteResultDAO();
-                Result resultToInsert = new Result("nomediprova", (int) GameScreen.score, 555);
+                Result resultToInsert = new Result("nomediprova", GameScreen.getScore(), 555);
                 int res = resultDAO.insert(resultToInsert);
                 System.out.println("Tutto inserito");
             }catch (SQLException e){
@@ -49,7 +49,7 @@ public class GameoverObserver implements Observer{
             }
 
             game.getScreen().dispose();
-            game.setScreen(new GameoverScreen(game, str, GameScreen.score));
+            game.setScreen(new GameoverScreen(game, str, GameScreen.getScore()));
         }
     }
 }

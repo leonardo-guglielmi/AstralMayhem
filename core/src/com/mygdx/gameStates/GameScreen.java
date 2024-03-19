@@ -1,6 +1,5 @@
 package com.mygdx.gameStates;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -26,7 +25,8 @@ public class GameScreen implements Screen {
     private final Hero hero;
     private final Earth earth;
     private final EnemyManager em;
-    public static long score;
+
+    private static int score;
     public float time = 0;
 
     public GameScreen(final AstralMayhem game){
@@ -170,6 +170,9 @@ public class GameScreen implements Screen {
 
     public static void updateScore(int s){
         score += s;
+    }
+    public static int getScore(){
+        return score;
     }
 
     public int getTime(){
