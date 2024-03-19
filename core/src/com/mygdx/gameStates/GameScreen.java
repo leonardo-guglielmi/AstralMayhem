@@ -141,6 +141,7 @@ public class GameScreen implements Screen {
 
     }
 
+    @SuppressWarnings("unckeched")
     private void printEntities(){
         game.batch.begin();
         {
