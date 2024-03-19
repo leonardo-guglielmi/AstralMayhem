@@ -7,10 +7,11 @@ import java.util.List;
 public class ResultDAOConcrete implements ResultDAO{
 
     public List<Result> get() throws SQLException {
+        // errore nella creazione della connessione
         Connection con = Database.getConnection();
         List<Result> results = null;
         String sql = "SELECT *\n" +
-                "FROM resultastralmayhem\n" +
+                "FROM result\n" +
                 "ORDER BY points DESC\n" +
                 "LIMIT 5";
         PreparedStatement ps = con.prepareStatement(sql);
@@ -53,7 +54,7 @@ public class ResultDAOConcrete implements ResultDAO{
     public int insert(Result result) throws SQLException {
         Connection con = Database.getConnection();
 
-        String sql = "INSERT INTO resultastralmayhem (player, points, time) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO result (player, points, time) VALUES (?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 

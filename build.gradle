@@ -9,13 +9,12 @@ buildscript {
         google()
     }
     dependencies {
-        
 
     }
 }
 
 allprojects {
-    apply plugin: "eclipse"
+    apply plugin: "idea"
 
     version = '1.0'
     ext {
@@ -57,6 +56,5 @@ project(":core") {
 
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        
     }
 }
