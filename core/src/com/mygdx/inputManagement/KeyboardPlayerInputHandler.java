@@ -4,13 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.entities.Hero;
 
-public class KeyboardInputHandler implements InputHandler{
+public class KeyboardPlayerInputHandler implements InputHandler{
     private final Command mvRight;
     private final Command mvLeft;
-
     private final Command shootCmd;
 
-    public KeyboardInputHandler(Hero h){
+
+    public KeyboardPlayerInputHandler(Hero h){
         mvRight = new MoveRightCommand(h);
         mvLeft = new MoveLeftCommand(h);
         shootCmd = new ShootCommand(h);
@@ -26,6 +26,5 @@ public class KeyboardInputHandler implements InputHandler{
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
             shootCmd.execute();
-
     }
 }

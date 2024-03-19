@@ -2,9 +2,9 @@ package com.mygdx.entities;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.inputManagement.InputHandler;
+import com.mygdx.inputManagement.KeyboardPlayerInputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.entityManagement.BulletManager;
-import com.mygdx.inputManagement.KeyboardInputHandler;
 import com.mygdx.observers.Observable;
 import com.mygdx.observers.Subject;
 import com.mygdx.observers.Observer;
@@ -18,7 +18,7 @@ public class Hero implements Character, Observable{
     private final static int SPEED = 10;
     private final TypeOfEntity type = TypeOfEntity.HERO;
     private final Rectangle body = new Rectangle();
-    private final InputHandler input = new KeyboardInputHandler(this);
+    private final InputHandler input;
     private final BulletManager bm;
     private final Subject obs = new Subject();
 
@@ -29,6 +29,7 @@ public class Hero implements Character, Observable{
         // il rectangle di libgdx prende come riferimento x,y l'angolo in basso a sinistra
         body.x = startingX;
         body.y = startingY;
+        input = new KeyboardPlayerInputHandler(this);
         this.bm = bm;
     }
 

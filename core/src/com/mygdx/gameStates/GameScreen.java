@@ -8,6 +8,9 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.AstralMayhem;
 import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
 import com.mygdx.enemyLogic.BaseEnemyStrategy;
+import com.mygdx.inputManagement.InputHandler;
+import com.mygdx.inputManagement.KeyboardGameInputHandler;
+import com.mygdx.inputManagement.KeyboardPlayerInputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.Earth;
 import com.mygdx.entityManagement.BulletManager;
@@ -21,17 +24,22 @@ import java.util.ArrayList;
 public class GameScreen implements Screen {
     private final AstralMayhem game;
     private final OrthographicCamera camera = new OrthographicCamera();
+    private final InputHandler input;
     private final BulletManager bm;
     private final Hero hero;
     private final Earth earth;
     private final EnemyManager em;
 
     private static int score;
-    public float time = 0;
+    private float time;
+    private boolean isPaused;
+
 
     public GameScreen(final AstralMayhem game){
         // setting-up game environment and graphics
         score = 0;
+        time = 0;
+        isPaused = false;
         this.game = game;
         camera.setToOrtho(false);
         game.batch.setProjectionMatrix(camera.combined);
@@ -42,6 +50,8 @@ public class GameScreen implements Screen {
         hero = new Hero(50, 100, bm); //todo: aggiusta le coordinate di spawn
         earth = new Earth(bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
         em = new EnemyManager(bm, hero);
+
+        input = new KeyboardGameInputHandler(this);
 
         GameoverObserver go = new GameoverObserver(game, hero, earth, em);
         hero.addObserver(go);
@@ -64,10 +74,14 @@ public class GameScreen implements Screen {
     public void resize(int width, int height) { }
 
     @Override
-    public void pause() { }
+    public void pause() {
+        isPaused = true;
+    }
 
     @Override
-    public void resume() { }
+    public void resume() {
+        isPaused = false;
+    }
 
     @Override
     public void hide() { }
@@ -102,15 +116,18 @@ public class GameScreen implements Screen {
     }
 
     private void updateLogic(){
-        // updating hero logic
-        hero.update();
+        input.handle();
+        if(!isPaused) {
+            // updating hero logic
+            hero.update();
 
-        //updating managers
-        bm.updateEntities();
-        em.updateEntities();
+            //updating managers
+            bm.updateEntities();
+            em.updateEntities();
 
-        //updating earth
-        earth.update();
+            //updating earth
+            earth.update();
+        }
     }
 
     private void printBackGrounds(){
@@ -128,6 +145,8 @@ public class GameScreen implements Screen {
                     Commons.WORLD_Y_START);
 
             // print all game info
+            if(isPaused)
+                game.textPrinter.draw(game.batch, "PAUSED", Commons.WORLD_X_END+67, Commons.WORLD_Y_END-70);
             game.textPrinter.draw(game.batch, "TIME: "+(int)time, Commons.WORLD_X_END+67, Commons.WORLD_Y_END-130);
             game.textPrinter.draw(game.batch, "SCORE: "+score, Commons.WORLD_X_END+67, Commons.WORLD_Y_END-150);
 
@@ -142,7 +161,6 @@ public class GameScreen implements Screen {
 
     }
 
-    @SuppressWarnings("unckeched")
     private void printEntities(){
         game.batch.begin();
         {
@@ -177,6 +195,10 @@ public class GameScreen implements Screen {
 
     public int getTime(){
         return (int)time;
+    }
+
+    public boolean isPaused(){
+        return isPaused;
     }
 }
 
