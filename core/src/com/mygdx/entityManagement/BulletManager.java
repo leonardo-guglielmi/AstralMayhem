@@ -11,7 +11,7 @@ import com.mygdx.utils.Pair;
 import java.util.*;
 
 public class BulletManager implements Manager{
-    private final Set<Bullet> bulletSet = new HashSet<>();
+    protected final Set<Bullet> bulletSet = new HashSet<>();
     private final AssetManager am;
 
     public BulletManager(AssetManager am){

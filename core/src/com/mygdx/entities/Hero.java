@@ -1,7 +1,5 @@
 package com.mygdx.entities;
 
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.inputManagement.InputHandler;
 import com.mygdx.utils.Commons;
@@ -10,7 +8,6 @@ import com.mygdx.inputManagement.KeyboardInputHandler;
 import com.mygdx.observers.Observable;
 import com.mygdx.observers.Subject;
 import com.mygdx.observers.Observer;
-import com.mygdx.utils.MyAssetManager;
 
 /**
  * This class contains all the information about the Hero character
@@ -18,7 +15,7 @@ import com.mygdx.utils.MyAssetManager;
 
 public class Hero implements Character, Observable{
     private int hp = 10;
-    private final static int SPEED = 6;
+    private final static int SPEED = 10;
     private final TypeOfEntity type = TypeOfEntity.HERO;
     private final Rectangle body = new Rectangle();
     private final InputHandler input = new KeyboardInputHandler(this);
@@ -26,9 +23,9 @@ public class Hero implements Character, Observable{
     private final Subject obs = new Subject();
 
 
-    public Hero(Texture tx, int startingX, int startingY, BulletManager bm) {
-        body.height = tx.getHeight();
-        body.width = tx.getWidth();
+    public Hero(int startingX, int startingY, BulletManager bm) {
+        body.height =  30;
+        body.width = 30;
         // il rectangle di libgdx prende come riferimento x,y l'angolo in basso a sinistra
         body.x = startingX;
         body.y = startingY;
