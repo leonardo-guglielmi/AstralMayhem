@@ -32,10 +32,6 @@ public class CommandTest {
 
     // class added to be used in the test
     private class TestBulletManager extends BulletManager{
-        public TestBulletManager(AssetManager am) {
-            super(am);
-        }
-
         public int numElements(){
             return bulletSet.size();
         }

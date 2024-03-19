@@ -8,6 +8,7 @@ import com.mygdx.gameStates.GameScreen;
 import com.mygdx.observers.Observable;
 import com.mygdx.observers.Subject;
 import com.mygdx.observers.Observer;
+import com.mygdx.utils.Commons;
 
 public class Earth implements Observable {
     private int hp  = 100;
@@ -16,11 +17,11 @@ public class Earth implements Observable {
     private final BulletManager bm;
     private final Subject obs = new Subject();
 
-    public Earth(Texture tx, BulletManager bm, int startX, int startY){
+    public Earth(BulletManager bm, int startX, int startY){
         body.x = startX;
         body.y = startY;
-        body.width = tx.getWidth();
-        body.height = tx.getHeight();
+        body.width = Commons.EARTH_WIDTH;
+        body.height = Commons.EARTH_HEIGHT;
         this.bm = bm;
     }
 

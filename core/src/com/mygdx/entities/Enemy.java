@@ -13,9 +13,9 @@ public class Enemy implements Character, StrategyContext {
     private final TypeOfEntity type = TypeOfEntity.ENEMY;
     private Strategy strat;
 
-    public Enemy(Texture tx, int startingX, int startingY, BulletManager bm){
-        body.height = tx.getHeight();
-        body.width = tx.getWidth();
+    public Enemy(int startingX, int startingY, BulletManager bm){
+        body.height = Commons.ENEMY_HEIGHT;
+        body.width = Commons.ENEMY_WIDTH;
         body.x = startingX;
         body.y = startingY;
         this.bm = bm;

@@ -14,9 +14,9 @@ public class Bullet {
     private final Rectangle body = new Rectangle();
 
 
-    public Bullet(Texture tx, float startX, float startY, int vel, TypeOfEntity source){
-        body.height = tx.getHeight();
-        body.width = tx.getWidth();
+    public Bullet(float startX, float startY, int vel, TypeOfEntity source){
+        body.height = Commons.BULLET_HEIGHT;
+        body.width = Commons.BULLET_WIDTH;
         body.x = startX;
         body.y = startY;
         this.vel = vel;

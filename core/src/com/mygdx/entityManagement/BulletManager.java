@@ -12,14 +12,9 @@ import java.util.*;
 
 public class BulletManager implements Manager{
     protected final Set<Bullet> bulletSet = new HashSet<>();
-    private final AssetManager am;
-
-    public BulletManager(AssetManager am){
-        this.am = am;
-    }
 
     public void addBullet(float startX, float startY, int vel, TypeOfEntity source) {
-        bulletSet.add(new Bullet(am.get(Commons.BULLET_IMG_PATH, Texture.class), startX, startY, vel, source));
+        bulletSet.add(new Bullet(startX, startY, vel, source));
     }
 
     @Override

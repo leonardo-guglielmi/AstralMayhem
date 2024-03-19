@@ -30,4 +30,18 @@ public final class Commons {
     public static final String BULLET_IMG_PATH = "entities/bullet.png";
     public static final String GAMEOVER_TITLE_IMG_PATH = "gameover/gameOverTitle.png";
     public static final String GAMEOVER_SKULL_IMG_PATH = "gameover/skull.png";
+
+    /*
+    *   Entities size
+     */
+    public static final int HERO_WIDTH = 30;
+    public static final int HERO_HEIGHT = 30;
+    public static final int BULLET_WIDTH = 8;
+    public static final int BULLET_HEIGHT = 8;
+    public static final int EARTH_WIDTH = WORLD_X_END-WORLD_X_START;
+    public static final int EARTH_HEIGHT = 30;
+    public static final int ENEMY_WIDTH = 64;
+    public static final int ENEMY_HEIGHT = 64;
+
+
 }

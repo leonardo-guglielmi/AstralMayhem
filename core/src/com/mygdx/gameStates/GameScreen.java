@@ -38,10 +38,10 @@ public class GameScreen implements Screen {
         loadTextures();
 
         // setting-up game logic elements
-        bm = new BulletManager(game.am);
+        bm = new BulletManager();
         hero = new Hero(50, 100, bm); //todo: aggiusta le coordinate di spawn
-        earth = new Earth(game.am.get(Commons.EARTH_HP_BAR, Texture.class), bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
-        em = new EnemyManager(bm, hero, game.am);
+        earth = new Earth(bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
+        em = new EnemyManager(bm, hero);
 
         GameoverObserver go = new GameoverObserver(game, hero, earth, em);
         hero.addObserver(go);

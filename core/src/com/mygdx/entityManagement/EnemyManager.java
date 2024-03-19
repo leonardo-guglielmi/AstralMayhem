@@ -25,14 +25,12 @@ public class EnemyManager implements Manager, Observable {
     private final Timer advanceEnemySpawnTimer = new Timer(3);
     private final BulletManager bm;
     private final Hero h;
-    private final AssetManager am;
     private final Subject obs = new Subject();
     private boolean GAMEOVER_LIMIT_REACHED = false;
 
-    public EnemyManager(BulletManager bm, Hero h, AssetManager am){
+    public EnemyManager(BulletManager bm, Hero h){
         this.bm = bm;
         this.h = h;
-        this.am = am;
     }
 
     @Override
@@ -46,12 +44,12 @@ public class EnemyManager implements Manager, Observable {
     @Override
     public void updateEntities(){
         if(baseEnemySpawnTimer.check()) {
-            Enemy e = new Enemy(am.get(Commons.ENEMY_IMG_PATH, Texture.class), Commons.WORLD_X_START, 500, bm);
+            Enemy e = new Enemy(Commons.WORLD_X_START, 500, bm);
             e.setStrategy(new BaseEnemyStrategy(e, 3));
             enemySet.add(e);
         }
         if(advanceEnemySpawnTimer.check()){
-            Enemy e = new Enemy(am.get(Commons.ADVANCED_ENEMY_IMG_PATH, Texture.class), Commons.WORLD_X_START, 500, bm);
+            Enemy e = new Enemy(Commons.WORLD_X_START, 500, bm);
             e.setStrategy(new AdvancedEnemyStrategy(e, h, 3));
             enemySet.add(e);
         }
