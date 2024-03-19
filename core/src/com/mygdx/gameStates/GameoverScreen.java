@@ -46,13 +46,13 @@ public class GameoverScreen implements Screen {
         // draw everything
         game.batch.begin();
         {
-            game.batch.draw(game.am.<Texture>get("gameover/gameOverTitle.png"),
-                    (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get("gameover/gameOverTitle.png").getWidth()/2,
-                    Commons.WINDOW_HEIGHT -50 -(float)game.am.<Texture>get("gameover/gameOverTitle.png").getHeight()/2);
+            game.batch.draw(game.am.<Texture>get(Commons.GAMEOVER_TITLE_IMG_PATH),
+                    (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get(Commons.GAMEOVER_TITLE_IMG_PATH).getWidth()/2,
+                    Commons.WINDOW_HEIGHT -50 -(float)game.am.<Texture>get(Commons.GAMEOVER_TITLE_IMG_PATH).getHeight()/2);
 
-            game.batch.draw(game.am.<Texture>get("gameover/skull.png"),
-                    (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get("gameover/skull.png").getWidth()/2,
-                    Commons.WINDOW_HEIGHT -350 - (float) game.am.<Texture>get("gameover/skull.png").getHeight() /2);
+            game.batch.draw(game.am.<Texture>get(Commons.GAMEOVER_SKULL_IMG_PATH),
+                    (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get(Commons.GAMEOVER_SKULL_IMG_PATH).getWidth()/2,
+                    Commons.WINDOW_HEIGHT -350 - (float) game.am.<Texture>get(Commons.GAMEOVER_SKULL_IMG_PATH).getHeight() /2);
 
             game.textPrinter.draw(game.batch, "Score obtained: "+score, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
             game.textPrinter.draw(game.batch, "Cause: "+gameoverText, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
