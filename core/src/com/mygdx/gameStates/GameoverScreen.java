@@ -1,6 +1,7 @@
 package com.mygdx.gameStates;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -55,12 +56,11 @@ public class GameoverScreen implements Screen {
 
             game.textPrinter.draw(game.batch, "Score obtained: "+score, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
             game.textPrinter.draw(game.batch, "Cause: "+gameoverText, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
-            game.textPrinter.draw(game.batch, "click everywhere to go back to menu", Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -600);
+            game.textPrinter.draw(game.batch, "Press any key to go back to menu", Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -600);
         }
         game.batch.end();
 
-        // when screen is touched change the game state
-        if(Gdx.input.isTouched()) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
             game.setScreen(new GameScreen(game));
             this.dispose();
         }
