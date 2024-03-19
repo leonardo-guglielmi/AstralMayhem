@@ -1,5 +1,6 @@
 package com.mygdx.gameStates;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -38,8 +39,8 @@ public class GameScreen implements Screen {
 
         // setting-up game logic elements
         bm = new BulletManager(game.am);
-        hero = new Hero(game.am,50, 100, bm); //todo: aggiusta le coordinate di spawn
-        earth = new Earth(game.am, bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
+        hero = new Hero(game.am.get(Commons.HERO_IMG_PATH, Texture.class),50, 100, bm); //todo: aggiusta le coordinate di spawn
+        earth = new Earth(game.am.get(Commons.EARTH_HP_BAR, Texture.class), bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
         em = new EnemyManager(bm, hero, game.am);
 
         GameoverObserver go = new GameoverObserver(game, hero, earth, em);

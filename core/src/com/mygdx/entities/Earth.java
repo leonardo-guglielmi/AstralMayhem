@@ -16,11 +16,11 @@ public class Earth implements Observable {
     private final BulletManager bm;
     private final Subject obs = new Subject();
 
-    public Earth(AssetManager am, BulletManager bm, int startX, int startY){
+    public Earth(Texture tx, BulletManager bm, int startX, int startY){
         body.x = startX;
         body.y = startY;
-        body.width = am.<Texture>get("entities/earth.png").getWidth();
-        body.height = am.<Texture>get("entities/earth.png").getHeight();
+        body.width = tx.getWidth();
+        body.height = tx.getHeight();
         this.bm = bm;
     }
 

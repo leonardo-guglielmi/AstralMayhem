@@ -5,11 +5,12 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.gameStates.GameScreen;
+import com.mygdx.utils.MyAssetManager;
 
 public class AstralMayhem extends Game {
 	public SpriteBatch batch;
 	public BitmapFont textPrinter;
-	public final AssetManager am = new AssetManager();
+	public final MyAssetManager am = new MyAssetManager();
 
 	public AstralMayhem() {
 		super();

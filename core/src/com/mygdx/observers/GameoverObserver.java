@@ -2,7 +2,7 @@ package com.mygdx.observers;
 
 import com.mygdx.AstralMayhem;
 import com.mygdx.databaseConnection.ResultDAO;
-import com.mygdx.databaseConnection.ResultDAOConcrete;
+import com.mygdx.databaseConnection.ConcreteResultDAO;
 import com.mygdx.databaseConnection.Result;
 import com.mygdx.entities.Earth;
 import com.mygdx.entities.Hero;
@@ -40,7 +40,7 @@ public class GameoverObserver implements Observer{
         if(!str.isEmpty()) {
 
             try {
-                ResultDAO resultDAO = new ResultDAOConcrete();
+                ResultDAO resultDAO = new ConcreteResultDAO();
                 Result resultToInsert = new Result("nomediprova", (int) GameScreen.score, 555);
                 int res = resultDAO.insert(resultToInsert);
                 System.out.println("Tutto inserito");

@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultDAOConcrete implements ResultDAO{
+public class ConcreteResultDAO implements ResultDAO{
 
     public List<Result> get() throws SQLException {
         // errore nella creazione della connessione

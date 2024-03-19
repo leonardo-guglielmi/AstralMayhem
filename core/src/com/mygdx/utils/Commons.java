@@ -1,13 +1,24 @@
 package com.mygdx.utils;
 
 public final class Commons {
+    /*
+    *   window size constants
+    */
     public static final int WINDOW_WIDTH = 1440;
     public static final int WINDOW_HEIGHT = 810;
     public  static final int WORLD_X_START = 10;
     public static final int WORLD_X_END = WINDOW_WIDTH-300;
     public static final int WORLD_Y_START = 10;
     public static final int WORLD_Y_END = WINDOW_HEIGHT-10;
+
+    /*
+    *   gameover height limit constant
+    */
     public static final int GAMEOVER_LIMIT = 200;
+
+    /*
+    *   texture and animation paths constant
+    */
     public static final String GAME_BACKGROUND_IMG_PATH = "game-background.png";
     public static final String UI_BACKGROUND_IMG_PATH = "ui-background.png";
     public static final String HEART_IMG_PATH = "heart.png";

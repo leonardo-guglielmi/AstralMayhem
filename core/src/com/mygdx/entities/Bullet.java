@@ -14,9 +14,9 @@ public class Bullet {
     private final Rectangle body = new Rectangle();
 
 
-    public Bullet(AssetManager am, float startX, float startY, int vel, TypeOfEntity source){
-        body.height = am.<Texture>get(Commons.BULLET_IMG_PATH).getHeight();
-        body.width = am.<Texture>get(Commons.BULLET_IMG_PATH).getWidth();
+    public Bullet(Texture tx, float startX, float startY, int vel, TypeOfEntity source){
+        body.height = tx.getHeight();
+        body.width = tx.getWidth();
         body.x = startX;
         body.y = startY;
         this.vel = vel;

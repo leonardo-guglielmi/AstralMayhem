@@ -46,12 +46,12 @@ public class EnemyManager implements Manager, Observable {
     @Override
     public void updateEntities(){
         if(baseEnemySpawnTimer.check()) {
-            Enemy e = new Enemy(am.<Texture>get(Commons.ENEMY_IMG_PATH), Commons.WORLD_X_START, 500, bm);
+            Enemy e = new Enemy(am.get(Commons.ENEMY_IMG_PATH, Texture.class), Commons.WORLD_X_START, 500, bm);
             e.setStrategy(new BaseEnemyStrategy(e, 3));
             enemySet.add(e);
         }
         if(advanceEnemySpawnTimer.check()){
-            Enemy e = new Enemy(am.<Texture>get(Commons.ADVANCED_ENEMY_IMG_PATH), Commons.WORLD_X_START, 500, bm);
+            Enemy e = new Enemy(am.get(Commons.ADVANCED_ENEMY_IMG_PATH, Texture.class), Commons.WORLD_X_START, 500, bm);
             e.setStrategy(new AdvancedEnemyStrategy(e, h, 3));
             enemySet.add(e);
         }

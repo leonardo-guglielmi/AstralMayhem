@@ -1,6 +1,7 @@
 package com.mygdx.entityManagement;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entities.Bullet;
 import com.mygdx.utils.Commons;
@@ -18,7 +19,7 @@ public class BulletManager implements Manager{
     }
 
     public void addBullet(float startX, float startY, int vel, TypeOfEntity source) {
-        bulletSet.add(new Bullet(am, startX, startY, vel, source));
+        bulletSet.add(new Bullet(am.get(Commons.BULLET_IMG_PATH, Texture.class), startX, startY, vel, source));
     }
 
     @Override

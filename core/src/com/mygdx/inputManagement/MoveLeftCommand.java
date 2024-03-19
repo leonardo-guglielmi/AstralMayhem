@@ -12,6 +12,6 @@ public class MoveLeftCommand implements Command{
 
     @Override
     public void execute( ) {
-        player.move(-3,0);
+        player.move(-1,0);
     }
 }
