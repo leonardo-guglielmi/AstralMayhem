@@ -9,9 +9,9 @@ import java.sql.ResultSet;
 
 public class Database {
 
-    private static String url = "jdbc:mysql://localhost:3306/astralmayhemdb";
+    private static String url = "jdbc:mysql://localhost:3306/provajdbc";
 
-    private static String user = "admin";
+    private static String user = "root";
 
     private static String password = "admin";
 

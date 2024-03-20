@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.gameStates.GameScreen;
+import com.mygdx.gameStates.MenuScreen;
 import com.mygdx.utils.MyAssetManager;
 
 public class AstralMayhem extends Game {
@@ -20,7 +21,7 @@ public class AstralMayhem extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		textPrinter = new BitmapFont();
-		this.setScreen(new GameScreen(this));
+		this.setScreen(new MenuScreen(this));
 	}
 
 	@Override

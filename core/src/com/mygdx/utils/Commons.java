@@ -30,6 +30,7 @@ public final class Commons {
     public static final String BULLET_IMG_PATH = "entities/bullet.png";
     public static final String GAMEOVER_TITLE_IMG_PATH = "gameover/gameOverTitle.png";
     public static final String GAMEOVER_SKULL_IMG_PATH = "gameover/skull.png";
+    public static final String MENU_INVADERS_IMG_PATH = "menu/invaders.png";
 
     /*
     *   Entities size
