@@ -10,8 +10,6 @@ import com.mygdx.AstralMayhem;
 import com.mygdx.databaseConnection.ConcreteResultDAO;
 import com.mygdx.databaseConnection.Result;
 import com.mygdx.databaseConnection.ResultDAO;
-import com.mygdx.inputManagement.InputHandler;
-import com.mygdx.inputManagement.KeyboardGameInputHandler;
 import com.mygdx.utils.Commons;
 
 import java.sql.SQLException;
@@ -26,6 +24,7 @@ public class MenuScreen implements Screen {
         // loading gameover info
         this.game = game;
         this.results = results;
+
 
         try {
             ResultDAO resultDAO = new ConcreteResultDAO();
@@ -42,6 +41,7 @@ public class MenuScreen implements Screen {
 
         if(!game.am.contains("menu/invaders.png"))
             game.am.load("menu/invaders.png", Texture.class);
+            game.am.load("menu/title.png", Texture.class);
         game.am.finishLoading();
 
         // sending score results to the server (if logged in)
@@ -63,25 +63,31 @@ public class MenuScreen implements Screen {
         game.batch.begin();
         {
 
-            game.textPrinter.draw(game.batch, "Press C to close the game", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-50);
-            game.textPrinter.draw(game.batch, "Press S to start a new game ", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-70);
-            game.textPrinter.draw(game.batch, "BEST 5 GAMES: ", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-130);
-            game.textPrinter.draw(game.batch, "---------------------------------------------------------", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-150);
+            game.textPrinter.draw(game.batch, "Press C to close the game", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-250);
+            game.textPrinter.draw(game.batch, "Press S to start a new game ", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-270);
+            game.textPrinter.draw(game.batch, "---------------------------------------------------------", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-310);
+            game.textPrinter.draw(game.batch, "BEST 5 GAMES: ", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-330);
 
-            int i = 20;
+            int i = 30;
             for (Result r  : results) {
-                game.textPrinter.draw(game.batch, "PLAYER:"+r.getPlayer() + "| SCORE:"+r.getPoints() + "|TIME:" + r.getTime(), Commons.WORLD_X_END-110, Commons.WORLD_Y_END-150-i);
-                i+=20;
+                game.textPrinter.draw(game.batch, "* PLAYER:"+r.getPlayer() + "| SCORE:"+r.getPoints() + "|TIME:" + r.getTime(), Commons.WORLD_X_END-110, Commons.WORLD_Y_END-350-i);
+                i+=30;
             }
 
+
+            game.batch.draw(game.am.<Texture>get(Commons.MENU_TITLE_IMG_PNG),
+                    (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get(Commons.MENU_TITLE_IMG_PNG).getWidth()/2,
+                    Commons.WINDOW_HEIGHT -50 - (float) game.am.<Texture>get(Commons.MENU_TITLE_IMG_PNG).getHeight() /2);
             game.batch.draw(game.am.<Texture>get(Commons.MENU_INVADERS_IMG_PATH),
                     (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get(Commons.MENU_INVADERS_IMG_PATH).getWidth()/2,
-                    Commons.WINDOW_HEIGHT -350 - (float) game.am.<Texture>get(Commons.MENU_INVADERS_IMG_PATH).getHeight() /2);
+                    Commons.WINDOW_HEIGHT -450 - (float) game.am.<Texture>get(Commons.MENU_INVADERS_IMG_PATH).getHeight() /2);
 
         }
         game.batch.end();
 
+
         if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+            //Gdx.input.getTextInput(this, "Dialog Title", "Initial Textfield Value", "Hint Value");
             game.setScreen(new GameScreen(game));
             this.dispose();
         }
@@ -107,4 +113,6 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() { }
+
+
 }
