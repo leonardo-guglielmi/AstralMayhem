@@ -1,15 +1,14 @@
-package com.mygdx.inputManagement;
+package com.mygdx.inputManagement.GameManagement;
 
-import com.badlogic.gdx.Game;
 import com.mygdx.AstralMayhem;
-import com.mygdx.gameStates.GameScreen;
 import com.mygdx.gameStates.MenuScreen;
+import com.mygdx.inputManagement.Command;
 
-public class QuitCommand implements Command{
+public class QuitGameCommand implements Command {
 
     AstralMayhem g;
 
-    public QuitCommand(AstralMayhem g){
+    public QuitGameCommand(AstralMayhem g){
         this.g = g;
     }
 

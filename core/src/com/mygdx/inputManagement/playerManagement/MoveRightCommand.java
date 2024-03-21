@@ -1,8 +1,9 @@
-package com.mygdx.inputManagement;
+package com.mygdx.inputManagement.playerManagement;
 
 import com.mygdx.entities.Hero;
+import com.mygdx.inputManagement.Command;
 
-public class MoveRightCommand implements Command{
+public class MoveRightCommand implements Command {
     private final Hero player;
 
     public MoveRightCommand(Hero player){

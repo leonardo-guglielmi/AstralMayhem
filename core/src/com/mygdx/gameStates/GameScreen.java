@@ -9,7 +9,7 @@ import com.mygdx.AstralMayhem;
 import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
 import com.mygdx.enemyLogic.BaseEnemyStrategy;
 import com.mygdx.inputManagement.InputHandler;
-import com.mygdx.inputManagement.KeyboardGameInputHandler;
+import com.mygdx.inputManagement.GameManagement.KeyboardGameInputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.Earth;
 import com.mygdx.entityManagement.BulletManager;
@@ -144,11 +144,11 @@ public class GameScreen implements Screen {
                     Commons.WORLD_Y_START);
 
             // print all game info
-            game.textPrinter.draw(game.batch, "Press Q to quit (progress won't be saved)", Commons.WORLD_X_END+10, Commons.WORLD_Y_END-50);
+            game.textPrinter.draw(game.batch, "Press Q to quit game \n(progress won't be saved)", Commons.WORLD_X_END+10, Commons.WORLD_Y_END-40);
             if(isPaused)
-                game.textPrinter.draw(game.batch, "Press P to pause (PAUSED)", Commons.WORLD_X_END+10, Commons.WORLD_Y_END-70);
+                game.textPrinter.draw(game.batch, "Press P to pause (PAUSED)", Commons.WORLD_X_END+10, Commons.WORLD_Y_END-85);
             else
-                game.textPrinter.draw(game.batch, "Press P to pause", Commons.WORLD_X_END+10, Commons.WORLD_Y_END-70);
+                game.textPrinter.draw(game.batch, "Press P to pause", Commons.WORLD_X_END+10, Commons.WORLD_Y_END-85);
             game.textPrinter.draw(game.batch, "TIME: "+(int)time, Commons.WORLD_X_END+67, Commons.WORLD_Y_END-130);
             game.textPrinter.draw(game.batch, "SCORE: "+score, Commons.WORLD_X_END+67, Commons.WORLD_Y_END-150);
 

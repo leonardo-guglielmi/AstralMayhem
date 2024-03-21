@@ -1,7 +1,5 @@
 package com.mygdx.gameStates;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,6 +8,7 @@ import com.mygdx.AstralMayhem;
 import com.mygdx.databaseConnection.ConcreteResultDAO;
 import com.mygdx.databaseConnection.Result;
 import com.mygdx.databaseConnection.ResultDAO;
+import com.mygdx.inputManagement.menuManagement.KeyboardMenuInputHandler;
 import com.mygdx.utils.Commons;
 
 import java.sql.SQLException;
@@ -20,12 +19,14 @@ public class MenuScreen implements Screen {
     private final AstralMayhem game;
     private List<Result> results;
 
+    private final KeyboardMenuInputHandler input;
+
     public MenuScreen(AstralMayhem game){
         // loading gameover info
         this.game = game;
-        this.results = results;
+        input = new KeyboardMenuInputHandler(game);
 
-
+        // todo: da usare il solo client
         try {
             ResultDAO resultDAO = new ConcreteResultDAO();
             List<Result> bestResults = resultDAO.get();
@@ -34,16 +35,7 @@ public class MenuScreen implements Screen {
             System.out.println("Errore nel caricamento dei dati");
         }
 
-
-
-        // loading graphic elements
-
-
-        if(!game.am.contains("menu/invaders.png"))
-            game.am.load("menu/invaders.png", Texture.class);
-            game.am.load("menu/title.png", Texture.class);
-        game.am.finishLoading();
-
+        loadGraphics();
         // sending score results to the server (if logged in)
         /*
         game.client.sendScore(Score)
@@ -85,18 +77,7 @@ public class MenuScreen implements Screen {
         }
         game.batch.end();
 
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-            //Gdx.input.getTextInput(this, "Dialog Title", "Initial Textfield Value", "Hint Value");
-            game.setScreen(new GameScreen(game));
-            this.dispose();
-        }
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
-            game.setScreen(new GameScreen(game));
-            this.dispose();
-            Gdx.app.exit();
-        }
+        input.handle();
     }
 
     @Override
@@ -114,5 +95,12 @@ public class MenuScreen implements Screen {
     @Override
     public void dispose() { }
 
+    private void loadGraphics(){
+        if(!game.am.contains(Commons.MENU_INVADERS_IMG_PATH))
+            game.am.load(Commons.MENU_INVADERS_IMG_PATH, Texture.class);
+        if(!game.am.contains(Commons.MENU_TITLE_IMG_PNG))
+            game.am.load(Commons.MENU_TITLE_IMG_PNG, Texture.class);
+        game.am.finishLoading();
+    }
 
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.databaseConnection.Result;
+import com.mygdx.gameStates.GameScreen;
 import com.mygdx.gameStates.MenuScreen;
 import com.mygdx.utils.MyAssetManager;
 

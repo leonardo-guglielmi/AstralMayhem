@@ -2,7 +2,7 @@ package com.mygdx.entities;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.inputManagement.InputHandler;
-import com.mygdx.inputManagement.KeyboardPlayerInputHandler;
+import com.mygdx.inputManagement.playerManagement.KeyboardPlayerInputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.observers.Observable;
@@ -24,8 +24,8 @@ public class Hero implements Character, Observable{
 
 
     public Hero(int startingX, int startingY, BulletManager bm) {
-        body.height =  30;
-        body.width = 30;
+        body.height =  Commons.HERO_HEIGHT;
+        body.width = Commons.HERO_WIDTH;
         // il rectangle di libgdx prende come riferimento x,y l'angolo in basso a sinistra
         body.x = startingX;
         body.y = startingY;

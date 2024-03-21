@@ -1,6 +1,7 @@
-package com.mygdx.inputManagement;
+package com.mygdx.inputManagement.GameManagement;
 
 import com.mygdx.gameStates.GameScreen;
+import com.mygdx.inputManagement.Command;
 
 public class PauseCommand implements Command {
 

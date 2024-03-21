@@ -1,10 +1,12 @@
-package com.mygdx.inputManagement;
+package com.mygdx.inputManagement.playerManagement;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.entities.Hero;
+import com.mygdx.inputManagement.Command;
+import com.mygdx.inputManagement.InputHandler;
 
-public class KeyboardPlayerInputHandler implements InputHandler{
+public class KeyboardPlayerInputHandler implements InputHandler {
     private final Command mvRight;
     private final Command mvLeft;
     private final Command shootCmd;

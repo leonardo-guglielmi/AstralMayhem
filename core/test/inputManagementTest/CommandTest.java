@@ -1,11 +1,9 @@
 package inputManagementTest;
 
-import com.badlogic.gdx.assets.AssetManager;
-import com.mygdx.entities.Bullet;
 import com.mygdx.entities.Hero;
 import com.mygdx.entityManagement.BulletManager;
-import com.mygdx.inputManagement.MoveLeftCommand;
-import com.mygdx.inputManagement.MoveRightCommand;
+import com.mygdx.inputManagement.playerManagement.MoveLeftCommand;
+import com.mygdx.inputManagement.playerManagement.MoveRightCommand;
 import com.mygdx.utils.Commons;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
