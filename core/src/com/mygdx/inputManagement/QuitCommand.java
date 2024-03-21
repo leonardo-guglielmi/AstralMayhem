@@ -3,6 +3,7 @@ package com.mygdx.inputManagement;
 import com.badlogic.gdx.Game;
 import com.mygdx.AstralMayhem;
 import com.mygdx.gameStates.GameScreen;
+import com.mygdx.gameStates.MenuScreen;
 
 public class QuitCommand implements Command{
 
@@ -14,7 +15,7 @@ public class QuitCommand implements Command{
 
     @Override
     public void execute(){
-        g.setScreen(new GameScreen(g));
+        g.setScreen(new MenuScreen(g));
     }
 
 

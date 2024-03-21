@@ -9,14 +9,14 @@ public class ConcreteResultDAO implements ResultDAO{
     public List<Result> get() throws SQLException {
         // errore nella creazione della connessione
         Connection con = Database.getConnection();
-        List<Result> results = null;
+        List<Result> results = new ArrayList<>();
         String sql = "SELECT *\n" +
                 "FROM result\n" +
                 "ORDER BY points DESC\n" +
                 "LIMIT 5";
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-        if(rs.next()){
+        while(rs.next()){
             String player = rs.getString("player");
             int points = rs.getInt("points");
             int time = rs.getInt("time");
