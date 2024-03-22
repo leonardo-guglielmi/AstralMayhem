@@ -13,9 +13,11 @@ public class GameoverScreen implements Screen {
 
     private final AstralMayhem game;
     private final String gameoverText;
-    private final long score;
+    private final int score;
 
-    public GameoverScreen(AstralMayhem game, String gameoverText, long score){
+    private float time = 0;
+
+    public GameoverScreen(AstralMayhem game, String gameoverText, int score){
         // loading gameover info
         this.game = game;
         this.gameoverText = gameoverText;
@@ -60,7 +62,8 @@ public class GameoverScreen implements Screen {
         }
         game.batch.end();
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
+        time += delta;
+        if(time >= 3 && Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
             game.setScreen(new MenuScreen(game));
             this.dispose();
         }
