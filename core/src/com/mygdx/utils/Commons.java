@@ -45,5 +45,11 @@ public final class Commons {
     public static final int ENEMY_WIDTH = 64;
     public static final int ENEMY_HEIGHT = 64;
 
+    /*
+     *  Username consants
+     */
+    public static final int MAX_USERNAME_LENGTH = 20;
+    public static final String DEFAULT_USERNAME = "unknown";
+
 
 }

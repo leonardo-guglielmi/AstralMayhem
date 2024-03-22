@@ -10,6 +10,7 @@ import com.mygdx.databaseConnection.Result;
 import com.mygdx.databaseConnection.ResultDAO;
 import com.mygdx.inputManagement.menuManagement.KeyboardMenuInputHandler;
 import com.mygdx.utils.Commons;
+import com.mygdx.utils.TextInputProcessor;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -19,12 +20,14 @@ public class MenuScreen implements Screen {
     private final AstralMayhem game;
     private List<Result> results;
 
+    private final TextInputProcessor tip = new TextInputProcessor();
+
     private final KeyboardMenuInputHandler input;
 
     public MenuScreen(AstralMayhem game){
         // loading gameover info
         this.game = game;
-        input = new KeyboardMenuInputHandler(game);
+        input = new KeyboardMenuInputHandler(game, tip);
 
         // todo: da usare il solo client
         try {
@@ -57,13 +60,16 @@ public class MenuScreen implements Screen {
 
             game.textPrinter.draw(game.batch, "Press C to close the game", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-250);
             game.textPrinter.draw(game.batch, "Press S to start a new game ", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-270);
+            game.textPrinter.draw(game.batch, "Username: "+game.username,Commons.WORLD_X_END-110, Commons.WORLD_Y_END-290 );
             game.textPrinter.draw(game.batch, "---------------------------------------------------------", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-310);
             game.textPrinter.draw(game.batch, "BEST 5 GAMES: ", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-330);
 
             int i = 30;
-            for (Result r  : results) {
-                game.textPrinter.draw(game.batch, "* PLAYER:"+r.getPlayer() + "| SCORE:"+r.getPoints() + "|TIME:" + r.getTime(), Commons.WORLD_X_END-110, Commons.WORLD_Y_END-350-i);
-                i+=30;
+            if(results != null){
+                for (Result r  : results) {
+                    game.textPrinter.draw(game.batch, "* PLAYER:"+r.getPlayer() + "| SCORE:"+r.getPoints() + "|TIME:" + r.getTime(), Commons.WORLD_X_END-110, Commons.WORLD_Y_END-350-i);
+                    i+=30;
+                }
             }
 
 
@@ -78,6 +84,9 @@ public class MenuScreen implements Screen {
         game.batch.end();
 
         input.handle();
+
+        if(tip.isReading())
+            game.username = tip.getText();
     }
 
     @Override

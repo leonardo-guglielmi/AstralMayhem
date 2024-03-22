@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.databaseConnection.Result;
-import com.mygdx.gameStates.GameScreen;
 import com.mygdx.gameStates.MenuScreen;
 import com.mygdx.utils.MyAssetManager;
 
@@ -14,6 +13,8 @@ public class AstralMayhem extends Game {
 	public SpriteBatch batch;
 	public BitmapFont textPrinter;
 	public final MyAssetManager am = new MyAssetManager();
+
+	public String username = "";
 	public  List<Result> results = null;
 
 	public AstralMayhem() {
