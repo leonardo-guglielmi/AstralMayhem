@@ -39,10 +39,6 @@ public class MenuScreen implements Screen {
         }
 
         loadGraphics();
-        // sending score results to the server (if logged in)
-        /*
-        game.client.sendScore(Score)
-         */
     }
 
     @Override
@@ -61,7 +57,8 @@ public class MenuScreen implements Screen {
             game.textPrinter.draw(game.batch, "> Press Q to close the game", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-250);
             game.textPrinter.draw(game.batch, "> Press S to start a new game ", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-275);
             game.textPrinter.draw(game.batch, "> Press T to type username (max 20 chars):",Commons.WORLD_X_END-90, Commons.WORLD_Y_END-310 );
-            game.textPrinter.draw(game.batch, game.username, Commons.WORLD_X_END-90, Commons.WORLD_Y_END-330);
+            game.textPrinter.draw(game.batch, game.username, Commons.WORLD_X_END-80
+                    , Commons.WORLD_Y_END-330);
             for(int i=0; i<30; i++)
                 game.textPrinter.draw(game.batch, "_", Commons.WORLD_X_END-80+i*8, Commons.WORLD_Y_END-332);
 

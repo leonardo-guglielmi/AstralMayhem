@@ -7,7 +7,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.AstralMayhem;
+import com.mygdx.databaseConnection.ConcreteResultDAO;
+import com.mygdx.databaseConnection.Result;
+import com.mygdx.databaseConnection.ResultDAO;
 import com.mygdx.utils.Commons;
+
+import java.sql.SQLException;
 
 public class GameoverScreen implements Screen {
 
@@ -30,10 +35,6 @@ public class GameoverScreen implements Screen {
             game.am.load("gameover/skull.png", Texture.class);
         game.am.finishLoading();
 
-        // sending score results to the server (if logged in)
-        /*
-        game.client.sendScore(Score)
-         */
     }
 
     @Override
@@ -61,6 +62,27 @@ public class GameoverScreen implements Screen {
             game.textPrinter.draw(game.batch, "Press any key to go back to menu", Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -700);
         }
         game.batch.end();
+
+        // todo: move from here
+        try {
+            ResultDAO resultDAO = new ConcreteResultDAO();
+
+            Result resultToInsert;
+            if(game.username.isEmpty())
+                resultToInsert = new Result(Commons.DEFAULT_USERNAME, GameScreen.getScore(), GameScreen.getTime());
+            else
+                resultToInsert = new Result(game.username, GameScreen.getScore(), GameScreen.getTime());
+
+            resultDAO.insert(resultToInsert);
+
+        }
+        catch (SQLException e){
+                game.batch.begin();
+                game.textPrinter.draw(game.batch, "ERROR WHILE PUSHING DATA INTO DATABASE", Commons.WORLD_X_START+100, Commons.WINDOW_HEIGHT -700);
+                game.batch.end();
+        }
+
+
 
         time += delta;
         if(time >= 3 && Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {

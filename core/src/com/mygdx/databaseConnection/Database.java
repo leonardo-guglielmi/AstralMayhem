@@ -9,20 +9,19 @@ import java.sql.ResultSet;
 
 public class Database {
 
-    private static String url = "jdbc:mysql://localhost:3306/provajdbc";
+    private static final String url = "jdbc:mysql://localhost:3306/provajdbc";
 
-    private static String user = "root";
+    private static final String user = "admin";
 
-    private static String password = "admin";
+    private static final String password = "admin";
 
     public Database() {
 
     }
 
     public static Connection getConnection() throws SQLException{
-        Connection connection = null;
-        connection = DriverManager.getConnection(url, user, password);
-        System.out.println("connessione al DB stabilita");
+        Connection connection = DriverManager.getConnection(url, user, password);
+        System.out.println("Database connection settled");
         return connection;
     }
 
@@ -30,15 +29,7 @@ public class Database {
         connection.close();
     }
 
-    public static void closeStatement(Statement statement) throws SQLException {
-        statement.close();
-    }
-
     public static void closePreparedStatement(PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.close();
-    }
-
-    public static void closeResultSet(ResultSet resultSet) throws SQLException {
-        resultSet.close();
     }
 }

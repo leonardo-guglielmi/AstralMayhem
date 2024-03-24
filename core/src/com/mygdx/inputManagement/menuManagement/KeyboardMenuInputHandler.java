@@ -30,10 +30,10 @@ public class KeyboardMenuInputHandler implements InputHandler {
 
     @Override
     public void handle() {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.S) && tip == null)
+        if(Gdx.input.isKeyJustPressed(Input.Keys.S) && !tip.isReading())
             startCmd.execute();
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Q) && tip == null)
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Q) && !tip.isReading())
             quitCmd.execute();
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.T))

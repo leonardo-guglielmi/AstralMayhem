@@ -7,46 +7,24 @@ import java.util.List;
 public class ConcreteResultDAO implements ResultDAO{
 
     public List<Result> get() throws SQLException {
-        // errore nella creazione della connessione
         Connection con = Database.getConnection();
         List<Result> results = new ArrayList<>();
-        String sql = "SELECT *\n" +
+
+        String query = "SELECT *\n" +
                 "FROM result\n" +
                 "ORDER BY points DESC\n" +
                 "LIMIT 5";
-        PreparedStatement ps = con.prepareStatement(sql);
+
+        PreparedStatement ps = con.prepareStatement(query);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
             String player = rs.getString("player");
             int points = rs.getInt("points");
             int time = rs.getInt("time");
-
             results.add(new Result(player, points, time));
         }
-        return results;
-    }
-
-    //QUESTO METODO NON DOVREBBE SERVIRE, LO LASCIO NEL CASO FOSSE UTILE, POI NEL CASO LO TOGLIAMO
-    public List<Result> getAll() throws SQLException {
-
-        Connection con = Database.getConnection();
-        String sql = "SELECT * FROM result";
-
-        List<Result> results = new ArrayList<>();
-
-        Statement stmt = con.createStatement();
-
-        ResultSet rs = stmt.executeQuery(sql);
-
-        while(rs.next()) {
-            String player = rs.getString("player");
-            int points = rs.getInt("points");
-            int time = rs.getInt("time");
-
-            Result result = new Result(player, points, time);
-
-            results.add(result);
-        }
+        Database.closePreparedStatement(ps);
+        Database.closeConnection(con);
 
         return results;
     }
@@ -57,7 +35,6 @@ public class ConcreteResultDAO implements ResultDAO{
         String sql = "INSERT INTO result (player, points, time) VALUES (?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
-
         ps.setString(1, result.getPlayer());
         ps.setInt(2, result.getPoints());
         ps.setInt(3, result.getTime());
@@ -67,7 +44,7 @@ public class ConcreteResultDAO implements ResultDAO{
         Database.closePreparedStatement(ps);
         Database.closeConnection(con);
 
-        System.out.println("Operazioni fatte.");
+        System.out.println("Insert executed");
         return res;
     }
 }

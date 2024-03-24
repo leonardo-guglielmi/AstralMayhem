@@ -7,8 +7,6 @@ public interface ResultDAO {
 
     List<Result> get() throws SQLException;
 
-    List<Result> getAll() throws SQLException;
-
     int insert(Result result) throws SQLException;
 
 }

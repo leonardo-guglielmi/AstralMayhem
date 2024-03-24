@@ -29,8 +29,9 @@ public class GameScreen implements Screen {
     private final Earth earth;
     private final EnemyManager em;
 
+    // todo: questa cosa degli oggetti statici è un pò una menata
     private static int score;
-    private float time;
+    private static float time;
     private boolean isPaused;
 
     public GameScreen(final AstralMayhem game){
@@ -195,7 +196,7 @@ public class GameScreen implements Screen {
         return score;
     }
 
-    public int getTime(){
+    public static int getTime(){
         return (int)time;
     }
 
