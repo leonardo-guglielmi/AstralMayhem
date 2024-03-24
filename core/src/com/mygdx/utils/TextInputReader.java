@@ -10,12 +10,11 @@ public class TextInputReader extends InputAdapter {
 
     @Override
     public boolean keyTyped(char character) {
-        if(character != '\n' && inputText.length() <= Commons.MAX_USERNAME_LENGTH)
+        if(character != '\n' && character != '\b' && inputText.length() <= Commons.MAX_USERNAME_LENGTH)
             inputText.append(character);
         return true;
     }
 
-    // todo: da gestire la rimozione del carattere
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACKSPACE && inputText.length() > 0) {

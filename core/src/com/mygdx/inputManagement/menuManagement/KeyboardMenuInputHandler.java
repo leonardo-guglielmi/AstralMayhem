@@ -13,14 +13,16 @@ public class KeyboardMenuInputHandler implements InputHandler {
     //todo: da aggiungere il comandi per visualizzare i tuoi punteggi, i migliori punteggi e per inserire un username
     Command startCmd;
     Command quitCmd;
-
     Command startReadCmd;
     Command stopReadCmd;
+
+    TextInputProcessor tip;
 
 
     public KeyboardMenuInputHandler(AstralMayhem game, TextInputProcessor tip){
         startCmd = new StartGameCommand(game);
         quitCmd = new QuitAppCommand();
+        this.tip = tip;
         startReadCmd = new StartReadingTextCommand(tip);
         stopReadCmd = new StopReadingTextCommand(tip);
 
@@ -28,10 +30,10 @@ public class KeyboardMenuInputHandler implements InputHandler {
 
     @Override
     public void handle() {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.S))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.S) && tip == null)
             startCmd.execute();
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Q))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Q) && tip == null)
             quitCmd.execute();
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.T))

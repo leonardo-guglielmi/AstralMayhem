@@ -57,8 +57,8 @@ public class GameoverScreen implements Screen {
                     Commons.WINDOW_HEIGHT -350 - (float) game.am.<Texture>get(Commons.GAMEOVER_SKULL_IMG_PATH).getHeight() /2);
 
             game.textPrinter.draw(game.batch, "Score obtained: "+score, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
-            game.textPrinter.draw(game.batch, "Cause: "+gameoverText, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
-            game.textPrinter.draw(game.batch, "Press any key to go back to menu", Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -600);
+            game.textPrinter.draw(game.batch, "Gameover Cause: "+gameoverText, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
+            game.textPrinter.draw(game.batch, "Press any key to go back to menu", Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -700);
         }
         game.batch.end();
 
