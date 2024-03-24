@@ -12,7 +12,7 @@ import java.util.List;
 public class AstralMayhem extends Game {
 	public SpriteBatch batch;
 	public BitmapFont textPrinter;
-	public final MyAssetManager am = new MyAssetManager();
+	public MyAssetManager am;
 
 	public String username = "";
 	public  List<Result> results = null;
@@ -25,6 +25,7 @@ public class AstralMayhem extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		textPrinter = new BitmapFont();
+		am = new MyAssetManager();
 		this.setScreen(new MenuScreen(this));
 	}
 

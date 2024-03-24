@@ -33,11 +33,10 @@ public class GameScreen implements Screen {
     private float time;
     private boolean isPaused;
 
-
     public GameScreen(final AstralMayhem game){
         // setting-up game environment and graphics
         score = 0;
-        time = 0;
+        time = 0f;
         isPaused = false;
         this.game = game;
         camera.setToOrtho(false);
@@ -176,13 +175,14 @@ public class GameScreen implements Screen {
                 game.batch.draw(game.am.<Texture>get(Commons.BULLET_IMG_PATH), p.x, p.y);
 
             // print enemies
+            game.am.updateAnimationTime();
             ArrayList< Pair<Float, Float> > enemyDisp = em.getPrintInfo();
             for(Pair<Float, Float> e : enemyDisp) {
                 Triplet<Float, Float, Class<?>> t = (Triplet<Float, Float, Class<?>>)e;
                 if(t.z == BaseEnemyStrategy.class)
-                    game.batch.draw(game.am.<Texture>get(Commons.ENEMY_IMG_PATH), t.x, t.y);
+                    game.batch.draw(game.am.getAnimationFrame(Commons.ENEMY_IMG_PATH), t.x, t.y);
                 else if(t.z == AdvancedEnemyStrategy.class)
-                    game.batch.draw(game.am.<Texture>get(Commons.ADVANCED_ENEMY_IMG_PATH), t.x, t.y);
+                    game.batch.draw(game.am.getAnimationFrame(Commons.ADVANCED_ENEMY_IMG_PATH), t.x, t.y);
             }
         }
         game.batch.end();

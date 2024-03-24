@@ -58,7 +58,7 @@ public class MenuScreen implements Screen {
         game.batch.begin();
         {
 
-            game.textPrinter.draw(game.batch, "Press C to close the game", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-250);
+            game.textPrinter.draw(game.batch, "Press Q to close the game", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-250);
             game.textPrinter.draw(game.batch, "Press S to start a new game ", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-270);
             game.textPrinter.draw(game.batch, "Username: "+game.username,Commons.WORLD_X_END-110, Commons.WORLD_Y_END-290 );
             game.textPrinter.draw(game.batch, "---------------------------------------------------------", Commons.WORLD_X_END-110, Commons.WORLD_Y_END-310);

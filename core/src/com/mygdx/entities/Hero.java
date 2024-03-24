@@ -56,7 +56,7 @@ public class Hero implements Character, Observable{
 
     @Override
     public void shoot() {
-        bm.addBullet(body.x +body.width /4, body.y +body.height /2, 10, type);
+        bm.addBullet(body.x +body.width/2 - (float) Commons.BULLET_WIDTH /2, body.y +body.height, 10, type);
     }
 
     @Override

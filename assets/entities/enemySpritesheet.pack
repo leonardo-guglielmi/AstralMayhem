@@ -1,0 +1,19 @@
+enemySpritesheet.png
+size: 87, 49
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+enemySprite
+  rotate: false
+  xy: 0, 0
+  size: 44, 49
+  orig: 44, 49
+  offset: 0, 0
+  index: 1
+enemySprite
+  rotate: false
+  xy: 44, 0
+  size: 43, 49
+  orig: 43, 49
+  offset: 0, 0
+  index: 2

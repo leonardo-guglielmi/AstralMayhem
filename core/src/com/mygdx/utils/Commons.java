@@ -23,7 +23,7 @@ public final class Commons {
     public static final String UI_BACKGROUND_IMG_PATH = "ui-background.png";
     public static final String HEART_IMG_PATH = "heart.png";
     public static final String EARTH_HP_BAR = "earth-health-bar.png";
-    public static final String HERO_IMG_PATH = "entities/hero.png";
+    public static final String HERO_IMG_PATH = "entities/heroTexture.png";
     public static final String EARTH_IMG_PATH = "entities/earth.png";
     public static final String ENEMY_IMG_PATH = "entities/enemy.png";
     public static final String ADVANCED_ENEMY_IMG_PATH = "entities/advanced_enemy.png";
@@ -36,8 +36,8 @@ public final class Commons {
     /*
     *   Entities size
      */
-    public static final int HERO_WIDTH = 30;
-    public static final int HERO_HEIGHT = 30;
+    public static final int HERO_WIDTH = 68;
+    public static final int HERO_HEIGHT = 48;
     public static final int BULLET_WIDTH = 8;
     public static final int BULLET_HEIGHT = 8;
     public static final int EARTH_WIDTH = WORLD_X_END-WORLD_X_START;
