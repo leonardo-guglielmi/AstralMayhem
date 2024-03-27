@@ -1,6 +1,6 @@
 package com.mygdx.entities;
 
-import com.badlogic.gdx.graphics.Texture;
+
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.utils.Commons;
 import com.mygdx.entityManagement.BulletManager;

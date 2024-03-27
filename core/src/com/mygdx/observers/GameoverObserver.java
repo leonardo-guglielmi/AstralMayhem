@@ -1,17 +1,11 @@
 package com.mygdx.observers;
 
 import com.mygdx.AstralMayhem;
-import com.mygdx.databaseConnection.ResultDAO;
-import com.mygdx.databaseConnection.ConcreteResultDAO;
-import com.mygdx.databaseConnection.Result;
 import com.mygdx.entities.Earth;
 import com.mygdx.entities.Hero;
 import com.mygdx.entityManagement.EnemyManager;
 import com.mygdx.gameStates.GameScreen;
 import com.mygdx.gameStates.GameoverScreen;
-import com.mygdx.utils.Commons;
-
-import java.sql.SQLException;
 
 public class GameoverObserver implements Observer{
     AstralMayhem game;

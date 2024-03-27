@@ -8,6 +8,7 @@ import com.mygdx.AstralMayhem;
 import com.mygdx.databaseConnection.ConcreteResultDAO;
 import com.mygdx.databaseConnection.Result;
 import com.mygdx.databaseConnection.ResultDAO;
+import com.mygdx.inputManagement.InputHandler;
 import com.mygdx.inputManagement.menuManagement.KeyboardMenuInputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.utils.TextInputProcessor;
@@ -22,7 +23,7 @@ public class MenuScreen implements Screen {
 
     private final TextInputProcessor tip = new TextInputProcessor();
 
-    private final KeyboardMenuInputHandler input;
+    private final InputHandler input;
 
     public MenuScreen(AstralMayhem game){
         // loading gameover info
