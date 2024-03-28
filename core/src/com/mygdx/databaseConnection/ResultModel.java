@@ -1,12 +1,12 @@
 package com.mygdx.databaseConnection;
 
-public class Result {
+public class ResultModel {
 
-    private String player;
-    private int points;
-    private int time;
+    private final String player;
+    private final int points;
+    private final int time;
 
-    public Result(String player, int points, int time) {
+    public ResultModel(String player, int points, int time) {
         this.player = player;
         this.points = points;
         this.time = time;

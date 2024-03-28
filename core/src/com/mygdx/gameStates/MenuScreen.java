@@ -5,40 +5,31 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.AstralMayhem;
-import com.mygdx.databaseConnection.ConcreteResultDAO;
-import com.mygdx.databaseConnection.Result;
-import com.mygdx.databaseConnection.ResultDAO;
+import com.mygdx.databaseConnection.ConcreteResultModelDAO;
+import com.mygdx.databaseConnection.ResultModel;
+import com.mygdx.databaseConnection.ResultModelDAO;
 import com.mygdx.inputManagement.InputHandler;
 import com.mygdx.inputManagement.menuManagement.KeyboardMenuInputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.utils.TextInputProcessor;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuScreen implements Screen {
 
     private final AstralMayhem game;
-    private List<Result> results;
-
+    private List<ResultModel> bestScores = new ArrayList<>();
+    private List<ResultModel> bestUserScores = new ArrayList<>();
     private final TextInputProcessor tip = new TextInputProcessor();
-
     private final InputHandler input;
+    private final ResultModelDAO resultModelDAO = new ConcreteResultModelDAO();
 
     public MenuScreen(AstralMayhem game){
         // loading gameover info
         this.game = game;
-        input = new KeyboardMenuInputHandler(game, tip);
-
-        // todo: da usare il solo client
-        try {
-            ResultDAO resultDAO = new ConcreteResultDAO();
-            List<Result> bestResults = resultDAO.get();
-            this.results = bestResults;
-        }catch (SQLException e){
-            System.out.println("Errore nel caricamento dei dati");
-        }
-
+        input = new KeyboardMenuInputHandler(game, this,tip);
         loadGraphics();
     }
 
@@ -58,21 +49,29 @@ public class MenuScreen implements Screen {
             game.textPrinter.draw(game.batch, "> Press Q to close the game", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-250);
             game.textPrinter.draw(game.batch, "> Press S to start a new game ", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-275);
             game.textPrinter.draw(game.batch, "> Press T to type username (max 20 chars):",Commons.WORLD_X_END-90, Commons.WORLD_Y_END-310 );
-            game.textPrinter.draw(game.batch, game.username, Commons.WORLD_X_END-80
-                    , Commons.WORLD_Y_END-330);
+            game.textPrinter.draw(game.batch, game.username, Commons.WORLD_X_END-80, Commons.WORLD_Y_END-330);
             for(int i=0; i<30; i++)
                 game.textPrinter.draw(game.batch, "_", Commons.WORLD_X_END-80+i*8, Commons.WORLD_Y_END-332);
 
-            game.textPrinter.draw(game.batch, "> Press B to get the best scores", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-400);
-            game.textPrinter.draw(game.batch, "> Press Y to get your best scores", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-420);
 
-            int i = 30;
-            if(results != null){
-                for (Result r  : results) {
-                    game.textPrinter.draw(game.batch, "* PLAYER:"+r.getPlayer() + "| SCORE:"+r.getPoints() + "|TIME:" + r.getTime(), Commons.WORLD_X_END-110, Commons.WORLD_Y_END-350-i);
-                    i+=30;
-                }
+            game.textPrinter.draw(game.batch, "> Press B to get the best scores", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-400);
+            if(bestScores != null) {
+                for (int i = 0; i < bestScores.size(); i++)
+                    game.textPrinter.draw(game.batch, bestScores.get(i).toString(), Commons.WORLD_X_END-90, Commons.WORLD_Y_END-420-i*20);
             }
+            else {
+               game.textPrinter.draw(game.batch, "ERROR CONNECTING TO DATABASE", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-420);
+            }
+
+            game.textPrinter.draw(game.batch, "> Press Y to get your best scores", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-520);
+            if(bestUserScores != null) {
+                for (int i = 0; i < bestUserScores.size(); i++)
+                    game.textPrinter.draw(game.batch, bestUserScores.get(i).toString(), Commons.WORLD_X_END - 90, Commons.WORLD_Y_END - 540 - i * 20);
+            }
+            else {
+                game.textPrinter.draw(game.batch, "ERROR CONNECTING TO DATABASE", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-420);
+            }
+
 
             game.batch.draw(game.am.<Texture>get(Commons.MENU_TITLE_IMG_PNG),
                     (float)Commons.WINDOW_WIDTH /2 -(float)game.am.<Texture>get(Commons.MENU_TITLE_IMG_PNG).getWidth()/2-200,
@@ -84,8 +83,10 @@ public class MenuScreen implements Screen {
         }
         game.batch.end();
 
-        input.handle();
+        // blocco client-server, c'è da pensare come inserirlo nel command questa cosa
 
+
+        input.handle();
         if(tip.isReading())
             game.username = tip.getText();
     }
@@ -111,6 +112,24 @@ public class MenuScreen implements Screen {
         if(!game.am.contains(Commons.MENU_TITLE_IMG_PNG))
             game.am.load(Commons.MENU_TITLE_IMG_PNG, Texture.class);
         game.am.finishLoading();
+    }
+
+    public void loadBestScore(){
+        try {
+            bestScores = resultModelDAO.getBest();
+        }
+        catch (SQLException e){
+            bestScores = null;
+        }
+    }
+
+    public void loadUserScore(){
+        try {
+            bestUserScores = resultModelDAO.getByUSer(game.username);
+        }
+        catch (SQLException e){
+            bestScores = null;
+        }
     }
 
 }

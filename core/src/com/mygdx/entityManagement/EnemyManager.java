@@ -17,6 +17,7 @@ import com.mygdx.utils.Triplet;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Random;
 
 public class EnemyManager implements Manager, Observable {
     private final HashSet<Enemy> enemySet = new HashSet<>();
@@ -43,7 +44,11 @@ public class EnemyManager implements Manager, Observable {
     @Override
     public void updateEntities(){
         if(baseEnemySpawnTimer.check()) {
-            Enemy e = new Enemy(Commons.WORLD_X_START, 500, bm);
+            Random coordinateGenerator = new Random();
+            int startingX = Commons.ENEMY_SPAWN_X[coordinateGenerator.nextInt(Commons.ENEMY_SPAWN_X.length)];
+            int startingY = Commons.ENEMY_SPAWN_Y[coordinateGenerator.nextInt(Commons.ENEMY_SPAWN_Y.length)];
+
+            Enemy e = new Enemy(startingX, startingY, bm);
             e.setStrategy(new BaseEnemyStrategy(e, 3));
             enemySet.add(e);
         }

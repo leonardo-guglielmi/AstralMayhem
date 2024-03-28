@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.AstralMayhem;
-import com.mygdx.databaseConnection.ConcreteResultDAO;
-import com.mygdx.databaseConnection.Result;
-import com.mygdx.databaseConnection.ResultDAO;
+import com.mygdx.databaseConnection.ConcreteResultModelDAO;
+import com.mygdx.databaseConnection.ResultModel;
+import com.mygdx.databaseConnection.ResultModelDAO;
 import com.mygdx.utils.Commons;
 
 import java.sql.SQLException;
@@ -63,26 +63,23 @@ public class GameoverScreen implements Screen {
         }
         game.batch.end();
 
-        // todo: move from here
+        // fetching info from database
         try {
-            ResultDAO resultDAO = new ConcreteResultDAO();
+            ResultModelDAO resultModelDAO = new ConcreteResultModelDAO();
 
-            Result resultToInsert;
+            ResultModel resultModelToInsert;
             if(game.username.isEmpty())
-                resultToInsert = new Result(Commons.DEFAULT_USERNAME, GameScreen.getScore(), GameScreen.getTime());
+                resultModelToInsert = new ResultModel(Commons.DEFAULT_USERNAME, GameScreen.getScore(), GameScreen.getTime());
             else
-                resultToInsert = new Result(game.username, GameScreen.getScore(), GameScreen.getTime());
+                resultModelToInsert = new ResultModel(game.username, GameScreen.getScore(), GameScreen.getTime());
 
-            resultDAO.insert(resultToInsert);
-
+            resultModelDAO.insert(resultModelToInsert);
         }
         catch (SQLException e){
                 game.batch.begin();
                 game.textPrinter.draw(game.batch, "ERROR WHILE PUSHING DATA INTO DATABASE", Commons.WORLD_X_START+100, Commons.WINDOW_HEIGHT -700);
                 game.batch.end();
         }
-
-
 
         time += delta;
         if(time >= 3 && Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {

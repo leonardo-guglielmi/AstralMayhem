@@ -51,5 +51,10 @@ public final class Commons {
     public static final int MAX_USERNAME_LENGTH = 20;
     public static final String DEFAULT_USERNAME = "unknown";
 
-
+    /*
+     *
+     */
+    public static final int[] ENEMY_SPAWN_Y = {600, 700};
+    public static final int[] ENEMY_SPAWN_X = {20, 300, 580, 900};
 }
+
