@@ -69,7 +69,7 @@ public class MenuScreen implements Screen {
                     game.textPrinter.draw(game.batch, bestUserScores.get(i).toString(), Commons.WORLD_X_END - 90, Commons.WORLD_Y_END - 540 - i * 20);
             }
             else {
-                game.textPrinter.draw(game.batch, "ERROR CONNECTING TO DATABASE", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-420);
+                game.textPrinter.draw(game.batch, "ERROR CONNECTING TO DATABASE", Commons.WORLD_X_END-90, Commons.WORLD_Y_END-540);
             }
 
 

@@ -1,5 +1,6 @@
 package com.mygdx.gameStates;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -46,7 +47,7 @@ public class GameScreen implements Screen {
 
         // setting-up game logic elements
         bm = new BulletManager();
-        hero = new Hero(50, 100, bm); //todo: aggiusta le coordinate di spawn
+        hero = new Hero(50, 100, bm);
         earth = new Earth(bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
         em = new EnemyManager(bm, hero);
 
@@ -63,7 +64,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        time += delta;
         updateLogic();
         printBackGrounds();
         printEntities();
@@ -117,6 +117,7 @@ public class GameScreen implements Screen {
     private void updateLogic(){
         input.handle();
         if(!isPaused) {
+            time += Gdx.graphics.getDeltaTime();
             // updating hero logic
             hero.update();
 
@@ -176,7 +177,8 @@ public class GameScreen implements Screen {
                 game.batch.draw(game.am.<Texture>get(Commons.BULLET_IMG_PATH), p.x, p.y);
 
             // print enemies
-            game.am.updateAnimationTime();
+            if(!isPaused)
+                game.am.updateAnimationTime(Gdx.graphics.getDeltaTime());
             ArrayList< Pair<Float, Float> > enemyDisp = em.getPrintInfo();
             for(Pair<Float, Float> e : enemyDisp) {
                 Triplet<Float, Float, Class<?>> t = (Triplet<Float, Float, Class<?>>)e;

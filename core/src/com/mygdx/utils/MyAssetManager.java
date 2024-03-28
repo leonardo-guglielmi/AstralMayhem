@@ -25,8 +25,8 @@ public class MyAssetManager extends AssetManager {
         );
     }
 
-    public void updateAnimationTime(){
-        animationTime += Gdx.graphics.getDeltaTime();
+    public void updateAnimationTime(float delta){
+        animationTime += delta;
     }
 
     public TextureRegion getAnimationFrame(java.lang.String fileName){
