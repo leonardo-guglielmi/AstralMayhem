@@ -128,7 +128,7 @@ public class MenuScreen implements Screen {
             bestUserScores = resultModelDAO.getByUSer(game.username);
         }
         catch (SQLException e){
-            bestScores = null;
+            bestUserScores = null;
         }
     }
 
