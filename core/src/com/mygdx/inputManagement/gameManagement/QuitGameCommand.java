@@ -1,4 +1,4 @@
-package com.mygdx.inputManagement.GameManagement;
+package com.mygdx.inputManagement.gameManagement;
 
 import com.mygdx.AstralMayhem;
 import com.mygdx.gameStates.MenuScreen;

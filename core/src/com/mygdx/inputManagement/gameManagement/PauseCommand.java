@@ -1,4 +1,4 @@
-package com.mygdx.inputManagement.GameManagement;
+package com.mygdx.inputManagement.gameManagement;
 
 import com.mygdx.gameStates.GameScreen;
 import com.mygdx.inputManagement.Command;

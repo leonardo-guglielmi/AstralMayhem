@@ -9,7 +9,7 @@ import com.mygdx.AstralMayhem;
 import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
 import com.mygdx.enemyLogic.BaseEnemyStrategy;
 import com.mygdx.inputManagement.InputHandler;
-import com.mygdx.inputManagement.GameManagement.KeyboardGameInputHandler;
+import com.mygdx.inputManagement.gameManagement.KeyboardGameInputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.Earth;
 import com.mygdx.entityManagement.BulletManager;
