@@ -66,4 +66,11 @@ public class BulletManager implements Manager{
         }
         bulletSet.removeAll(tmp);
     }
+
+    public boolean isBulletSetEmpty(){
+        if(bulletSet.isEmpty())
+            return true;
+        else
+            return false;
+    }
 }
