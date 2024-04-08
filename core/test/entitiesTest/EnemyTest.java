@@ -1,9 +1,7 @@
-package entityManagementTest;
+package entitiesTest;
 
 import com.mygdx.entities.Enemy;
 import com.mygdx.entityManagement.BulletManager;
-import com.mygdx.inputManagement.playerManagement.MoveRightCommand;
-import com.mygdx.inputManagement.playerManagement.ShootCommand;
 import com.mygdx.utils.Commons;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
