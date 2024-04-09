@@ -17,8 +17,6 @@ public class BulletTest {
         collide influiscano correttamente sulla determinazione della collisione
          */
 
-        //NON FUNZIONA PER ORA
-
         Bullet b = new Bullet(Commons.WORLD_X_START, Commons.WORLD_Y_START, 3, TypeOfEntity.HERO);
         TypeOfEntity toe = TypeOfEntity.HERO;
         Rectangle r = new Rectangle(b.getBody());
@@ -27,27 +25,27 @@ public class BulletTest {
         Bullet b1 = new Bullet(Commons.WORLD_X_START, Commons.WORLD_Y_START, 3, TypeOfEntity.HERO);
         TypeOfEntity toe1 = TypeOfEntity.EARTH;
         Rectangle r1 = new Rectangle(b1.getBody());
-        Assertions.assertTrue(b.isHitting(r1,toe1));
+        Assertions.assertTrue(b1.isHitting(r1,toe1));
 
         Bullet b2 = new Bullet(Commons.WORLD_X_START, Commons.WORLD_Y_START, 3, TypeOfEntity.HERO);
         TypeOfEntity toe2 = TypeOfEntity.ENEMY;
         Rectangle r2 = new Rectangle(b2.getBody());
-        Assertions.assertTrue(b.isHitting(r2,toe2));
+        Assertions.assertTrue(b2.isHitting(r2,toe2));
 
         Bullet b3 = new Bullet(Commons.WORLD_X_START, Commons.WORLD_Y_START, 3, TypeOfEntity.ENEMY);
         TypeOfEntity toe3 = TypeOfEntity.HERO;
         Rectangle r3 = new Rectangle(b3.getBody());
-        Assertions.assertTrue(b.isHitting(r3,toe3));
+        Assertions.assertTrue(b3.isHitting(r3,toe3));
 
         Bullet b4 = new Bullet(Commons.WORLD_X_START, Commons.WORLD_Y_START, 3, TypeOfEntity.ENEMY);
         TypeOfEntity toe4 = TypeOfEntity.ENEMY;
         Rectangle r4 = new Rectangle(b4.getBody());
-        Assertions.assertFalse(b.isHitting(r4,toe4));
+        Assertions.assertFalse(b4.isHitting(r4,toe4));
 
         Bullet b5 = new Bullet(Commons.WORLD_X_START, Commons.WORLD_Y_START, 3, TypeOfEntity.ENEMY);
         TypeOfEntity toe5 = TypeOfEntity.EARTH;
         Rectangle r5 = new Rectangle(b5.getBody());
-        Assertions.assertTrue(b.isHitting(r5,toe5));
+        Assertions.assertTrue(b5.isHitting(r5,toe5));
     }
 
 
