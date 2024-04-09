@@ -31,6 +31,7 @@ public class AdvancedEnemyStrategy implements Strategy{
             dirY = 0;
 
         e.move(dirX, dirY);
+
         if(shootTimer.check())
             e.shoot();
     }
