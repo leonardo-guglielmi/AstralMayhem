@@ -14,13 +14,10 @@ import com.mygdx.utils.Pair;
 import com.mygdx.utils.Timer;
 import com.mygdx.utils.Triplet;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 public class EnemyManager implements Manager, Observable {
-    private final HashSet<Enemy> enemySet = new HashSet<>();
+    private final Set<Enemy> enemySet = new HashSet<>();
     private final Timer baseEnemySpawnTimer = new Timer(2);
     private final Timer advanceEnemySpawnTimer = new Timer(3);
     private final BulletManager bm;

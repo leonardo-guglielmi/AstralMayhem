@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-public class CommandTest {
+public class PlayerCommandTest {
 
     @Test
     void testMoveRightCommand(){
@@ -28,13 +28,6 @@ public class CommandTest {
         Assertions.assertEquals(Commons.WORLD_X_START, h.getX());
     }
 
-
-    // class added to be used in the test
-    private class TestBulletManager extends BulletManager{
-        public int numElements(){
-            return bulletSet.size();
-        }
-    }
     @Test
     void testShootCommand(){
         BulletManager bm = new BulletManager();

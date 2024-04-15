@@ -3,12 +3,9 @@ package entitiesTest;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entities.Bullet;
 import com.mygdx.entities.TypeOfEntity;
-import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.utils.Commons;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.awt.*;
 
 public class BulletTest {
     @Test
@@ -47,7 +44,4 @@ public class BulletTest {
         Rectangle r5 = new Rectangle(b5.getBody());
         Assertions.assertTrue(b5.isHitting(r5,toe5));
     }
-
-
-
 }

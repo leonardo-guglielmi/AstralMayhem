@@ -1,4 +1,4 @@
-package enemyLogic;
+package enemyLogicTest;
 
 import com.mygdx.enemyLogic.BaseEnemyStrategy;
 import com.mygdx.entities.Enemy;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class BaseEnemyStrategyTest {
     @Test
     void testExecuteFirstPart(){
-        //NOTA : non si può testare il metodo execute() completo perché il timer in fase di test dà problemi-
+        //NOTA: non si può testare il metodo execute() completo perché il timer in fase di test dà problemi-
         BulletManager bm = new BulletManager();
 
 
@@ -44,13 +44,5 @@ public class BaseEnemyStrategyTest {
         bes2.executeFirstPart();
         Assertions.assertEquals(-1, bes2.getDirX());
         Assertions.assertEquals(-100, bes2.getDirY());
-
-
-        //Queste asserzioni qui sotto è meglio non farle perché il risultato dipende anche dal metodo move().
-        //Comunque non sono necessarie per vedere il funzionamento del metodo
-        /*Assertions.assertEquals(Commons.WORLD_X_END-1, e1.getX());
-        Assertions.assertEquals(Commons.WORLD_Y_START+200-100, e1.getY());*/
-
-
     }
 }

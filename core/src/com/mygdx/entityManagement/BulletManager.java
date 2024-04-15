@@ -68,9 +68,10 @@ public class BulletManager implements Manager{
     }
 
     public boolean isBulletSetEmpty(){
-        if(bulletSet.isEmpty())
-            return true;
-        else
-            return false;
+        return bulletSet.isEmpty();
+    }
+
+    public int getNumBullet(){
+        return bulletSet.size();
     }
 }
