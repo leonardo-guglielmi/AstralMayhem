@@ -35,7 +35,7 @@ public class GameScreen implements Screen {
     private static float time;
     private boolean isPaused;
 
-    public GameScreen(final AstralMayhem game){
+    public GameScreen(AstralMayhem game){
         // setting-up game environment and graphics
         score = 0;
         time = 0f;
