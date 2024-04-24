@@ -10,7 +10,6 @@ import com.mygdx.entities.Hero;
 import com.mygdx.observers.Observable;
 import com.mygdx.observers.Subject;
 import com.mygdx.observers.Observer;
-import com.mygdx.utils.Pair;
 import com.mygdx.utils.Timer;
 import com.mygdx.utils.Triplet;
 
@@ -32,9 +31,8 @@ public class EnemyManager implements Manager, Observable {
         this.gs = gs;
     }
 
-    @Override
-    public ArrayList<Pair<Float, Float>> getPrintInfo(){
-        ArrayList< Pair<Float, Float> > arrDisp = new ArrayList<>();
+    public ArrayList<Triplet<Float, Float, Class<?>>> getPrintInfo(){
+        ArrayList<Triplet<Float, Float, Class<?>>> arrDisp = new ArrayList<>();
         for(Enemy e : enemySet)
             arrDisp.add(new Triplet<>( e.getX(), e.getY(), e.getTypeOfEnemy() ));
         return arrDisp;

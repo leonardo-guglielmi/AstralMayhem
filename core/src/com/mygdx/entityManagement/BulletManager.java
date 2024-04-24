@@ -23,7 +23,6 @@ public class BulletManager implements Manager{
         this.checkMutualCollisions();
     }
 
-    @Override
     public ArrayList<Pair<Float, Float>> getPrintInfo(){
         ArrayList< Pair<Float, Float> > arrDisp = new ArrayList<>();
         for(Bullet b : bulletSet)

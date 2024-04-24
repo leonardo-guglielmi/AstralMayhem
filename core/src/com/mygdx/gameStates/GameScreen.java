@@ -178,13 +178,12 @@ public class GameScreen implements Screen {
             // print enemies
             if(!isPaused)
                 game.am.updateAnimationTime(Gdx.graphics.getDeltaTime());
-            ArrayList< Pair<Float, Float> > enemyDisp = em.getPrintInfo();
-            for(Pair<Float, Float> e : enemyDisp) {
-                Triplet<Float, Float, Class<?>> t = (Triplet<Float, Float, Class<?>>)e;
-                if(t.z == BaseEnemyStrategy.class)
-                    game.batch.draw(game.am.getAnimationFrame(Commons.ENEMY_IMG_PATH), t.x, t.y);
-                else if(t.z == AdvancedEnemyStrategy.class)
-                    game.batch.draw(game.am.getAnimationFrame(Commons.ADVANCED_ENEMY_IMG_PATH), t.x, t.y);
+            ArrayList<Triplet<Float, Float, Class<?>>> enemyDisp = em.getPrintInfo();
+            for(Triplet<Float, Float, Class<?>> e : enemyDisp) {
+                if(e.z == BaseEnemyStrategy.class)
+                    game.batch.draw(game.am.getAnimationFrame(Commons.ENEMY_IMG_PATH), e.x, e.y);
+                else if(e.z == AdvancedEnemyStrategy.class)
+                    game.batch.draw(game.am.getAnimationFrame(Commons.ADVANCED_ENEMY_IMG_PATH), e.x, e.y);
             }
         }
         game.batch.end();
