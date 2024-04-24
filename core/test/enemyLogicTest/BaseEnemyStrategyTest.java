@@ -2,6 +2,7 @@ package enemyLogicTest;
 
 import com.mygdx.enemyLogic.BaseEnemyStrategy;
 import com.mygdx.entities.Enemy;
+import com.mygdx.entities.TypeOfEnemy;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.utils.Commons;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +15,7 @@ public class BaseEnemyStrategyTest {
 
 
         //Test del caso standard (nemico non è vicino a nessun bordo)
-        Enemy e  = new Enemy( Commons.WORLD_X_START+50 , Commons.WORLD_Y_START+50, bm);
+        Enemy e  = new Enemy( Commons.WORLD_X_START+50 , Commons.WORLD_Y_START+50, bm, TypeOfEnemy.BASE);
         BaseEnemyStrategy bes = new BaseEnemyStrategy(e,100);
         Assertions.assertEquals(1, bes.getDirX());
         Assertions.assertEquals(0,bes.getDirY());
@@ -25,7 +26,7 @@ public class BaseEnemyStrategyTest {
         Assertions.assertEquals(Commons.WORLD_X_START+50,e.getY());
 
         //Caso in cui il nemico è arrivato al bordo destro della schermata
-        Enemy e1  = new Enemy( Commons.WORLD_X_END , Commons.WORLD_Y_START+200, bm);
+        Enemy e1  = new Enemy( Commons.WORLD_X_END , Commons.WORLD_Y_START+200, bm, TypeOfEnemy.ADVANCED);
         BaseEnemyStrategy bes1 = new BaseEnemyStrategy(e1,100);
         Assertions.assertEquals(1, bes1.getDirX());
         Assertions.assertEquals(0,bes1.getDirY());
@@ -36,7 +37,7 @@ public class BaseEnemyStrategyTest {
 
 
         //Caso in cui il nemico è prima del bordo sinistro di inizio schermata
-        Enemy e2  = new Enemy( Commons.WORLD_X_START -5, Commons.WORLD_Y_START, bm);
+        Enemy e2  = new Enemy( Commons.WORLD_X_START -5, Commons.WORLD_Y_START, bm, TypeOfEnemy.ADVANCED);
         BaseEnemyStrategy bes2 = new BaseEnemyStrategy(e2,100);
         Assertions.assertEquals(1, bes2.getDirX());
         Assertions.assertEquals(0,bes2.getDirY());

@@ -3,6 +3,7 @@ package com.mygdx.entityManagement;
 
 import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
 import com.mygdx.enemyLogic.BaseEnemyStrategy;
+import com.mygdx.entities.TypeOfEnemy;
 import com.mygdx.gameStates.GameScreen;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.Enemy;
@@ -31,10 +32,10 @@ public class EnemyManager implements Manager, Observable {
         this.gs = gs;
     }
 
-    public ArrayList<Triplet<Float, Float, Class<?>>> getPrintInfo(){
-        ArrayList<Triplet<Float, Float, Class<?>>> arrDisp = new ArrayList<>();
+    public ArrayList<Triplet<Float, Float, TypeOfEnemy>> getPrintInfo(){
+        ArrayList<Triplet<Float, Float, TypeOfEnemy>> arrDisp = new ArrayList<>();
         for(Enemy e : enemySet)
-            arrDisp.add(new Triplet<>( e.getX(), e.getY(), e.getTypeOfEnemy() ));
+            arrDisp.add(new Triplet<>( e.getX(), e.getY(), e.getTypeOfEnemy()));
         return arrDisp;
     }
 
@@ -45,12 +46,12 @@ public class EnemyManager implements Manager, Observable {
             int startingX = Commons.ENEMY_SPAWN_X[coordinateGenerator.nextInt(Commons.ENEMY_SPAWN_X.length)];
             int startingY = Commons.ENEMY_SPAWN_Y[coordinateGenerator.nextInt(Commons.ENEMY_SPAWN_Y.length)];
 
-            Enemy e = new Enemy(startingX, startingY, bm);
+            Enemy e = new Enemy(startingX, startingY, bm, TypeOfEnemy.BASE);
             e.setStrategy(new BaseEnemyStrategy(e, 3));
             enemySet.add(e);
         }
         if(advanceEnemySpawnTimer.check()){
-            Enemy e = new Enemy(Commons.WORLD_X_START, 500, bm);
+            Enemy e = new Enemy(Commons.WORLD_X_START, 500, bm, TypeOfEnemy.ADVANCED);
             e.setStrategy(new AdvancedEnemyStrategy(e, h, 3));
             enemySet.add(e);
         }

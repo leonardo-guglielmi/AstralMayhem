@@ -10,15 +10,17 @@ import com.mygdx.enemyLogic.StrategyContext;
 public class Enemy implements Character, StrategyContext {
     private final Rectangle body = new Rectangle();
     private final BulletManager bm;
-    private final TypeOfEntity type = TypeOfEntity.ENEMY;
+    private final TypeOfEntity typeEntity = TypeOfEntity.ENEMY;
+    private final TypeOfEnemy typeEnemy;
     private Strategy strat;
 
-    public Enemy(int startingX, int startingY, BulletManager bm){
+    public Enemy(int startingX, int startingY, BulletManager bm, TypeOfEnemy typeEnemy){
         body.height = Commons.ENEMY_HEIGHT;
         body.width = Commons.ENEMY_WIDTH;
         body.x = startingX;
         body.y = startingY;
         this.bm = bm;
+        this.typeEnemy = typeEnemy;
     }
 
     public float getX(){
@@ -45,12 +47,12 @@ public class Enemy implements Character, StrategyContext {
 
     @Override
     public void shoot() {
-        bm.addBullet(body.x + body.width /2,body.y + body.height /2, -3, type);
+        bm.addBullet(body.x + body.width /2,body.y + body.height /2, -3, typeEntity);
     }
 
     @Override
     public int getNumCollisions() {
-        return bm.getBulletCollision(body, type);
+        return bm.getBulletCollision(body, typeEntity);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class Enemy implements Character, StrategyContext {
         strat.execute();
     }
 
-    public Class<?> getTypeOfEnemy(){
-        return strat.getClass();
+    public TypeOfEnemy getTypeOfEnemy(){
+        return typeEnemy;
     }
 }

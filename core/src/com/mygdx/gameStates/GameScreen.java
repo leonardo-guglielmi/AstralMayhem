@@ -7,8 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.AstralMayhem;
-import com.mygdx.enemyLogic.AdvancedEnemyStrategy;
-import com.mygdx.enemyLogic.BaseEnemyStrategy;
+import com.mygdx.entities.TypeOfEnemy;
 import com.mygdx.inputManagement.InputHandler;
 import com.mygdx.inputManagement.gameManagement.KeyboardGameInputHandler;
 import com.mygdx.utils.Commons;
@@ -178,11 +177,11 @@ public class GameScreen implements Screen {
             // print enemies
             if(!isPaused)
                 game.am.updateAnimationTime(Gdx.graphics.getDeltaTime());
-            ArrayList<Triplet<Float, Float, Class<?>>> enemyDisp = em.getPrintInfo();
-            for(Triplet<Float, Float, Class<?>> e : enemyDisp) {
-                if(e.z == BaseEnemyStrategy.class)
+            ArrayList<Triplet<Float, Float, TypeOfEnemy>> enemyDisp = em.getPrintInfo();
+            for(Triplet<Float, Float, TypeOfEnemy> e : enemyDisp) {
+                if(e.z == TypeOfEnemy.BASE)
                     game.batch.draw(game.am.getAnimationFrame(Commons.ENEMY_IMG_PATH), e.x, e.y);
-                else if(e.z == AdvancedEnemyStrategy.class)
+                else if(e.z == TypeOfEnemy.ADVANCED)
                     game.batch.draw(game.am.getAnimationFrame(Commons.ADVANCED_ENEMY_IMG_PATH), e.x, e.y);
             }
         }
