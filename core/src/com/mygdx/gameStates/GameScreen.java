@@ -18,7 +18,7 @@ import com.mygdx.entities.Hero;
 import com.mygdx.observers.GameoverObserver;
 import com.mygdx.utils.Pair;
 import com.mygdx.utils.Triplet;
-import java.util.ArrayList;
+import java.util.List;
 
 public class GameScreen implements Screen {
     private final AstralMayhem game;
@@ -170,14 +170,14 @@ public class GameScreen implements Screen {
             game.batch.draw(game.am.<Texture>get(Commons.HERO_IMG_PATH), hero.getX(), hero.getY());
 
             // print bullets
-            ArrayList< Pair<Float, Float> > bulletDisp = bm.getPrintInfo();
+            List< Pair<Float, Float> > bulletDisp = bm.getPrintInfo();
             for(Pair<Float, Float> p : bulletDisp)
                 game.batch.draw(game.am.<Texture>get(Commons.BULLET_IMG_PATH), p.x, p.y);
 
             // print enemies
             if(!isPaused)
                 game.am.updateAnimationTime(Gdx.graphics.getDeltaTime());
-            ArrayList<Triplet<Float, Float, TypeOfEnemy>> enemyDisp = em.getPrintInfo();
+            List<Triplet<Float, Float, TypeOfEnemy>> enemyDisp = em.getPrintInfo();
             for(Triplet<Float, Float, TypeOfEnemy> e : enemyDisp) {
                 if(e.z == TypeOfEnemy.BASE)
                     game.batch.draw(game.am.getAnimationFrame(Commons.ENEMY_IMG_PATH), e.x, e.y);

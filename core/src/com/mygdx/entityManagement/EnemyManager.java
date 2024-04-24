@@ -32,8 +32,8 @@ public class EnemyManager implements Manager, Observable {
         this.gs = gs;
     }
 
-    public ArrayList<Triplet<Float, Float, TypeOfEnemy>> getPrintInfo(){
-        ArrayList<Triplet<Float, Float, TypeOfEnemy>> arrDisp = new ArrayList<>();
+    public List<Triplet<Float, Float, TypeOfEnemy>> getPrintInfo(){
+        List<Triplet<Float, Float, TypeOfEnemy>> arrDisp = new ArrayList<>();
         for(Enemy e : enemySet)
             arrDisp.add(new Triplet<>( e.getX(), e.getY(), e.getTypeOfEnemy()));
         return arrDisp;

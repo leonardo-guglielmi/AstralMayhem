@@ -23,8 +23,8 @@ public class BulletManager implements Manager{
         this.checkMutualCollisions();
     }
 
-    public ArrayList<Pair<Float, Float>> getPrintInfo(){
-        ArrayList< Pair<Float, Float> > arrDisp = new ArrayList<>();
+    public List<Pair<Float, Float>> getPrintInfo(){
+        List< Pair<Float, Float> > arrDisp = new ArrayList<>();
         for(Bullet b : bulletSet)
             arrDisp.add(new Pair<>(b.getX(), b.getY()));
         return arrDisp;
