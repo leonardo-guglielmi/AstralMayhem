@@ -14,13 +14,15 @@ public class Earth implements Observable {
     private final Rectangle body = new Rectangle();
     private final BulletManager bm;
     private final Subject obs = new Subject();
+    private final GameScreen gs;
 
-    public Earth(BulletManager bm, int startX, int startY){
+    public Earth(BulletManager bm, int startX, int startY, GameScreen gs){
         body.x = startX;
         body.y = startY;
         body.width = Commons.EARTH_WIDTH;
         body.height = Commons.EARTH_HEIGHT;
         this.bm = bm;
+        this.gs = gs;
     }
 
     public int getHp(){
@@ -39,7 +41,7 @@ public class Earth implements Observable {
         int damage = bm.getBulletCollision(body, type);
         hp -= damage;
         if(damage > 0)
-            GameScreen.updateScore(10 *damage);
+            gs.updateScore(10 *damage);
         if(hp <= 0){
             obs.notifyObservers();
         }

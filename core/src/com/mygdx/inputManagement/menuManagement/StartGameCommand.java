@@ -7,7 +7,7 @@ import com.mygdx.inputManagement.Command;
 
 public class StartGameCommand implements Command {
 
-    AstralMayhem game;
+    private  final AstralMayhem game;
 
     public StartGameCommand(AstralMayhem game){
         this.game = game;

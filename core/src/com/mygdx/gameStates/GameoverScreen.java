@@ -19,14 +19,16 @@ public class GameoverScreen implements Screen {
     private final AstralMayhem game;
     private final String gameoverText;
     private final int score;
+    private final int time;
 
-    private float time = 0;
+    private float screenTime = 0;
 
-    public GameoverScreen(AstralMayhem game, String gameoverText, int score){
+    public GameoverScreen(AstralMayhem game, String gameoverText, int score, int time){
         // loading gameover info
         this.game = game;
         this.gameoverText = gameoverText;
         this.score = score;
+        this.time = time;
 
         // loading graphic elements
         if(!game.am.contains("gameover/gameOverTitle.png"))
@@ -69,9 +71,9 @@ public class GameoverScreen implements Screen {
 
             ResultModel resultModelToInsert;
             if(game.username.isEmpty())
-                resultModelToInsert = new ResultModel(Commons.DEFAULT_USERNAME, GameScreen.getScore(), GameScreen.getTime());
+                resultModelToInsert = new ResultModel(Commons.DEFAULT_USERNAME, score, time);
             else
-                resultModelToInsert = new ResultModel(game.username, GameScreen.getScore(), GameScreen.getTime());
+                resultModelToInsert = new ResultModel(game.username, score, time);
 
             resultModelDAO.insert(resultModelToInsert);
         }
@@ -81,8 +83,8 @@ public class GameoverScreen implements Screen {
                 game.batch.end();
         }
 
-        time += delta;
-        if(time >= 3 && Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
+        screenTime += delta;
+        if(screenTime >= 3 && Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
             game.setScreen(new MenuScreen(game));
             this.dispose();
         }

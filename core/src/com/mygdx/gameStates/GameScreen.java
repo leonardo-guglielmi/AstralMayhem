@@ -30,9 +30,8 @@ public class GameScreen implements Screen {
     private final Earth earth;
     private final EnemyManager em;
 
-    // todo: questa cosa degli oggetti statici è un pò una menata
-    private static int score;
-    private static float time;
+    private int score;
+    private float time;
     private boolean isPaused;
 
     public GameScreen(AstralMayhem game){
@@ -48,12 +47,12 @@ public class GameScreen implements Screen {
         // setting-up game logic elements
         bm = new BulletManager();
         hero = new Hero(50, 100, bm);
-        earth = new Earth(bm, Commons.WORLD_X_START, Commons.WORLD_Y_START);
-        em = new EnemyManager(bm, hero);
+        earth = new Earth(bm, Commons.WORLD_X_START, Commons.WORLD_Y_START, this);
+        em = new EnemyManager(bm, hero, this);
 
         input = new KeyboardGameInputHandler(this, game);
 
-        GameoverObserver go = new GameoverObserver(game, hero, earth, em);
+        GameoverObserver go = new GameoverObserver(game, hero, earth, em, this);
         hero.addObserver(go);
         earth.addObserver(go);
         em.addObserver(go);
@@ -191,14 +190,14 @@ public class GameScreen implements Screen {
         game.batch.end();
     }
 
-    public static void updateScore(int s){
+    public void updateScore(int s){
         score += s;
     }
-    public static int getScore(){
+    public int getScore(){
         return score;
     }
 
-    public static int getTime(){
+    public int getTime(){
         return (int)time;
     }
 

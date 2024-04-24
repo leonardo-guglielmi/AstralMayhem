@@ -8,18 +8,21 @@ import com.mygdx.gameStates.GameScreen;
 import com.mygdx.gameStates.GameoverScreen;
 
 public class GameoverObserver implements Observer{
-    AstralMayhem game;
-    Hero h;
-    Earth earth;
-    EnemyManager em;
+    private final AstralMayhem game;
+    private final Hero h;
+    private final Earth earth;
+    private final EnemyManager em;
+
+    private final GameScreen gs;
 
 
 
-    public GameoverObserver(AstralMayhem game, Hero h, Earth earth, EnemyManager em){
+    public GameoverObserver(AstralMayhem game, Hero h, Earth earth, EnemyManager em, GameScreen gs){
         this.game = game;
         this.h = h;
         this.earth = earth;
         this.em = em;
+        this.gs = gs;
     }
 
     @Override
@@ -37,6 +40,6 @@ public class GameoverObserver implements Observer{
 
         if(game.getScreen() != null)
             game.getScreen().dispose();
-        game.setScreen(new GameoverScreen(game, str, GameScreen.getScore()));
+        game.setScreen(new GameoverScreen(game, str, gs.getScore(), gs.getTime()));
     }
 }

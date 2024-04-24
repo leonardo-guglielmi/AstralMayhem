@@ -23,11 +23,13 @@ public class EnemyManager implements Manager, Observable {
     private final BulletManager bm;
     private final Hero h;
     private final Subject obs = new Subject();
+    private final GameScreen gs;
     private boolean GAMEOVER_LIMIT_REACHED = false;
 
-    public EnemyManager(BulletManager bm, Hero h){
+    public EnemyManager(BulletManager bm, Hero h, GameScreen gs){
         this.bm = bm;
         this.h = h;
+        this.gs = gs;
     }
 
     @Override
@@ -60,7 +62,7 @@ public class EnemyManager implements Manager, Observable {
             Enemy e = iter.next();
 
             if(e.getNumCollisions() >= 1) {
-                GameScreen.updateScore(100);
+                gs.updateScore(100);
                 iter.remove();
             }
             else{
