@@ -52,7 +52,7 @@ public class EnemyManager implements Manager, Observable {
         }
         if(advanceEnemySpawnTimer.check()){
             Enemy e = new Enemy(Commons.WORLD_X_START, 500, bm, TypeOfEnemy.ADVANCED);
-            e.setStrategy(new AdvancedEnemyStrategy(e, h, 3));
+            e.setStrategy(new AdvancedEnemyStrategy(e, h, 3, 10));
             enemySet.add(e);
         }
 

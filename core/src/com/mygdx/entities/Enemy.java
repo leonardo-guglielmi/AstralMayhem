@@ -11,7 +11,7 @@ public class Enemy implements Character, StrategyContext {
     private final Rectangle body = new Rectangle();
     private final BulletManager bm;
     private final TypeOfEntity typeEntity = TypeOfEntity.ENEMY;
-    private final TypeOfEnemy typeEnemy;
+    private TypeOfEnemy typeEnemy;
     private Strategy strat;
 
     public Enemy(int startingX, int startingY, BulletManager bm, TypeOfEnemy typeEnemy){

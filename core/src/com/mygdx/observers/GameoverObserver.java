@@ -12,7 +12,6 @@ public class GameoverObserver implements Observer{
     private final Hero h;
     private final Earth earth;
     private final EnemyManager em;
-
     private final GameScreen gs;
 
 

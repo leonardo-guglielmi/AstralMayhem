@@ -9,12 +9,14 @@ public class AdvancedEnemyStrategy implements Strategy{
     private final Enemy e;
     private final Hero h;
     private final Timer shootTimer;
-    private final Timer teleportTimer = new Timer(10);
+    private final Timer teleportTimer;
     private int dirY = 0;
-    public AdvancedEnemyStrategy(Enemy e, Hero h, int t){
+    public AdvancedEnemyStrategy(Enemy e, Hero h, int shootTime, int teleportTime){
         this.e = e;
         this.h = h;
-        this.shootTimer = new Timer(t);
+        shootTimer = new Timer(shootTime);
+        teleportTimer  = new Timer(teleportTime);
+
     }
     @Override
     public void execute() {

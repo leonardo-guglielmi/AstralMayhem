@@ -32,7 +32,7 @@ public class BaseEnemyStrategy implements Strategy{
     fa il test di tutto (quell'if con il timer non era di interesse da testare), ma solo della parte effettivamente di interesse,
     ovvero quella spostata all'interno di executeFirstPart()
     */
-    public void executeFirstPart(){
+    protected void executeFirstPart(){
         if(e.getX() >= Commons.WORLD_X_END -e.getWidth() || e.getX() < Commons.WORLD_X_START){
             dirX *= -1;
             dirY = -100;

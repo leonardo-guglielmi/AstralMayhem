@@ -15,7 +15,7 @@ import com.mygdx.observers.Observer;
 
 public class Hero implements Character, Observable{
     private int hp = 10;
-    private final static int SPEED = 10;
+    private final int SPEED = 10;
     private final TypeOfEntity type = TypeOfEntity.HERO;
     private final Rectangle body = new Rectangle();
     private final InputHandler input;
