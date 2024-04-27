@@ -6,7 +6,7 @@ import com.mygdx.inputManagement.Command;
 
 public class QuitGameCommand implements Command {
 
-    AstralMayhem g;
+    private final AstralMayhem g;
 
     public QuitGameCommand(AstralMayhem g){
         this.g = g;

@@ -1,6 +1,5 @@
 package com.mygdx.gameStates;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -62,9 +61,9 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        updateLogic();
+        updateLogic(delta);
         printBackGrounds();
-        printEntities();
+        printEntities(delta);
     }
 
     @Override
@@ -112,10 +111,10 @@ public class GameScreen implements Screen {
         game.am.finishLoading();
     }
 
-    private void updateLogic(){
+    private void updateLogic(float delta){
         input.handle();
         if(!isPaused) {
-            time += Gdx.graphics.getDeltaTime();
+            time += delta;
             // updating hero logic
             hero.update();
 
@@ -162,7 +161,7 @@ public class GameScreen implements Screen {
 
     }
 
-    private void printEntities(){
+    private void printEntities(float delta){
         game.batch.begin();
         {
             // print hero and earth texture
@@ -176,7 +175,7 @@ public class GameScreen implements Screen {
 
             // print enemies
             if(!isPaused)
-                game.am.updateAnimationTime(Gdx.graphics.getDeltaTime());
+                game.am.updateAnimationTime(delta);
             List<Triplet<Float, Float, TypeOfEnemy>> enemyDisp = em.getPrintInfo();
             for(Triplet<Float, Float, TypeOfEnemy> e : enemyDisp) {
                 if(e.z == TypeOfEnemy.BASE)

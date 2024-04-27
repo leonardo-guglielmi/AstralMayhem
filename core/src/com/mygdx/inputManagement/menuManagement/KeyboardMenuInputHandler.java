@@ -11,13 +11,13 @@ import com.mygdx.utils.TextInputProcessor;
 public class KeyboardMenuInputHandler implements InputHandler {
 
 
-    Command startCmd;
-    Command quitCmd;
-    Command startReadCmd;
-    Command stopReadCmd;
-    Command loadBestCmd;
-    Command loadUserCmd;
-    TextInputProcessor tip;
+    private final Command startCmd;
+    private final Command quitCmd;
+    private final Command startReadCmd;
+    private final Command stopReadCmd;
+    private final Command loadBestCmd;
+    private final Command loadUserCmd;
+    private final TextInputProcessor tip;
 
 
     public KeyboardMenuInputHandler(AstralMayhem game, MenuScreen ms, TextInputProcessor tip){

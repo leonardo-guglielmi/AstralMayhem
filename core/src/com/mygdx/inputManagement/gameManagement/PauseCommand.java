@@ -5,7 +5,7 @@ import com.mygdx.inputManagement.Command;
 
 public class PauseCommand implements Command {
 
-    GameScreen gs;
+    private final GameScreen gs;
 
     public PauseCommand(GameScreen gs){
         this.gs = gs;
