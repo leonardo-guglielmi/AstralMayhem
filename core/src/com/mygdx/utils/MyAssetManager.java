@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class MyAssetManager extends AssetManager {
 
     Animation<TextureRegion> baseEnemyAnimation;
-    Animation <TextureRegion> advancedEnemyAnimation;
+    Animation<TextureRegion> advancedEnemyAnimation;
     private float animationTime = 0f;
 
     public MyAssetManager(){
