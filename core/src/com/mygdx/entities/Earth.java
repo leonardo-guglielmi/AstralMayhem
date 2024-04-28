@@ -41,7 +41,7 @@ public class Earth implements Observable {
         int damage = bm.getBulletCollision(body, type);
         hp -= damage;
         if(damage > 0)
-            gs.updateScore(10 *damage);
+            gs.updateScore(-10 *damage);
         if(hp <= 0){
             obs.notifyObservers();
         }
