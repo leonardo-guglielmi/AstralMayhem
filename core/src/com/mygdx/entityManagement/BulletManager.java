@@ -8,14 +8,13 @@ import com.mygdx.utils.Pair;
 
 import java.util.*;
 
-public class BulletManager implements Manager{
+public class BulletManager{
     private final Set<Bullet> bulletSet = new HashSet<>();
 
     public void addBullet(float startX, float startY, int vel, TypeOfEntity source) {
         bulletSet.add(new Bullet(startX, startY, vel, source));
     }
 
-    @Override
     public void updateEntities(){
         for(Bullet b : bulletSet)
             b.updatePosition();

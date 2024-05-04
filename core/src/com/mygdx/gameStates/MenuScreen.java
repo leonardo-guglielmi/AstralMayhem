@@ -82,10 +82,7 @@ public class MenuScreen implements Screen {
 
         }
         game.batch.end();
-
-        // blocco client-server, c'è da pensare come inserirlo nel command questa cosa
-
-
+        
         input.handle();
         if(tip.isReading())
             game.username = tip.getText();

@@ -16,7 +16,7 @@ import com.mygdx.utils.Triplet;
 
 import java.util.*;
 
-public class EnemyManager implements Manager, Observable {
+public class EnemyManager implements Observable {
     private final Set<Enemy> enemySet = new HashSet<>();
     private final Timer baseEnemySpawnTimer = new Timer(2);
     private final Timer advanceEnemySpawnTimer = new Timer(3);
@@ -38,8 +38,6 @@ public class EnemyManager implements Manager, Observable {
             arrDisp.add(new Triplet<>( e.getX(), e.getY(), e.getTypeOfEnemy()));
         return arrDisp;
     }
-
-    @Override
     public void updateEntities(){
         if(baseEnemySpawnTimer.check()) {
             Random coordinateGenerator = new Random();

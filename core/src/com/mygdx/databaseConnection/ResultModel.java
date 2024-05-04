@@ -26,10 +26,8 @@ public class ResultModel {
 
     @Override
     public String toString() {
-        return "Result{" +
-                "player=" + player +
+        return  "player=" + player +
                 ", points=" + points +
-                ", time=" + time +
-                '}';
+                ", time=" + time;
     }
 }

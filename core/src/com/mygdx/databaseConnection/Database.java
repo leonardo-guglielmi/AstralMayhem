@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 
 public class Database {
 
-    private static final String url = "jdbc:mysql://localhost:3306/provajdbc";
+    private static final String url = "jdbc:mysql://localhost:3306/astralmayhemdb";
 
     private static final String user = "admin";
 

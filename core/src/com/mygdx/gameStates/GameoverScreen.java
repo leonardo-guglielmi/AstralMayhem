@@ -20,8 +20,9 @@ public class GameoverScreen implements Screen {
     private final String gameoverText;
     private final int score;
     private final int time;
-
     private float screenTime = 0;
+
+    private boolean databaseCheck = true;
 
     public GameoverScreen(AstralMayhem game, String gameoverText, int score, int time){
         // loading gameover info
@@ -36,6 +37,23 @@ public class GameoverScreen implements Screen {
         if(!game.am.contains("gameover/skull.png"))
             game.am.load("gameover/skull.png", Texture.class);
         game.am.finishLoading();
+
+        // pushing data into database
+        try {
+            ResultModelDAO resultModelDAO = new ConcreteResultModelDAO();
+
+            ResultModel resultModelToInsert;
+            if(game.username.isEmpty())
+                resultModelToInsert = new ResultModel(Commons.DEFAULT_USERNAME, score, time);
+            else
+                resultModelToInsert = new ResultModel(game.username, score, time);
+
+            resultModelDAO.insert(resultModelToInsert);
+        }
+        catch (SQLException e){
+            databaseCheck = false;
+        }
+
 
     }
 
@@ -62,26 +80,12 @@ public class GameoverScreen implements Screen {
             game.textPrinter.draw(game.batch, "Score obtained: "+score, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -600);
             game.textPrinter.draw(game.batch, "Gameover Cause: "+gameoverText, Commons.WORLD_X_START +100, Commons.WINDOW_HEIGHT -630);
             game.textPrinter.draw(game.batch, "Press any key to go back to menu", Commons.WINDOW_WIDTH-500, Commons.WINDOW_HEIGHT -700);
+
+            if(!databaseCheck) {
+                game.textPrinter.draw(game.batch, "ERROR WHILE PUSHING DATA INTO DATABASE", Commons.WORLD_X_START + 100, Commons.WINDOW_HEIGHT - 700);
+            }
         }
         game.batch.end();
-
-        // fetching info from database
-        try {
-            ResultModelDAO resultModelDAO = new ConcreteResultModelDAO();
-
-            ResultModel resultModelToInsert;
-            if(game.username.isEmpty())
-                resultModelToInsert = new ResultModel(Commons.DEFAULT_USERNAME, score, time);
-            else
-                resultModelToInsert = new ResultModel(game.username, score, time);
-
-            resultModelDAO.insert(resultModelToInsert);
-        }
-        catch (SQLException e){
-                game.batch.begin();
-                game.textPrinter.draw(game.batch, "ERROR WHILE PUSHING DATA INTO DATABASE", Commons.WORLD_X_START+100, Commons.WINDOW_HEIGHT -700);
-                game.batch.end();
-        }
 
         screenTime += delta;
         if(screenTime >= 3 && Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {

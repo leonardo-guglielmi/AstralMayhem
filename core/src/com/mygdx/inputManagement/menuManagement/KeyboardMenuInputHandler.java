@@ -44,10 +44,10 @@ public class KeyboardMenuInputHandler implements InputHandler {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
             stopReadCmd.execute();
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.B))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.B) && !tip.isReading())
             loadBestCmd.execute();
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Y))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Y) && !tip.isReading())
             loadUserCmd.execute();
     }
 }

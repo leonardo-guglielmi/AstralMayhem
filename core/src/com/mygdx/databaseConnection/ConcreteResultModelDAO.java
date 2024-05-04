@@ -41,7 +41,7 @@ public class ConcreteResultModelDAO implements ResultModelDAO {
             user = Commons.DEFAULT_USERNAME;
         String query = "SELECT *\n" +
                 "FROM result\n" +
-                "WHERE player = " +user +"\n" +
+                "WHERE player = '" +user +"'\n" +
                 "LIMIT 5";
 
         PreparedStatement ps = con.prepareStatement(query);
