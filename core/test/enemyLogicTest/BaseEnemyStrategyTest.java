@@ -8,18 +8,18 @@ import com.mygdx.utils.Commons;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class TestBaseStrategy extends BaseEnemyStrategy{
-
-    public TestBaseStrategy(Enemy e, int t) {
-        super(e, t);
-    }
-
-    public void testExecute(){
-        executeFirstPart();
-    }
-}
-
 public class BaseEnemyStrategyTest {
+
+    private class TestBaseStrategy extends BaseEnemyStrategy{
+
+        public TestBaseStrategy(Enemy e, int t) {
+            super(e, t);
+        }
+
+        public void testExecute(){
+            executeFirstPart();
+        }
+    }
     @Test
     void testExecuteFirstPart(){
         //NOTA: non si può testare il metodo execute() completo perché il timer in fase di test dà problemi-
