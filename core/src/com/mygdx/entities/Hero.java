@@ -5,22 +5,22 @@ import com.mygdx.inputManagement.InputHandler;
 import com.mygdx.inputManagement.playerManagement.KeyboardPlayerInputHandler;
 import com.mygdx.utils.Commons;
 import com.mygdx.entityManagement.BulletManager;
-import com.mygdx.observers.Observable;
 import com.mygdx.observers.Subject;
+import com.mygdx.observers.ObserverHandler;
 import com.mygdx.observers.Observer;
 
 /**
  * This class contains all the information about the Hero character
  */
 
-public class Hero implements Character, Observable{
+public class Hero implements Character, Subject {
     private int hp = 10;
     private final int SPEED = 10;
     private final TypeOfEntity type = TypeOfEntity.HERO;
     private final Rectangle body = new Rectangle();
     private final InputHandler input;
     private final BulletManager bm;
-    private final Subject obs = new Subject();
+    private final ObserverHandler obs = new ObserverHandler();
 
 
     public Hero(int startingX, int startingY, BulletManager bm) {

@@ -3,17 +3,17 @@ package com.mygdx.entities;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.entityManagement.BulletManager;
 import com.mygdx.gameStates.GameScreen;
-import com.mygdx.observers.Observable;
 import com.mygdx.observers.Subject;
+import com.mygdx.observers.ObserverHandler;
 import com.mygdx.observers.Observer;
 import com.mygdx.utils.Commons;
 
-public class Earth implements Observable {
+public class Earth implements Subject {
     private int hp  = 100;
     private final TypeOfEntity type = TypeOfEntity.EARTH;
     private final Rectangle body = new Rectangle();
     private final BulletManager bm;
-    private final Subject obs = new Subject();
+    private final ObserverHandler obs = new ObserverHandler();
     private final GameScreen gs;
 
     public Earth(BulletManager bm, int startX, int startY, GameScreen gs){

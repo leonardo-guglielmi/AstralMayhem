@@ -8,21 +8,21 @@ import com.mygdx.gameStates.GameScreen;
 import com.mygdx.utils.Commons;
 import com.mygdx.entities.Enemy;
 import com.mygdx.entities.Hero;
-import com.mygdx.observers.Observable;
 import com.mygdx.observers.Subject;
+import com.mygdx.observers.ObserverHandler;
 import com.mygdx.observers.Observer;
 import com.mygdx.utils.Timer;
 import com.mygdx.utils.Triplet;
 
 import java.util.*;
 
-public class EnemyManager implements Observable {
+public class EnemyManager implements Subject {
     private final Set<Enemy> enemySet = new HashSet<>();
     private final Timer baseEnemySpawnTimer = new Timer(2);
     private final Timer advanceEnemySpawnTimer = new Timer(3);
     private final BulletManager bm;
     private final Hero h;
-    private final Subject obs = new Subject();
+    private final ObserverHandler obs = new ObserverHandler();
     private final GameScreen gs;
     private boolean GAMEOVER_LIMIT_REACHED = false;
 
